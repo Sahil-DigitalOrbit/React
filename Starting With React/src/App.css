@@ -1,0 +1,28 @@
+
+
+.card-tile{
+  background-color: aliceblue;
+  min-width: 12rem;
+}
+.episode-span{
+  border: 2px solid brown;
+  font-size: 1rem;
+  padding: 1rem;
+  border-radius:5px 5px 0 0;
+  margin: .5rem;
+  border-bottom: 0px;
+  display: inline-block;
+  margin-bottom: 0;
+}
+.episode-display{
+  height: 50vh;
+  border: 2px solid brown;
+  margin-bottom:1rem;
+  border-radius: 10px;
+  background-color: antiquewhite;
+
+}
+
+.episode-span:hover{
+background-color: bisque;
+}
