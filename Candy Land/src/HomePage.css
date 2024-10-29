@@ -1,0 +1,114 @@
+nav {
+  display: flex;
+  max-height: 6rem;
+  overflow: hidden;
+  justify-content: space-between;
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.5);
+}
+nav > div:first-child {
+  display: flex;
+  width: 15%;
+  justify-content: flex-end;
+  align-items: center;
+}
+nav > div:last-child {
+  display: flex;
+  width: 40%;
+  align-items: center;
+  justify-content: space-around;
+}
+.header-logo {
+  height: 100%;
+  object-fit: cover;
+}
+button {
+  height: 2.3rem;
+  margin: 2rem;
+  width: 6.6rem;
+  border: 2px solid #ea3d32;
+  background-color: inherit;
+  border-radius: 8px;
+  color: #ea3d32;
+}
+.sign-in-button {
+  background-color: #ea3d32;
+  color: white;
+}
+.login-signup-section {
+  box-sizing: border-box;
+  width: 30rem;
+  position: absolute;
+  left: 50%;
+  top: -50%;
+  height: 32rem;
+  transform: translate(-50%, -50%);
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border-radius: 20px;
+  transition: ease-in-out 0.3s;
+}
+.close-botton-h2{
+  cursor: pointer;
+}
+
+.close-botton-h2:hover{
+  text-shadow:  1px 1px rgb(0, 0, 0);
+}
+.login-signup-section > div {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+.signup-section-header {
+  flex-direction: row !important;
+  justify-content: space-between;
+}
+.signup-section-header > h2 {
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+.check-box-signup {
+  height: 1.6rem;
+  width: 1.6rem;
+}
+.signup-input-div > input {
+  height: 2.4rem;
+}
+.signup-input-term-div {
+  display: flex;
+  flex-direction: row !important;
+  font-size: 0.7rem;
+  align-items: center;
+}
+.signup-button-div > * {
+  margin: 0;
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.active {
+  top: 50%;
+}
+.signup-login-div{
+  flex-direction: row !important;
+}
+.signup-login-div>span{
+  color: #ea3d32;
+  text-decoration: underline;
+  cursor: pointer;
+}
+button{
+  cursor: pointer;
+}
+
+.signup-bottons{
+  margin: .8rem 0;
+  height: 2.5rem;
+}

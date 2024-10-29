@@ -1,0 +1,52 @@
+.App {
+  text-align: center;
+}
+.verify-page-logo {
+  height: 13rem;
+}
+.verify-page-sextion {
+  width: 100%;
+  height: 100vh;
+  font-size: 2rem;
+  color: #4a4949;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fffdec;
+  overflow: hidden;
+}
+.verify-page-sextion > img {
+  position: fixed;
+  width: 25rem;
+  opacity: 0.5;
+}
+.verify-page-background-image-bottom {
+  left: 0;
+  bottom: 0;
+  transform: translate(1rem, -1rem);
+  rotate: 180deg;
+}
+.verify-page-background-image-top {
+  top: 0;
+  right: 0;
+  transform: translate(1rem, -1rem);
+}
+.verify-age-button {
+  height: 3.5rem;
+  margin: 2rem;
+  width: 6rem;
+  border: 2px solid #ea3d32;
+  background-color: inherit;
+  border-radius: 8px;
+}
+.verify-age-button:hover {
+  z-index: 1;
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.5);
+}
+
+.modal-div{
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
