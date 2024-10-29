@@ -1,0 +1,347 @@
+export const Customers = [
+  {
+    uName: "John Doe",
+    uContact: "1234567890",
+    uMail: "john.doe@example.com",
+    uPassword: "securePass123",
+  },
+  {
+    uName: "Jane Smith",
+    uContact: "2345678901",
+    uMail: "jane.smith@example.com",
+    uPassword: "anotherPass456",
+  },
+  {
+    uName: "Mark Jones",
+    uContact: "3456789012",
+    uMail: "mark.jones@example.com",
+    uPassword: "thirdPass789",
+  },
+  {
+    uName: "Sarah Lee",
+    uContact: "4567890123",
+    uMail: "sarah.lee@example.com",
+    uPassword: "secureMe987",
+  },
+];
+export const Products = [
+  {
+    id: 1,
+    category_id: 1,
+    name: "Smartphone X",
+    description: "High-end smartphone with amazing display and performance.",
+    image: ["https://example.com/images/product1.jpg"],
+    price: 999.99,
+    publish: true,
+    quantity: 100,
+    ratings: 4.5
+  },
+  {
+    id: 2,
+    category_id: 2,
+    name: "Leather Sofa",
+    description: "Premium leather sofa with elegant design.",
+    image: ["https://example.com/images/product2.jpg"],
+    price: 799.99,
+    publish: true,
+    quantity: 20,
+    ratings: 4.7
+  },
+  {
+    id: 3,
+    category_id: 1,
+    name: "Laptop Pro",
+    description: "Powerful laptop for professionals with cutting-edge performance.",
+    image: ["https://example.com/images/product3.jpg"],
+    price: 1299.99,
+    publish: true,
+    quantity: 50,
+    ratings: 4.6
+  },
+  {
+    id: 4,
+    category_id: 3,
+    name: "Washing Machine",
+    description: "Energy-efficient washing machine with quick wash option.",
+    image: ["https://example.com/images/product4.jpg"],
+    price: 499.99,
+    publish: true,
+    quantity: 30,
+    ratings: 4.3
+  },
+  {
+    id: 5,
+    category_id: 2,
+    name: "Dining Table",
+    description: "Modern dining table with a sleek finish.",
+    image: ["https://example.com/images/product5.jpg"],
+    price: 599.99,
+    publish: true,
+    quantity: 15,
+    ratings: 4.5
+  },
+  {
+    id: 6,
+    category_id: 1,
+    name: "Bluetooth Speaker",
+    description: "Portable speaker with amazing sound quality.",
+    image: ["https://example.com/images/product6.jpg"],
+    price: 199.99,
+    publish: true,
+    quantity: 80,
+    ratings: 4.4
+  },
+  {
+    id: 7,
+    category_id: 4,
+    name: "Remote Control Car",
+    description: "Fun and exciting toy for kids of all ages.",
+    image: ["https://example.com/images/product7.jpg"],
+    price: 49.99,
+    publish: true,
+    quantity: 120,
+    ratings: 4.8
+  },
+  {
+    id: 8,
+    category_id: 3,
+    name: "Microwave Oven",
+    description: "Compact microwave with easy-to-use features.",
+    image: ["https://example.com/images/product8.jpg"],
+    price: 149.99,
+    publish: false,
+    quantity: 45,
+    ratings: 4.2
+  },
+  {
+    id: 9,
+    category_id: 2,
+    name: "Office Chair",
+    description: "Ergonomic chair with lumbar support for comfortable seating.",
+    image: ["https://example.com/images/product9.jpg"],
+    price: 159.99,
+    publish: true,
+    quantity: 60,
+    ratings: 4.6
+  },
+  {
+    id: 10,
+    category_id: 1,
+    name: "Tablet S",
+    description: "Lightweight tablet with high-resolution display.",
+    image: ["https://example.com/images/product10.jpg"],
+    price: 299.99,
+    publish: true,
+    quantity: 40,
+    ratings: 4.5
+  },
+  {
+    id: 11,
+    category_id: 4,
+    name: "Building Blocks Set",
+    description: "Educational building blocks for children.",
+    image: ["https://example.com/images/product11.jpg"],
+    price: 29.99,
+    publish: true,
+    quantity: 200,
+    ratings: 4.9
+  },
+  {
+    id: 12,
+    category_id: 3,
+    name: "Refrigerator",
+    description: "Energy-saving refrigerator with spacious compartments.",
+    image: ["https://example.com/images/product12.jpg"],
+    price: 899.99,
+    publish: true,
+    quantity: 25,
+    ratings: 4.4
+  },
+  {
+    id: 13,
+    category_id: 2,
+    name: "Bookshelf",
+    description: "Elegant bookshelf to organize your books and decor.",
+    image: ["https://example.com/images/product13.jpg"],
+    price: 199.99,
+    publish: true,
+    quantity: 35,
+    ratings: 4.3
+  },
+  {
+    id: 14,
+    category_id: 1,
+    name: "Smart Watch",
+    description: "Advanced smartwatch with multiple fitness tracking features.",
+    image: ["https://example.com/images/product14.jpg"],
+    price: 149.99,
+    publish: true,
+    quantity: 100,
+    ratings: 4.6
+  },
+  {
+    id: 15,
+    category_id: 4,
+    name: "Toy Train Set",
+    description: "Classic train set for endless playtime.",
+    image: ["https://example.com/images/product15.jpg"],
+    price: 39.99,
+    publish: true,
+    quantity: 180,
+    ratings: 4.8
+  },
+  {
+    id: 16,
+    category_id: 3,
+    name: "Vacuum Cleaner",
+    description: "Powerful vacuum cleaner with multiple attachments.",
+    image: ["https://example.com/images/product16.jpg"],
+    price: 299.99,
+    publish: true,
+    quantity: 55,
+    ratings: 4.5
+  },
+  {
+    id: 17,
+    category_id: 2,
+    name: "Coffee Table",
+    description: "Stylish coffee table to complement your living room.",
+    image: ["https://example.com/images/product17.jpg"],
+    price: 99.99,
+    publish: true,
+    quantity: 70,
+    ratings: 4.6
+  },
+  {
+    id: 18,
+    category_id: 1,
+    name: "Headphones",
+    description: "Noise-canceling headphones with excellent sound quality.",
+    image: ["https://example.com/images/product18.jpg"],
+    price: 249.99,
+    publish: true,
+    quantity: 90,
+    ratings: 4.7
+  },
+  {
+    id: 19,
+    category_id: 3,
+    name: "Air Conditioner",
+    description: "Energy-efficient air conditioner for cooling large spaces.",
+    image: ["https://example.com/images/product19.jpg"],
+    price: 749.99,
+    publish: true,
+    quantity: 20,
+    ratings: 4.5
+  },
+  {
+    id: 20,
+    category_id: 1,
+    name: "Camera Pro",
+    description: "Professional camera with high-resolution lens.",
+    image: ["https://example.com/images/product20.jpg"],
+    price: 1499.99,
+    publish: true,
+    quantity: 15,
+    ratings: 4.8
+  }
+];
+
+export const Orders = [
+  {
+    id: 1,
+    user_id: 1,
+    product_id: 1,
+    quantity: 1,
+  },
+  {
+    id: 2,
+    user_id: 2,
+    product_id: 2,
+    quantity: 1,
+  },
+  {
+    id: 3,
+    user_id: 3,
+    product_id: 3,
+    quantity: 1,
+  },
+  {
+    id: 4,
+    user_id: 1,
+    product_id: 4,
+    quantity: 1,
+  },
+  {
+    id: 5,
+    user_id: 4,
+    product_id: 5,
+    quantity: 1,
+  },
+  {
+    id: 6,
+    user_id: 5,
+    product_id: 6,
+    quantity: 2,
+  },
+  {
+    id: 7,
+    user_id: 2,
+    product_id: 7,
+    quantity: 3,
+  },
+  {
+    id: 8,
+    user_id: 3,
+    product_id: 10,
+    quantity: 1,
+  },
+  {
+    id: 9,
+    user_id: 3,
+    product_id: 11,
+    quantity: 2,
+  },
+  {
+    id: 10,
+    user_id: 4,
+    product_id: 8,
+    quantity: 1,
+  },
+  {
+    id: 11,
+    user_id: 5,
+    product_id: 13,
+    quantity: 1,
+  },
+  {
+    id: 12,
+    user_id: 1,
+    product_id: 14,
+    quantity: 1,
+  },
+  {
+    id: 13,
+    user_id: 2,
+    product_id: 15,
+    quantity: 1,
+  },
+  {
+    id: 14,
+    user_id: 3,
+    product_id: 16,
+    quantity: 1,
+  },
+  {
+    id: 15,
+    user_id: 4,
+    product_id: 18,
+    quantity: 2,
+  },
+  {
+    id: 16,
+    user_id: 5,
+    product_id: 20,
+    quantity: 1,
+  },
+];

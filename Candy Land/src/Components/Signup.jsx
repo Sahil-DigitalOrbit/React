@@ -1,25 +1,20 @@
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 
-export default function Signup({
-  signupShow,
-  setSignUpStatus,
-  usersList,
-  updateUsersList,
-}) {
-  let [formDetails, setDetails] = useState({
-    uName: "",
-    uContact: "",
-    uMail: "",
-  });
+export default function Signup({ prop }) {
+  let{signupShow,setSignUpStatus, usersList, updateUsersList, userLogin,setLogin}=prop;
+  let [formDetails, setDetails] = useState({  uName: "",  uContact: "",  uMail: "",});
   let [isSignupPage, updateContent] = useState(true);
+  let [loginWithMail, setLoginWithMail] = useState(false);
+  
+  //for change in content
   function updateValue(e) {
     let oldData = { ...formDetails };
     oldData[e.target.name] = e.target.value;
     setDetails(oldData);
   }
-  let [loginWithMail, setLoginWithMail] = useState(false);
 
+  //to add user to data
   function addUser(e) {
     e.preventDefault();
     if (isSignupPage) {
@@ -31,31 +26,33 @@ export default function Signup({
       });
       if (!doExist) {
         updateUsersList([...usersList, { ...formDetails }]);
-        setDetails({
-          uName: "",
-          uContact: "",
-          uMail: "",
-        });
-        toast.success("Account created!");
+        
+        toast.success("Account created! Now please login...");
       } else {
-        toast.error("User Exist  please try login");
+        toast.error("User Exist! Please try login...");
       }
     } else {
       let doExist = usersList.find((user) => {
-        console.log(user.uContact);
         return (
-          // user.uMail === formDetails.uMail ||
+          user.uMail === formDetails.uMail ||
           user.uContact === formDetails.uContact
         );
       });
       if (doExist) {
-        toast.success(`Welcome ` + doExist.uName);
+        setLogin(true);
+        toast.success(`Welcome ` + doExist.uName+'!');
       } else {
         toast.error("User Not found!");
       }
     }
+    setDetails({
+      uName: "",
+      uContact: "",
+      uMail: "",
+    });
   }
 
+  //switch b/w signup/login content
   function populateSignupSection() {
     let content = isSignupPage ? (
       <>
@@ -123,11 +120,11 @@ export default function Signup({
   //----------------------container content-------------------------------
   return (
     <section>
-      <div className={signupShow ? "modal-div" : ""}></div>
+      <div className={signupShow && !userLogin ? "modal-div" : ""}></div>
       <form
         onSubmit={addUser}
         className={
-          signupShow ? "login-signup-section active" : "login-signup-section"
+          signupShow && !userLogin ? "login-signup-section active" : "login-signup-section"
         }
       >
         <div className="signup-section-header">
