@@ -2,7 +2,7 @@ import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 
 export default function Signup({ prop }) {
-  let{signupShow,setSignUpStatus, usersList, updateUsersList, userLogin,setLogin}=prop;
+  let{signupShow,setSignUpStatus, usersList, updateUsersList, isLoggedIn,setLogin}=prop;
   let [formDetails, setDetails] = useState({  uName: "",  uContact: "",  uMail: "",});
   let [isSignupPage, updateContent] = useState(true);
   let [loginWithMail, setLoginWithMail] = useState(false);
@@ -120,11 +120,11 @@ export default function Signup({ prop }) {
   //----------------------container content-------------------------------
   return (
     <section>
-      <div className={signupShow && !userLogin ? "modal-div" : ""}></div>
+      <div className={signupShow && !isLoggedIn ? "modal-div" : ""}></div>
       <form
         onSubmit={addUser}
         className={
-          signupShow && !userLogin ? "login-signup-section active" : "login-signup-section"
+          signupShow && !isLoggedIn ? "login-signup-section active" : "login-signup-section"
         }
       >
         <div className="signup-section-header">

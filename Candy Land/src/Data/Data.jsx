@@ -24,10 +24,67 @@ export const Customers = [
     uPassword: "secureMe987",
   },
 ];
+// Brands-----------------------------------------------------------------------------------------------------------
+export const Brands = [
+  {
+    name: "TechCorp",
+    image: "https://example.com/images/techcorp.jpg"
+  },
+  {
+    name: "FurniStyle",
+    image: "https://example.com/images/furnistyle.jpg"
+  },
+  {
+    name: "FutureGadgets",
+    image: "https://example.com/images/futuregadgets.jpg"
+  },
+  {
+    name: "HomeEase",
+    image: "https://example.com/images/homeease.jpg"
+  },
+  {
+    name: "LuxDesign",
+    image: "https://example.com/images/luxdesign.jpg"
+  },
+  {
+    name: "SparkSound",
+    image: "https://example.com/images/sparksound.jpg"
+  },
+  {
+    name: "PlayTime",
+    image: "https://example.com/images/playtime.jpg"
+  },
+  {
+    name: "UrbanLiving",
+    image: "https://example.com/images/urbanliving.jpg"
+  }
+];
+// categories-----------------------------------------------------------------------------------
+export const Categories = [
+  {
+    name: "Electronics",
+    image: "https://example.com/images/electronics.jpg"
+  },
+  {
+    name: "Furniture",
+    image: "https://example.com/images/furniture.jpg"
+  },
+  {
+    name: "Home Appliances",
+    image: "https://example.com/images/home-appliances.jpg"
+  },
+  {
+    name: "Toys",
+    image: "https://example.com/images/toys.jpg"
+  }
+];
+
+// products-----------------------------------------------------------------------------------------------------------------
 export const Products = [
   {
     id: 1,
-    category_id: 1,
+    category: "Electronics",
+    brand: "TechCorp",
     name: "Smartphone X",
     description: "High-end smartphone with amazing display and performance.",
     image: ["https://example.com/images/product1.jpg"],
@@ -38,7 +95,8 @@ export const Products = [
   },
   {
     id: 2,
-    category_id: 2,
+    category: "Furniture",
+    brand: "FurniStyle",
     name: "Leather Sofa",
     description: "Premium leather sofa with elegant design.",
     image: ["https://example.com/images/product2.jpg"],
@@ -49,7 +107,8 @@ export const Products = [
   },
   {
     id: 3,
-    category_id: 1,
+    category: "Electronics",
+    brand: "FutureGadgets",
     name: "Laptop Pro",
     description: "Powerful laptop for professionals with cutting-edge performance.",
     image: ["https://example.com/images/product3.jpg"],
@@ -60,7 +119,8 @@ export const Products = [
   },
   {
     id: 4,
-    category_id: 3,
+    category: "Home Appliances",
+    brand: "HomeEase",
     name: "Washing Machine",
     description: "Energy-efficient washing machine with quick wash option.",
     image: ["https://example.com/images/product4.jpg"],
@@ -71,7 +131,8 @@ export const Products = [
   },
   {
     id: 5,
-    category_id: 2,
+    category: "Furniture",
+    brand: "LuxDesign",
     name: "Dining Table",
     description: "Modern dining table with a sleek finish.",
     image: ["https://example.com/images/product5.jpg"],
@@ -82,7 +143,8 @@ export const Products = [
   },
   {
     id: 6,
-    category_id: 1,
+    category: "Electronics",
+    brand: "SparkSound",
     name: "Bluetooth Speaker",
     description: "Portable speaker with amazing sound quality.",
     image: ["https://example.com/images/product6.jpg"],
@@ -93,7 +155,8 @@ export const Products = [
   },
   {
     id: 7,
-    category_id: 4,
+    category: "Toys",
+    brand: "PlayTime",
     name: "Remote Control Car",
     description: "Fun and exciting toy for kids of all ages.",
     image: ["https://example.com/images/product7.jpg"],
@@ -104,7 +167,8 @@ export const Products = [
   },
   {
     id: 8,
-    category_id: 3,
+    category: "Home Appliances",
+    brand: "HomeEase",
     name: "Microwave Oven",
     description: "Compact microwave with easy-to-use features.",
     image: ["https://example.com/images/product8.jpg"],
@@ -115,7 +179,8 @@ export const Products = [
   },
   {
     id: 9,
-    category_id: 2,
+    category: "Furniture",
+    brand: "UrbanLiving",
     name: "Office Chair",
     description: "Ergonomic chair with lumbar support for comfortable seating.",
     image: ["https://example.com/images/product9.jpg"],
@@ -126,7 +191,8 @@ export const Products = [
   },
   {
     id: 10,
-    category_id: 1,
+    category: "Electronics",
+    brand: "TechCorp",
     name: "Tablet S",
     description: "Lightweight tablet with high-resolution display.",
     image: ["https://example.com/images/product10.jpg"],
@@ -137,7 +203,8 @@ export const Products = [
   },
   {
     id: 11,
-    category_id: 4,
+    category: "Toys",
+    brand: "PlayTime",
     name: "Building Blocks Set",
     description: "Educational building blocks for children.",
     image: ["https://example.com/images/product11.jpg"],
@@ -148,7 +215,8 @@ export const Products = [
   },
   {
     id: 12,
-    category_id: 3,
+    category: "Home Appliances",
+    brand: "HomeEase",
     name: "Refrigerator",
     description: "Energy-saving refrigerator with spacious compartments.",
     image: ["https://example.com/images/product12.jpg"],
@@ -159,7 +227,8 @@ export const Products = [
   },
   {
     id: 13,
-    category_id: 2,
+    category: "Furniture",
+    brand: "LuxDesign",
     name: "Bookshelf",
     description: "Elegant bookshelf to organize your books and decor.",
     image: ["https://example.com/images/product13.jpg"],
@@ -170,7 +239,8 @@ export const Products = [
   },
   {
     id: 14,
-    category_id: 1,
+    category: "Electronics",
+    brand: "FutureGadgets",
     name: "Smart Watch",
     description: "Advanced smartwatch with multiple fitness tracking features.",
     image: ["https://example.com/images/product14.jpg"],
@@ -181,7 +251,8 @@ export const Products = [
   },
   {
     id: 15,
-    category_id: 4,
+    category: "Toys",
+    brand: "PlayTime",
     name: "Toy Train Set",
     description: "Classic train set for endless playtime.",
     image: ["https://example.com/images/product15.jpg"],
@@ -192,7 +263,8 @@ export const Products = [
   },
   {
     id: 16,
-    category_id: 3,
+    category: "Home Appliances",
+    brand: "HomeEase",
     name: "Vacuum Cleaner",
     description: "Powerful vacuum cleaner with multiple attachments.",
     image: ["https://example.com/images/product16.jpg"],
@@ -203,7 +275,8 @@ export const Products = [
   },
   {
     id: 17,
-    category_id: 2,
+    category: "Furniture",
+    brand: "LuxDesign",
     name: "Coffee Table",
     description: "Stylish coffee table to complement your living room.",
     image: ["https://example.com/images/product17.jpg"],
@@ -214,7 +287,8 @@ export const Products = [
   },
   {
     id: 18,
-    category_id: 1,
+    category: "Electronics",
+    brand: "SparkSound",
     name: "Headphones",
     description: "Noise-canceling headphones with excellent sound quality.",
     image: ["https://example.com/images/product18.jpg"],
@@ -225,7 +299,8 @@ export const Products = [
   },
   {
     id: 19,
-    category_id: 3,
+    category: "Home Appliances",
+    brand: "HomeEase",
     name: "Air Conditioner",
     description: "Energy-efficient air conditioner for cooling large spaces.",
     image: ["https://example.com/images/product19.jpg"],
@@ -236,7 +311,8 @@ export const Products = [
   },
   {
     id: 20,
-    category_id: 1,
+    category: "Electronics",
+    brand: "FutureGadgets",
     name: "Camera Pro",
     description: "Professional camera with high-resolution lens.",
     image: ["https://example.com/images/product20.jpg"],
@@ -246,7 +322,7 @@ export const Products = [
     ratings: 4.8
   }
 ];
-
+// orders-------------------------------------------------------------------------------------------------------------
 export const Orders = [
   {
     id: 1,

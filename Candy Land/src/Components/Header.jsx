@@ -1,5 +1,5 @@
 export default function Header({ prop }) {
-  let { setSignUpStatus, userLogin,setLogin } = prop;
+  let { setSignUpStatus, isLoggedIn,setLogin } = prop;
   return (
     <nav>
       <div>
@@ -10,7 +10,7 @@ export default function Header({ prop }) {
       </div>
       <div>
         <button>Get the App</button>
-        {userLogin ? (
+        {isLoggedIn ? (
           <><button className="sign-in-button" onClick={() => setLogin(false)}>
           Logout
         </button></>
