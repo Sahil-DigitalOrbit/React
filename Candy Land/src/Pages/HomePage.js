@@ -71,14 +71,14 @@ function PopulateHomepage({ prop }) {
         <img className="homepage-advertise-section-img"  src="https://media.architecturaldigest.com/photos/5dcde00380598800086215f6/16:9/w_2560%2Cc_limit/Osofsky_Oct19-5.jpg" />
         
       </div>
-      <Template head={"Categories"} data={Categories} isProduct={false}/>
+      <Template head={"Categories"} data={Categories} goTo={'/categories'}/>
       <hr></hr>
       
-      <Template head={"Best Sellers"} data={bestSellers} />
+      <Template head={"Best Sellers"} data={bestSellers} isProduct={true} goTo={'/best-sellers'} />
       <hr></hr>
-      <Template head={"Popular"} data={popularProducts} />
+      <Template head={"Popular"} data={popularProducts} isProduct={true} goTo={'/popular'}/>
       <hr/>
-      <Template head={"Brands"} data={Brands} isProduct={false}/>
+      <Template head={"Brands"} data={Brands} goTo={'/brands'}/>
       
     </section>
   );
