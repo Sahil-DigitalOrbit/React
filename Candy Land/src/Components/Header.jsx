@@ -1,5 +1,17 @@
+import { useState } from "react";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 export default function Header({ prop }) {
   let { setSignUpStatus, isLoggedIn,setLogin } = prop;
+
+  let [searchInput,setInput]=useState('');
+
+
+  function updateValue(e) {
+    let input = e.target.value;
+    setInput(searchInput);
+  }
   return (
     <nav>
       <div>
@@ -9,13 +21,20 @@ export default function Header({ prop }) {
         />
       </div>
       <div>
-        <button>Get the App</button>
-        {isLoggedIn ? (
-          <><button className="sign-in-button" onClick={() => setLogin(false)}>
+      {isLoggedIn ? (
+          <>
+        <input className="search-bar" type="text" placeholder='Search' onChange={setInput}></input>        
+        <button className="mx-2">Shop</button>
+        <button className="mx-2 border-0">Wishlist</button>
+        <button className="mx-2 border-0">Account</button>
+          
+          <button className="sign-in-button mx-2" onClick={() => setLogin(false)}>
           Logout
         </button></>
         ) : (
           <>
+        <button>Get the App</button>
+
             <button onClick={() => setSignUpStatus(true)}>
               Create Account
             </button>

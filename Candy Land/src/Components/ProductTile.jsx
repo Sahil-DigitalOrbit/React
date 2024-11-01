@@ -49,7 +49,7 @@ export default function ProductTile({ prop }) {
           </div>
         </Card.Body>
       ) : (
-        <Card.Body className="p-0">
+        <Card.Body className="p-0 d-flex justify-content-center align-items-center">
             <Card.Title>{item.name}</Card.Title>
           
         </Card.Body>
