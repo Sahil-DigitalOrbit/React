@@ -1,23 +1,29 @@
 import "../HomePage.css";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Header from "../Components/Header";
 import Signup from "../Components/Signup";
 import { ToastContainer } from "react-toastify";
-import { Customers, Products, Orders, Categories, Brands } from "../Data/Data";
+import { Products, Orders, Categories, Brands } from "../Data/Data";
 import Template from "../Components/Template";
 
-export default function HomePage({ ageValidation }) {
+export default function HomePage({ prop }) {
+  let {
+    ageValidation,
+    isLoggedIn,
+    setLogin,
+    signupShow,
+    setSignUpStatus,
+    usersList,
+    updateUsersList,
+  } = prop;
+
   const navigate = useNavigate();
   useEffect(() => {
     if (!ageValidation) {
       navigate("/verify");
     }
   }, [ageValidation, navigate]);
-  let [signupShow, setSignUpStatus] = useState(false);
-  let [usersList, updateUsersList] = useState([...Customers]);
-  let [isLoggedIn, setLogin] = useState(false);
-
   //best seller and popular products
   let bestSellers = Orders.reduce((prev, order) => {
     prev[order.product_id] = prev[order.product_id]
@@ -68,18 +74,29 @@ function PopulateHomepage({ prop }) {
   return (
     <section className="homepage-section">
       <div className="homepage-advertise-section">
-        <img className="homepage-advertise-section-img"  src="https://media.architecturaldigest.com/photos/5dcde00380598800086215f6/16:9/w_2560%2Cc_limit/Osofsky_Oct19-5.jpg" />
-        
+        <img
+          className="homepage-advertise-section-img"
+          src="https://media.architecturaldigest.com/photos/5dcde00380598800086215f6/16:9/w_2560%2Cc_limit/Osofsky_Oct19-5.jpg"
+        />
       </div>
-      <Template head={"Categories"} data={Categories} goTo={'/categories'}/>
+      <Template head={"Categories"} data={Categories} goTo={"/categories"} />
       <hr></hr>
-      
-      <Template head={"Best Sellers"} data={bestSellers} isProduct={true} goTo={'/best-sellers'} />
+
+      <Template
+        head={"Best Sellers"}
+        data={bestSellers}
+        isProduct={true}
+        goTo={"/best-sellers"}
+      />
       <hr></hr>
-      <Template head={"Popular"} data={popularProducts} isProduct={true} goTo={'/popular'}/>
-      <hr/>
-      <Template head={"Brands"} data={Brands} goTo={'/brands'}/>
-      
+      <Template
+        head={"Popular"}
+        data={popularProducts}
+        isProduct={true}
+        goTo={"/popular"}
+      />
+      <hr />
+      <Template head={"Brands"} data={Brands} goTo={"/brands"} />
     </section>
   );
 }

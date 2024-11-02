@@ -7,12 +7,13 @@ export default function ProductTile({ prop }) {
   let { item, isProduct, goTo } = prop;
 
   return (
-    <Card
+    <Card className="template-card"
       style={{
         marginRight: "1rem",
         border: "none",
         height: "25rem",
         minWidth: "15rem",
+        maxWidth:'15rem'
       }}
     >
       <div className="position-relative border h-75 card-image-div">
