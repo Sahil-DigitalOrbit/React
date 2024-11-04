@@ -105,13 +105,13 @@ export default function Homogeneous({ prop, heading, isProduct }) {
               <div>
                 <h5 className="homogeneous-filter-controls-head">
                   <span>Brand</span>
-                  <FontAwesomeIcon icon={faChevronDown} />
+                  <FontAwesomeIcon className="hide-drop-icon" icon={faChevronDown} />
                 </h5>
               </div>
               <div>
                 <h5 className="homogeneous-filter-controls-head">
                   <span>Category</span>
-                  <FontAwesomeIcon icon={faChevronDown} />
+                  <FontAwesomeIcon className="hide-drop-icon" icon={faChevronDown} />
                 </h5>
               </div>
             </div>
