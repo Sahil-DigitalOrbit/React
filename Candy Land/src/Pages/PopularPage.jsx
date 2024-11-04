@@ -41,7 +41,7 @@ export default function Brandspage({ prop }) {
         />
         <Header prop={{ setSignUpStatus, isLoggedIn, setLogin }} />
         {isLoggedIn ? (
-          <Homogeneous prop={popularProducts} heading={"Popular"}/>
+          <Homogeneous prop={popularProducts} isProduct={true} heading={"Popular"}/>
         ) : (
           <h1>Please Login First</h1>
         )}

@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Header from "../Components/Header";
 import { ToastContainer } from "react-toastify";
 import Signup from "../Components/Signup";
 import { Orders, Products } from "../Data/Data";
 import Homogeneous from "../Components/Homogeneous";
-
+import '../Styles/Homo.css'
 export default function BestSellersPage({ prop }) {
   let {
     ageValidation,
@@ -17,6 +17,7 @@ export default function BestSellersPage({ prop }) {
     updateUsersList,
   } = prop;
   const navigate = useNavigate();
+  let isProduct=true;
   useEffect(() => {
     if (!ageValidation) {
       navigate("/");
@@ -53,7 +54,7 @@ export default function BestSellersPage({ prop }) {
         />
         <Header prop={{ setSignUpStatus, isLoggedIn, setLogin }} />
         {isLoggedIn ? (
-          <Homogeneous prop={bestSellers} heading={"Best Sellers"}/>
+          <Homogeneous prop={bestSellers} isProduct={isProduct} heading={"Best Sellers"}/>
         ) : (
           <h1>Please Login First</h1>
         )}

@@ -17,6 +17,7 @@ export default function Brandspage({ prop }) {
     updateUsersList,
   } = prop;
   const navigate = useNavigate();
+  let isproduct;
   useEffect(() => {
     if (!ageValidation) {
       navigate("/");

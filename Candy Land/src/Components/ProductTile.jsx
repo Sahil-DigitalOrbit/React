@@ -9,11 +9,12 @@ export default function ProductTile({ prop }) {
   return (
     <Card className="template-card"
       style={{
+        marginBottom:'3rem',
         marginRight: "1rem",
         border: "none",
         height: "25rem",
-        minWidth: "15rem",
-        maxWidth:'15rem'
+        minWidth: "13rem",
+        maxWidth:'13rem'
       }}
     >
       <div className="position-relative border h-75 card-image-div">
@@ -34,8 +35,8 @@ export default function ProductTile({ prop }) {
       {isProduct ? (
         <Card.Body className="p-0">
           <div>
-            <Card.Text>{item.brand}</Card.Text>
-            <Card.Title>{item.name}</Card.Title>
+            <Card.Text className="d-flex justify-content-between"><span>{item.brand}</span><span>{item.weight}</span></Card.Text>
+            <Card.Title className="text-start">{item.name}</Card.Title>
           </div>
 
           <div className="product-card-bottom-div">

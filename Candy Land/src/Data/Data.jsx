@@ -28,55 +28,55 @@ export const Customers = [
 export const Brands = [
   {
     name: "TechCorp",
-    image: "https://example.com/images/techcorp.jpg"
+    image: "https://example.com/images/techcorp.jpg",
   },
   {
     name: "FurniStyle",
-    image: "https://example.com/images/furnistyle.jpg"
+    image: "https://example.com/images/furnistyle.jpg",
   },
   {
     name: "FutureGadgets",
-    image: "https://example.com/images/futuregadgets.jpg"
+    image: "https://example.com/images/futuregadgets.jpg",
   },
   {
     name: "HomeEase",
-    image: "https://example.com/images/homeease.jpg"
+    image: "https://example.com/images/homeease.jpg",
   },
   {
     name: "LuxDesign",
-    image: "https://example.com/images/luxdesign.jpg"
+    image: "https://example.com/images/luxdesign.jpg",
   },
   {
     name: "SparkSound",
-    image: "https://example.com/images/sparksound.jpg"
+    image: "https://example.com/images/sparksound.jpg",
   },
   {
     name: "PlayTime",
-    image: "https://example.com/images/playtime.jpg"
+    image: "https://example.com/images/playtime.jpg",
   },
   {
     name: "UrbanLiving",
-    image: "https://example.com/images/urbanliving.jpg"
-  }
+    image: "https://example.com/images/urbanliving.jpg",
+  },
 ];
 // categories-----------------------------------------------------------------------------------
 export const Categories = [
   {
     name: "Electronics",
-    image: "https://example.com/images/electronics.jpg"
+    image: "https://example.com/images/electronics.jpg",
   },
   {
     name: "Furniture",
-    image: "https://example.com/images/furniture.jpg"
+    image: "https://example.com/images/furniture.jpg",
   },
   {
     name: "Home Appliances",
-    image: "https://example.com/images/home-appliances.jpg"
+    image: "https://example.com/images/home-appliances.jpg",
   },
   {
     name: "Toys",
-    image: "https://example.com/images/toys.jpg"
-  }
+    image: "https://example.com/images/toys.jpg",
+  },
 ];
 
 // products-----------------------------------------------------------------------------------------------------------------
@@ -91,7 +91,8 @@ export const Products = [
     price: 999.99,
     publish: true,
     quantity: 100,
-    ratings: 4.5
+    ratings: 4.5,
+    weight: "4gm",
   },
   {
     id: 2,
@@ -103,19 +104,22 @@ export const Products = [
     price: 799.99,
     publish: true,
     quantity: 20,
-    ratings: 4.7
+    ratings: 4.7,
+    weight: "10gm",
   },
   {
     id: 3,
     category: "Electronics",
     brand: "FutureGadgets",
     name: "Laptop Pro",
-    description: "Powerful laptop for professionals with cutting-edge performance.",
+    description:
+      "Powerful laptop for professionals with cutting-edge performance.",
     image: ["https://example.com/images/product3.jpg"],
     price: 1299.99,
     publish: true,
     quantity: 50,
-    ratings: 4.6
+    ratings: 4.6,
+    weight: "2gm",
   },
   {
     id: 4,
@@ -127,7 +131,8 @@ export const Products = [
     price: 499.99,
     publish: true,
     quantity: 30,
-    ratings: 4.3
+    ratings: 4.3,
+    weight: "10gm",
   },
   {
     id: 5,
@@ -139,7 +144,8 @@ export const Products = [
     price: 599.99,
     publish: true,
     quantity: 15,
-    ratings: 4.5
+    ratings: 4.5,
+    weight: "10gm",
   },
   {
     id: 6,
@@ -151,7 +157,8 @@ export const Products = [
     price: 199.99,
     publish: true,
     quantity: 80,
-    ratings: 4.4
+    ratings: 4.4,
+    weight: "4gm",
   },
   {
     id: 7,
@@ -163,7 +170,8 @@ export const Products = [
     price: 49.99,
     publish: true,
     quantity: 120,
-    ratings: 4.8
+    ratings: 4.8,
+    weight: "2gm",
   },
   {
     id: 8,
@@ -175,7 +183,8 @@ export const Products = [
     price: 149.99,
     publish: false,
     quantity: 45,
-    ratings: 4.2
+    ratings: 4.2,
+    weight: "4gm",
   },
   {
     id: 9,
@@ -187,7 +196,8 @@ export const Products = [
     price: 159.99,
     publish: true,
     quantity: 60,
-    ratings: 4.6
+    ratings: 4.6,
+    weight: "10gm",
   },
   {
     id: 10,
@@ -199,7 +209,8 @@ export const Products = [
     price: 299.99,
     publish: true,
     quantity: 40,
-    ratings: 4.5
+    ratings: 4.5,
+    weight: "1gm",
   },
   {
     id: 11,
@@ -211,7 +222,8 @@ export const Products = [
     price: 29.99,
     publish: true,
     quantity: 200,
-    ratings: 4.9
+    ratings: 4.9,
+    weight: "4gm",
   },
   {
     id: 12,
@@ -223,7 +235,8 @@ export const Products = [
     price: 899.99,
     publish: true,
     quantity: 25,
-    ratings: 4.4
+    ratings: 4.4,
+    weight: "10gm",
   },
   {
     id: 13,
@@ -235,7 +248,8 @@ export const Products = [
     price: 199.99,
     publish: true,
     quantity: 35,
-    ratings: 4.3
+    ratings: 4.3,
+    weight: "10gm",
   },
   {
     id: 14,
@@ -247,7 +261,8 @@ export const Products = [
     price: 149.99,
     publish: true,
     quantity: 100,
-    ratings: 4.6
+    ratings: 4.6,
+    weight: "1gm",
   },
   {
     id: 15,
@@ -259,7 +274,8 @@ export const Products = [
     price: 39.99,
     publish: true,
     quantity: 180,
-    ratings: 4.8
+    ratings: 4.8,
+    weight: "4gm",
   },
   {
     id: 16,
@@ -271,7 +287,8 @@ export const Products = [
     price: 299.99,
     publish: true,
     quantity: 55,
-    ratings: 4.5
+    ratings: 4.5,
+    weight: "10gm",
   },
   {
     id: 17,
@@ -283,7 +300,8 @@ export const Products = [
     price: 99.99,
     publish: true,
     quantity: 70,
-    ratings: 4.6
+    ratings: 4.6,
+    weight: "10gm",
   },
   {
     id: 18,
@@ -295,7 +313,8 @@ export const Products = [
     price: 249.99,
     publish: true,
     quantity: 90,
-    ratings: 4.7
+    ratings: 4.7,
+    weight: "2gm",
   },
   {
     id: 19,
@@ -307,7 +326,8 @@ export const Products = [
     price: 749.99,
     publish: true,
     quantity: 20,
-    ratings: 4.5
+    ratings: 4.5,
+    weight: "10gm",
   },
   {
     id: 20,
@@ -319,9 +339,11 @@ export const Products = [
     price: 1499.99,
     publish: true,
     quantity: 15,
-    ratings: 4.8
-  }
+    ratings: 4.8,
+    weight: "2gm",
+  },
 ];
+
 // orders-------------------------------------------------------------------------------------------------------------
 export const Orders = [
   {
