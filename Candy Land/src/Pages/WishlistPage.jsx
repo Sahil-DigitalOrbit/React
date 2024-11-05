@@ -9,25 +9,12 @@ import { Products } from "../Data/Data";
 import Card from "react-bootstrap/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-regular-svg-icons";
-import { faCheck, faDollar, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 export default function WishlistPage({ prop }) {
-  let {
-    ageValidation,
-    isLoggedIn,
-    setLogin,
-    signupShow,
-    setSignUpStatus,
-    usersList,
-    updateUsersList,
-    wishlistItems,
-    updateWishlist,
-    cartItems,
-    updateCart,
-  } = prop;
+  let {  ageValidation,  isLoggedIn,  setLogin,  signupShow,  setSignUpStatus,  usersList,  updateUsersList,  wishlistItems,  updateWishlist,  cartItems,  updateCart,} = prop;
   const navigate = useNavigate();
   let data = Products.filter((item) => wishlistItems.includes(item.id));
-  let isProduct = true;
   useEffect(() => {
     if (!ageValidation) {
       navigate("/");
@@ -39,18 +26,8 @@ export default function WishlistPage({ prop }) {
       <section>
         <ToastContainer />
         <Signup
-          prop={{
-            signupShow,
-            setSignUpStatus,
-            usersList,
-            updateUsersList,
-            isLoggedIn,
-            setLogin,
-          }}
-        />
-        <Header
-          prop={{ setSignUpStatus, isLoggedIn, setLogin, wishlistPage:true }}
-        />
+          prop={{    signupShow,    setSignUpStatus,    usersList,    updateUsersList,    isLoggedIn,    setLogin,  }}/>
+        <Header  prop={{ setSignUpStatus, isLoggedIn, setLogin, wishlistPage:true }}/>
         {isLoggedIn ? (
           <div className="Cart p-5">
             <h1 className="cart-heading text-start">Wishlist</h1>

@@ -28,16 +28,7 @@ export default function Brandspage({ prop }) {
     <>
       <section>
         <ToastContainer />
-        <Signup
-          prop={{
-            signupShow,
-            setSignUpStatus,
-            usersList,
-            updateUsersList,
-            isLoggedIn,
-            setLogin,
-          }}
-        />
+        <Signup  prop={{    signupShow,    setSignUpStatus,    usersList,    updateUsersList,    isLoggedIn,    setLogin,  }}/>
         <Header prop={{ setSignUpStatus, isLoggedIn, setLogin }} />
         {isLoggedIn ? (
           <Homogeneous prop={{allData:Brands, heading:"Brands"}}/>

@@ -29,35 +29,15 @@ export default function CartPage({ prop }) {
     <>
       <section>
         <ToastContainer />
-        <Signup
-          prop={{
-            signupShow,
-            setSignUpStatus,
-            usersList,
-            updateUsersList,
-            isLoggedIn,
-            setLogin,
-          }}
-        />
-        <Header
-          prop={{ setSignUpStatus, isLoggedIn, setLogin, cartPage: true }}
-        />
+        <Signup prop={{   signupShow,   setSignUpStatus,   usersList,   updateUsersList,   isLoggedIn,   setLogin, }}/>
+        <Header  prop={{ setSignUpStatus, isLoggedIn, setLogin, cartPage: true }}/>
         {isLoggedIn ? (
           <div className="Cart p-5">
             <h1 className="cart-heading text-start">Cart</h1>
             <div className="cart-section">
               <div className="cart-items">
                 {data.map((item, idx) => (
-                  <CartTile
-                    prop={{
-                      item,
-                      cartItems,
-                      updateCart,
-                      subtotal,
-                      updateSubtotal,
-                    }}
-                    key={idx}
-                  />
+                  <CartTile  prop={{    item,    cartItems,    updateCart,    subtotal,    updateSubtotal,  }}  key={idx}/>
                 ))}
               </div>
               <div className="cart-order-summary-section">
@@ -107,11 +87,7 @@ function CartTile({ prop }) {
   return (
     <Card style={{ border: "none" }} className="cart-tile d-flex">
       <div className="position-relative border h-75 cart-image-div">
-        <Card.Img
-          className="card-image"
-          variant="top"
-          src="https://m.media-amazon.com/images/I/61XdlI186PL._SL1500_.jpg"
-        />
+        <Card.Img  className="card-image"  variant="top"  src="https://m.media-amazon.com/images/I/61XdlI186PL._SL1500_.jpg"/>
 
         <span className="position-absolute card-rating-div">
           <FontAwesomeIcon icon={faStar} />
@@ -120,10 +96,7 @@ function CartTile({ prop }) {
       </div>
       <div className="cart-tile-body">
         <div>
-          <Card.Text
-            style={{ color: "#00000063" }}
-            className="d-flex justify-content-between"
-          >
+          <Card.Text  style={{ color: "#00000063" }}  className="d-flex justify-content-between">
             <span>{item.brand}</span>
             <span>{item.weight}</span>
           </Card.Text>
@@ -139,24 +112,11 @@ function CartTile({ prop }) {
           </span>
         </div>
         <div className="update-counter">
-          <button
-            className="change-count"
-            data-skip="-1"
-            onClick={changeQuantity}
-          >
+          <button  className="change-count"  data-skip="-1"  onClick={changeQuantity}>
             -
           </button>
-          <input
-            className="item-count"
-            type="number"
-            value={quantity}
-            readOnly
-          />
-          <button
-            className="change-count"
-            data-skip="1"
-            onClick={changeQuantity}
-          >
+          <input  className="item-count"  type="number"  value={quantity}  readOnly/>
+          <button  className="change-count"  data-skip="1"  onClick={changeQuantity}>
             +
           </button>
         </div>
