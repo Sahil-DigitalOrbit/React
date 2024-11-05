@@ -2,10 +2,16 @@ import Card from "react-bootstrap/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faStar } from "@fortawesome/free-regular-svg-icons";
 import { faCheck, faDollar, faHeart as filledHeart} from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
 export default function ProductTile({ prop }) {
-  let { item, isProduct, goTo, wishlistItems, updateWishlist, cartItems, updateCart } = prop;
-
+  let { item, isProduct, wishlistItems, updateWishlist, cartItems, updateCart } = prop;
+  const navigate = useNavigate();
+  const handleViewAll = () => {
+    
+    let type='aslk';
+    navigate("/products", { state: { heading: item.name,type } });
+  };
   function toggleItemCart() {
     const updatedCartItems = cartItems.includes(item.id)
       ? cartItems.filter((c) => c !== item.id)
@@ -30,6 +36,7 @@ export default function ProductTile({ prop }) {
         minWidth: "13rem",
         maxWidth: '13rem'
       }}
+      onClick={!isProduct ? handleViewAll : undefined}
     >
       <div className="position-relative border h-75 card-image-div">
         <Card.Img
@@ -68,7 +75,7 @@ export default function ProductTile({ prop }) {
         </Card.Body>
       ) : (
         <Card.Body className="p-0 d-flex justify-content-center align-items-center">
-          <Card.Title>{item.name}</Card.Title>
+          <Card.Title >{item.name}</Card.Title>
         </Card.Body>
       )}
     </Card>

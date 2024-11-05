@@ -61,14 +61,14 @@ function PopulateHomepage({ prop }) {
           src="https://media.architecturaldigest.com/photos/5dcde00380598800086215f6/16:9/w_2560%2Cc_limit/Osofsky_Oct19-5.jpg"
         />
       </div>
-      <Template prop={{ head:"Categories" ,data:Categories, goTo:"/categories", wishlistItems,updateWishlist ,cartItems,updateCart}}  />
+      <Template prop={{ head:"Categories" ,data:Categories, wishlistItems,updateWishlist ,cartItems,updateCart}}  />
       <hr></hr>
 
-      <Template prop={{ head:"Best Sellers" ,data:bestSellers, goTo:"/best-sellers", wishlistItems,updateWishlist ,cartItems,updateCart ,isProduct:true}}/>
+      <Template prop={{ head:"Best Sellers" ,data:bestSellers, wishlistItems,updateWishlist ,cartItems,updateCart ,isProduct:true}}/>
       <hr></hr>
-      <Template prop={{ head:"Popular" ,data:popularProducts, goTo:"/popular", wishlistItems,updateWishlist ,cartItems,updateCart,isProduct:true}}/>
+      <Template prop={{ head:"Popular" ,data:popularProducts,  wishlistItems,updateWishlist ,cartItems,updateCart,isProduct:true}}/>
       <hr />
-      <Template prop={{ head:"Brands" ,data:Brands, goTo:"/brands", wishlistItems,updateWishlist ,cartItems,updateCart}}/>
+      <Template prop={{ head:"Brands" ,data:Brands, wishlistItems,updateWishlist ,cartItems,updateCart}}/>
     </section>
   );
 }
