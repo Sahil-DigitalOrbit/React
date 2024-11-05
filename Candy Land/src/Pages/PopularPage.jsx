@@ -7,15 +7,8 @@ import { Products } from "../Data/Data";
 import Homogeneous from "../Components/Homogeneous";
 
 export default function Brandspage({ prop }) {
-  let {
-    ageValidation,
-    isLoggedIn,
-    setLogin,
-    signupShow,
-    setSignUpStatus,
-    usersList,
-    updateUsersList,
-  } = prop;
+  let {ageValidation, isLoggedIn,setLogin,signupShow,setSignUpStatus,usersList,updateUsersList,wishlistItems,updateWishlist,cartItems,updateCart} = prop;
+
   const navigate = useNavigate();
   useEffect(() => {
     if (!ageValidation) {
@@ -41,7 +34,7 @@ export default function Brandspage({ prop }) {
         />
         <Header prop={{ setSignUpStatus, isLoggedIn, setLogin }} />
         {isLoggedIn ? (
-          <Homogeneous prop={popularProducts} isProduct={true} heading={"Popular"}/>
+          <Homogeneous prop={{allData:popularProducts, isProduct:true, heading:"Popular",wishlistItems,updateWishlist,cartItems,updateCart}}/>
         ) : (
           <h1>Please Login First</h1>
         )}

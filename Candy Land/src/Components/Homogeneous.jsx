@@ -9,8 +9,10 @@ import React, { useState, useEffect } from "react";
 import ProductTile from "./ProductTile";
 import { Brands, Categories } from "../Data/Data";
 
-export default function Homogeneous({ prop, heading, isProduct }) {
-  const [data, setData] = useState([...prop]);
+export default function Homogeneous({ prop }) {
+let{allData, isProduct, heading,wishlistItems,updateWishlist,cartItems,updateCart}=prop;
+  
+  const [data, setData] = useState([...allData]);
   const [sortState, setSortState] = useState(false);
   const [dropWeight, setDropWeight] = useState(false);
   const [dropBrands, setDropBrand] = useState(false);
@@ -60,7 +62,7 @@ export default function Homogeneous({ prop, heading, isProduct }) {
   }
 
   useEffect(() => {
-    let filteredData = [...prop];
+    let filteredData = [...allData];
 
     if (weights.length > 0) {
       filteredData = filteredData.filter((item) =>
@@ -79,14 +81,14 @@ export default function Homogeneous({ prop, heading, isProduct }) {
     }
 
     setData(filteredData);
-  }, [weights, brands, categories, prop]);
+  }, [weights, brands, categories, allData]);
 
   function clearFilter() {
     setWeights([]);
     setBrands([]);
     setCategories([]);
     setSortState(false);
-    setData([...prop]);
+    setData([...allData]);
   }
 
   return (
@@ -271,7 +273,7 @@ export default function Homogeneous({ prop, heading, isProduct }) {
             <div className="homogeneous-body-content">
               {data.map((item, idx) => (
                 <div key={idx}>
-                  <ProductTile prop={{ item, isProduct }} />
+                  <ProductTile prop={{ item, isProduct,wishlistItems,updateWishlist,cartItems,updateCart }} />
                 </div>
               ))}
             </div>
@@ -281,7 +283,7 @@ export default function Homogeneous({ prop, heading, isProduct }) {
         <div className="homogeneous-body-content">
           {data.map((item, idx) => (
             <div key={idx}>
-              <ProductTile prop={{ item, isProduct }} />
+              <ProductTile prop={{ item, isProduct,wishlistItems,updateWishlist,cartItems,updateCart }} />
             </div>
           ))}
         </div>

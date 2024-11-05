@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 
 export default function Header({ prop }) {
-  let { setSignUpStatus, isLoggedIn,setLogin } = prop;
+  let { setSignUpStatus, isLoggedIn,setLogin,cartPage,wishlistPage } = prop;
 
   let [searchInput,setInput]=useState('');
 
@@ -23,9 +24,14 @@ export default function Header({ prop }) {
       <div>
       {isLoggedIn ? (
           <>
-        <input className="search-bar" type="text" placeholder='Search' onChange={setInput}></input>        
-        <button className="mx-2">Shop</button>
-        <button className="mx-2 border-0">Wishlist</button>
+        <input className="search-bar" type="text" placeholder='Search' onChange={setInput}></input> 
+        {cartPage?<button className="mx-2"><Link style={{textDecoration:'none',color:'#eb3d31',height:'100%',width:'100%'}} to={'/'}>Home</Link></button>       
+        :<button className="mx-2"><Link style={{textDecoration:'none',color:'#eb3d31',height:'100%',width:'100%'}} to={'/cart'}>Shop</Link></button>
+        }
+        {wishlistPage?<Link style={{textDecoration:'none',color:'#eb3d31'}} to={'/'}>Home</Link>       
+        :<Link style={{textDecoration:'none',color:'#eb3d31'}} to={'/wishlist'}>Wishlist</Link>
+        
+        }
         <button className="mx-2 border-0">Account</button>
           
           <button className="sign-in-button mx-2" onClick={() => setLogin(false)}>

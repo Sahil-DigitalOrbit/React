@@ -1,0 +1,107 @@
+.cart-section {
+  display: flex;
+  justify-content: center;
+}
+.cart-section > div {
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  padding: 0 2rem;
+}
+.cart-order-summary-section > div {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.2rem;
+  color: #000;
+  text-align: start;
+}
+.cart-order-summary-section > div > p {
+  flex: 1;
+}
+.cart-order-summary-section > div > p:last-child {
+  display: flex;
+  justify-content: flex-end;
+}
+.total-section {
+  border-top: 1px solid silver;
+}
+
+.cart-items {
+  overflow-y: scroll;
+  flex-wrap: nowrap;
+  height: 75vh;
+}
+
+
+.cart-tile {
+    min-width: 100% !important;
+    height: 14rem !important;
+  display: flex;
+  flex-direction: row !important;
+  align-items: center;
+  margin-bottom: 0.5rem !important;
+}
+.cart-tile>* {
+    flex: 1;
+}
+
+.cart-image-div {
+  flex: 1.4;
+    height: 80% !important;
+  box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.3);
+  object-fit: contain;
+  display: flex;
+  border-radius: 10px;
+}
+.cart-tile-body {
+    padding: 1rem;
+    display: flex;
+    height: 80%;
+    flex-direction: column;
+    width: 35% !important;
+    justify-content: space-between !important;
+}
+
+.cart-tile > div:last-child {
+    height: 80%;
+    width: 10%;
+    right: 0;
+    display: flex;
+    justify-content: flex-end;
+}
+.cart-tile > div:last-child > button {
+  width: 2rem;
+  height: 2rem !important;
+  border: none;
+}
+.update-counter {
+    max-width: 9rem;
+    display: flex;
+    height: 2.4rem;
+    border: 2px solid #EA3D32;
+    border-radius: 10px;
+  }
+  .update-counter > * {
+    color: #EA3D32 !important;
+    height: 100% !important;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background-color: inherit;
+    color: white;
+    font-size: 1rem;
+    transition: ease-in-out .1s;
+  }
+  .item-count {
+    width: 1rem;
+  }
+  .remove-from-cart{
+    font-size: 1rem;
+    transition: ease-in-out .1s;
+  }
+  .change-count:hover,.remove-from-cart:hover{
+    box-shadow: none;
+    transform: scale(1.2) !important;
+  }

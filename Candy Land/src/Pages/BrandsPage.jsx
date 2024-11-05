@@ -40,7 +40,7 @@ export default function Brandspage({ prop }) {
         />
         <Header prop={{ setSignUpStatus, isLoggedIn, setLogin }} />
         {isLoggedIn ? (
-          <Homogeneous prop={Brands} heading={"Brands"}/>
+          <Homogeneous prop={{allData:Brands, heading:"Brands"}}/>
         ) : (
           <h1>Please Login First</h1>
         )}

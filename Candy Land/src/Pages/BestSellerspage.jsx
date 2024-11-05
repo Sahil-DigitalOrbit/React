@@ -7,15 +7,7 @@ import { Orders, Products } from "../Data/Data";
 import Homogeneous from "../Components/Homogeneous";
 import '../Styles/Homo.css'
 export default function BestSellersPage({ prop }) {
-  let {
-    ageValidation,
-    isLoggedIn,
-    setLogin,
-    signupShow,
-    setSignUpStatus,
-    usersList,
-    updateUsersList,
-  } = prop;
+  let {ageValidation, isLoggedIn,setLogin,signupShow,setSignUpStatus,usersList,updateUsersList,wishlistItems,updateWishlist,cartItems,updateCart} = prop;
   const navigate = useNavigate();
   let isProduct=true;
   useEffect(() => {
@@ -54,7 +46,7 @@ export default function BestSellersPage({ prop }) {
         />
         <Header prop={{ setSignUpStatus, isLoggedIn, setLogin }} />
         {isLoggedIn ? (
-          <Homogeneous prop={bestSellers} isProduct={isProduct} heading={"Best Sellers"}/>
+          <Homogeneous prop={{allData:bestSellers, isProduct, heading:"Best Sellers",wishlistItems,updateWishlist,cartItems,updateCart}}/>
         ) : (
           <h1>Please Login First</h1>
         )}

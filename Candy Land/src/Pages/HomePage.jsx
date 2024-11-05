@@ -1,4 +1,4 @@
-import "../HomePage.css";
+import "../Styles/HomePage.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import Header from "../Components/Header";
@@ -8,15 +8,7 @@ import { Products, Orders, Categories, Brands } from "../Data/Data";
 import Template from "../Components/Template";
 
 export default function HomePage({ prop }) {
-  let {
-    ageValidation,
-    isLoggedIn,
-    setLogin,
-    signupShow,
-    setSignUpStatus,
-    usersList,
-    updateUsersList,
-  } = prop;
+  let {ageValidation, isLoggedIn,setLogin,signupShow,setSignUpStatus,usersList,updateUsersList,wishlistItems,updateWishlist ,cartItems,updateCart} = prop;
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -32,6 +24,7 @@ export default function HomePage({ prop }) {
     return prev;
   }, {});
 
+  //best seller 
   bestSellers = Object.entries(bestSellers)
     .map(([product_id, quantity]) => ({
       product_id: product_id,
@@ -41,27 +34,16 @@ export default function HomePage({ prop }) {
     .map((i) => Products.find((product) => i.product_id == product.id))
     .slice(0, 8);
 
-  let popularProducts = Products.sort((a, b) => b.ratings - a.ratings).slice(
-    0,
-    8
-  );
+  //popular  
+  let popularProducts = Products.sort((a, b) => b.ratings - a.ratings).slice(0,8);
 
   return (
     <section className="home-page">
       <ToastContainer />
-      <Signup
-        prop={{
-          signupShow,
-          setSignUpStatus,
-          usersList,
-          updateUsersList,
-          isLoggedIn,
-          setLogin,
-        }}
-      />
+      <Signup   prop={{signupShow, setSignUpStatus, usersList, updateUsersList, isLoggedIn, setLogin}}/>
       <Header prop={{ setSignUpStatus, isLoggedIn, setLogin }} />
       {isLoggedIn ? (
-        <PopulateHomepage prop={{ bestSellers, popularProducts }} />
+        <PopulateHomepage prop={{ bestSellers, popularProducts,wishlistItems,updateWishlist ,cartItems,updateCart }} />
       ) : (
         <h1>Please Login First</h1>
       )}
@@ -70,7 +52,7 @@ export default function HomePage({ prop }) {
 }
 
 function PopulateHomepage({ prop }) {
-  let { bestSellers, popularProducts } = prop;
+  let { bestSellers, popularProducts,wishlistItems,updateWishlist ,cartItems,updateCart } = prop;
   return (
     <section className="homepage-section">
       <div className="homepage-advertise-section">
@@ -79,24 +61,14 @@ function PopulateHomepage({ prop }) {
           src="https://media.architecturaldigest.com/photos/5dcde00380598800086215f6/16:9/w_2560%2Cc_limit/Osofsky_Oct19-5.jpg"
         />
       </div>
-      <Template head={"Categories"} data={Categories} goTo={"/categories"} />
+      <Template prop={{ head:"Categories" ,data:Categories, goTo:"/categories", wishlistItems,updateWishlist ,cartItems,updateCart}}  />
       <hr></hr>
 
-      <Template
-        head={"Best Sellers"}
-        data={bestSellers}
-        isProduct={true}
-        goTo={"/best-sellers"}
-      />
+      <Template prop={{ head:"Best Sellers" ,data:bestSellers, goTo:"/best-sellers", wishlistItems,updateWishlist ,cartItems,updateCart ,isProduct:true}}/>
       <hr></hr>
-      <Template
-        head={"Popular"}
-        data={popularProducts}
-        isProduct={true}
-        goTo={"/popular"}
-      />
+      <Template prop={{ head:"Popular" ,data:popularProducts, goTo:"/popular", wishlistItems,updateWishlist ,cartItems,updateCart,isProduct:true}}/>
       <hr />
-      <Template head={"Brands"} data={Brands} goTo={"/brands"} />
+      <Template prop={{ head:"Brands" ,data:Brands, goTo:"/brands", wishlistItems,updateWishlist ,cartItems,updateCart}}/>
     </section>
   );
 }

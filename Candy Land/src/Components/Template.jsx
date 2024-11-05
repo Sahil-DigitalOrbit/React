@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import ProductTile from "./ProductTile";
 
-export default function Template({ head, data ,isProduct,goTo}) {
+export default function Template({ prop}) {
+  let{ head,data, goTo, wishlistItems,updateWishlist ,cartItems,updateCart,isProduct}=prop;
 
   return (
     <div className="template-section">
@@ -10,7 +11,7 @@ export default function Template({ head, data ,isProduct,goTo}) {
       </div>
       <div className="template-card-section" >
       {data.map((item,idx) => {
-        return <ProductTile prop={{item,isProduct,goTo}} key={idx} />;
+        return <ProductTile prop={{item,isProduct,goTo,wishlistItems,updateWishlist ,cartItems,updateCart}} key={idx} />;
       })}
       </div>
     </div>
