@@ -23,6 +23,7 @@ export default function AllProductsPage({ prop }) {
     updateWishlist,
     cartItems,
     updateCart,
+    orderHistory,updateOrderHistory
   } = prop;
 
   const { heading, type } = location.state || {};
@@ -72,9 +73,9 @@ export default function AllProductsPage({ prop }) {
     <section>
       <ToastContainer />
       <Signup
-        prop={{signupShow, setSignUpStatus, usersList, updateUsersList, isLoggedIn, setLogin,updateWishlist ,updateCart}}
+        prop={{signupShow, setSignUpStatus, usersList, updateUsersList, isLoggedIn, setLogin,updateWishlist ,updateCart,orderHistory,updateOrderHistory}}
       />
-      <Header prop={{ setSignUpStatus, isLoggedIn,setLogin,usersList,updateUsersList,wishlistItems,updateWishlist ,cartItems,updateCart }} />
+      <Header prop={{ setSignUpStatus, isLoggedIn,setLogin,usersList,updateUsersList,wishlistItems,updateWishlist ,cartItems,updateCart,orderHistory,updateOrderHistory }} />
       {isLoggedIn ? (
         <Homogeneous
           prop={{

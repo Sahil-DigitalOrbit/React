@@ -23,7 +23,7 @@ function App() {
   let routes = createBrowserRouter([
     {
       path: "/",
-      element: <HomePage prop={{ageValidation, isLoggedIn,setLogin,signupShow,setSignUpStatus,usersList,updateUsersList,wishlistItems,updateWishlist ,cartItems,updateCart,}}/>,
+      element: <HomePage prop={{ageValidation, isLoggedIn,setLogin,signupShow,setSignUpStatus,usersList,updateUsersList,wishlistItems,updateWishlist ,cartItems,updateCart,orderHistory,updateOrderHistory}}/>,
     },
     {
       path: "/verify",
@@ -31,12 +31,12 @@ function App() {
     },
     {
       path:'/about-product',
-      element:<ProductsPage prop={{ageValidation, isLoggedIn,setLogin,signupShow,setSignUpStatus,usersList,updateUsersList,wishlistItems,updateWishlist,cartItems,updateCart,allRatingReviews}} />
+      element:<ProductsPage prop={{ageValidation, isLoggedIn,setLogin,signupShow,setSignUpStatus,usersList,updateUsersList,wishlistItems,updateWishlist,cartItems,updateCart,allRatingReviews,orderHistory,updateOrderHistory}} />
     },
 
     {
       path:'/products',
-      element:<AllProductsPage prop={{ageValidation, isLoggedIn,setLogin,signupShow,setSignUpStatus,usersList,updateUsersList,wishlistItems,updateWishlist,cartItems,updateCart}} />
+      element:<AllProductsPage prop={{ageValidation, isLoggedIn,setLogin,signupShow,setSignUpStatus,usersList,updateUsersList,wishlistItems,updateWishlist,cartItems,updateCart,orderHistory,updateOrderHistory}} />
     },
     {
       path:'/cart',
@@ -44,11 +44,11 @@ function App() {
     },
     {
       path:'/wishlist',
-      element:<WishlistPage prop={{ageValidation, isLoggedIn,setLogin,signupShow,setSignUpStatus,usersList,updateUsersList,wishlistItems,updateWishlist,cartItems,updateCart}} />
+      element:<WishlistPage prop={{ageValidation, isLoggedIn,setLogin,signupShow,setSignUpStatus,usersList,updateUsersList,wishlistItems,updateWishlist,cartItems,updateCart,orderHistory,updateOrderHistory}} />
     },
     {
       path:'/account',
-      element:<AccountPage prop={{ageValidation, isLoggedIn,setLogin,signupShow,setSignUpStatus,usersList,updateUsersList,wishlistItems,updateWishlist,cartItems,updateCart,orderHistory,allRatingReviews,updateratingReviews}} />
+      element:<AccountPage prop={{ageValidation, isLoggedIn,setLogin,signupShow,setSignUpStatus,usersList,updateUsersList,wishlistItems,updateWishlist,cartItems,updateCart,orderHistory,allRatingReviews,updateratingReviews,orderHistory,updateOrderHistory}} />
     }
 
   ]);

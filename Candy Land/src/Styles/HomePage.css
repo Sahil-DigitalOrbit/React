@@ -151,9 +151,6 @@ nav > div:last-child {
 .product-card-bottom-div {
   display: flex;
 }
-.product-card-bottom-div:first-child {
-  flex: 3;
-}
 .template-card {
   margin-bottom: 3rem;
   margin-right: 1rem;
@@ -212,6 +209,11 @@ hr {
   border-radius: 5px;
   display: flex;
   justify-content: center;
+  cursor: pointer;
+}
+.account-page-tile-image{
+width: 45%; 
+  
 }
 .card-image {
   object-fit: contain;
@@ -224,10 +226,18 @@ hr {
   background-color: #fa91082b;
   border: 1px solid #fa9108f0 !important;
 }
+.account-order-page-tile{
+  width: 100%;
+  height: 100%;
+  /* border: 2px solid red !important; */
+}
+.account-page-card-body{
+  height: 100% !important;
+  padding: 0 1rem !important;
+}
 
 .account-page-tile {
   margin-bottom: 1.5rem;
-  /* border: none; */
   height: 15rem !important;
   min-width: 25rem !important;
   flex-direction: row !important;

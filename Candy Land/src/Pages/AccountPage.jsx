@@ -12,7 +12,7 @@ import PopulateAboutUser from "../Components/PopulateAboutUser";
 
 export default function AccountPage({ prop }) {
   const navigate = useNavigate();
-  const {  ageValidation,  isLoggedIn,  setLogin,  signupShow,  setSignUpStatus,  usersList,  updateUsersList,  cartItems,  wishlistItems,updateWishlist,  updateCart,  orderHistory,  allRatingReviews,updateratingReviews} = prop;
+  const {  ageValidation,  isLoggedIn,  setLogin,  signupShow,  setSignUpStatus,  usersList,  updateUsersList,  cartItems,  wishlistItems,updateWishlist,  updateCart,  orderHistory,  allRatingReviews,updateratingReviews,updateOrderHistory} = prop;
 //onclick event, order-rate-section will be shown
 let [rateProductItem, showRateProductSection] = useState();
 let [showAllOrder, updateOrderStatus] = useState(false);
@@ -29,8 +29,8 @@ let [showAllOrder, updateOrderStatus] = useState(false);
         <div className={rateProductItem?"modal-div":''} onClick={()=>showRateProductSection()}></div>
 
       <ToastContainer />
-      <Signup  prop={{signupShow, setSignUpStatus, usersList, updateUsersList, isLoggedIn, setLogin,updateWishlist ,updateCart}}/>
-      <Header  prop={{ setSignUpStatus, isLoggedIn,setLogin,isAccountPage:true,usersList,updateUsersList,wishlistItems,updateWishlist ,cartItems,updateCart }}/>
+      <Signup  prop={{signupShow, setSignUpStatus, usersList, updateUsersList, isLoggedIn, setLogin,updateWishlist ,updateCart,orderHistory,updateOrderHistory}}/>
+      <Header  prop={{ setSignUpStatus, isLoggedIn,setLogin,isAccountPage:true,usersList,updateUsersList,wishlistItems,updateWishlist ,cartItems,updateCart ,orderHistory,updateOrderHistory}}/>
       {isLoggedIn ? (
         <>        
           <section className="acount-header-button-section"><button>My Profile</button><button>Track my order</button><button className={showAllOrder?'acount-header-button-section-active':''} onClick={()=>updateOrderStatus(!showAllOrder)}>Order History</button><button>Contact Us</button><button>FAQs</button></section>

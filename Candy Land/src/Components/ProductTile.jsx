@@ -213,7 +213,7 @@ export default function ProductTile({ prop }) {
       <div
         className={
           isAccountPage
-            ? "position-relative border card-image-div"
+            ? "account-page-tile-image position-relative border card-image-div"
             : "position-relative border card-image-div h-100"
         }
         onClick={!isProduct ? handleViewAll : handlePoductPage}
@@ -230,26 +230,28 @@ export default function ProductTile({ prop }) {
         )}
       </div>
 
-      <Card.Body className="p-0">
+      <Card.Body className={isAccountPage?'account-page-card-body':isProduct?'p-1':'p-4 d-flex align-items-center justify-content-center'}>
         {isAccountPage ? (
-          <div className="d-flex flex-column justify-content-between h-100">
+          <div className="account-order-page-tile d-flex  flex-column justify-content-between h-100">
+            <div>
             <div className="text-start color-green">
               Delivered <br />
               {item.date}
             </div>
-            <Card.Text className="d-flex justify-content-between">
+            <Card.Text style={{color:'#00000063'}} className="d-flex justify-content-between">
               <span>{item.brand}</span>
               <span>{item.weight}</span>
             </Card.Text>
             <Card.Title className="text-start" style={{ fontSize: "1.1rem" }}>
               {item.name}
             </Card.Title>
+            </div>
             <div className="product-card-bottom-div">
               <span className="d-inline-flex align-items-center col card-price-div">
                 <FontAwesomeIcon icon={faDollar} className="m-1" /> {item.price}
               </span>
             </div>
-            <div className="d-flex">
+            <div className="d-flex justify-content-between">
               <button
                 onClick={() => showRateProductSection(item)}
                 className="account-page-tile-button"

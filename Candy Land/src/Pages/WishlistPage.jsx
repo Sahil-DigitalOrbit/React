@@ -12,7 +12,7 @@ import { faStar } from "@fortawesome/free-regular-svg-icons";
 import { faCheck, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 export default function WishlistPage({ prop }) {
-  let {  ageValidation,  isLoggedIn,  setLogin,  signupShow,  setSignUpStatus,  usersList,  updateUsersList,  wishlistItems,  updateWishlist,  cartItems,  updateCart,} = prop;
+  let {  ageValidation,  isLoggedIn,  setLogin,  signupShow,  setSignUpStatus,  usersList,  updateUsersList,  wishlistItems,  updateWishlist,  cartItems,  updateCart,orderHistory,updateOrderHistory} = prop;
   const navigate = useNavigate();
   let data = Products.filter((item) => wishlistItems.includes(item.id));
   useEffect(() => {
@@ -26,8 +26,8 @@ export default function WishlistPage({ prop }) {
       <section>
         <ToastContainer />
         <Signup
-          prop={{signupShow, setSignUpStatus, usersList, updateUsersList, isLoggedIn, setLogin,updateWishlist ,updateCart}}/>
-        <Header  prop={{ setSignUpStatus, isLoggedIn,setLogin,wishlistPage:true,usersList,updateUsersList,wishlistItems,updateWishlist ,cartItems,updateCart }}/>
+          prop={{signupShow, setSignUpStatus, usersList, updateUsersList, isLoggedIn, setLogin,updateWishlist ,updateCart,orderHistory,updateOrderHistory}}/>
+        <Header  prop={{ setSignUpStatus, isLoggedIn,setLogin,wishlistPage:true,usersList,updateUsersList,wishlistItems,updateWishlist ,cartItems,updateCart ,orderHistory,updateOrderHistory}}/>
         {isLoggedIn ? (
           <div className="Cart p-5">
             <h1 className="cart-heading text-start">Wishlist</h1>

@@ -8,7 +8,7 @@ import { Products, Orders, Categories, Brands } from "../Data/Data";
 import Template from "../Components/Template";
 
 export default function HomePage({ prop }) {
-  let {ageValidation, isLoggedIn,setLogin,signupShow,setSignUpStatus,usersList,updateUsersList,wishlistItems,updateWishlist ,cartItems,updateCart} = prop;
+  let {ageValidation, isLoggedIn,setLogin,signupShow,setSignUpStatus,usersList,updateUsersList,wishlistItems,updateWishlist ,cartItems,updateCart,orderHistory,updateOrderHistory} = prop;
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -40,8 +40,8 @@ export default function HomePage({ prop }) {
   return (
     <section className="home-page">
       <ToastContainer />
-      <Signup   prop={{signupShow, setSignUpStatus, usersList, updateUsersList, isLoggedIn, setLogin,updateWishlist ,updateCart}}/>
-      <Header prop={{ setSignUpStatus, isLoggedIn, setLogin,usersList,updateUsersList,wishlistItems,updateWishlist ,cartItems,updateCart }} />
+      <Signup   prop={{signupShow, setSignUpStatus, usersList, updateUsersList, isLoggedIn, setLogin,updateWishlist ,updateCart,orderHistory,updateOrderHistory}}/>
+      <Header prop={{ setSignUpStatus, isLoggedIn, setLogin,usersList,updateUsersList,wishlistItems,updateWishlist ,cartItems,updateCart ,orderHistory,updateOrderHistory}} />
       {isLoggedIn ? (
         <PopulateHomepage prop={{ bestSellers, popularProducts,wishlistItems,updateWishlist ,cartItems,updateCart }} />
       ) : (

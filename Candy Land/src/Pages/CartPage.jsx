@@ -47,8 +47,8 @@ export default function CartPage({ prop }) {
     <>
       <section>
         <ToastContainer />
-        <Signup prop={{signupShow, setSignUpStatus, usersList, updateUsersList, isLoggedIn, setLogin,updateWishlist ,updateCart}}/>
-        <Header  prop={{ setSignUpStatus, isLoggedIn,setLogin,cartPage:true,usersList,updateUsersList,wishlistItems,updateWishlist ,cartItems,updateCart }}/>
+        <Signup prop={{signupShow, setSignUpStatus, usersList, updateUsersList, isLoggedIn, setLogin,updateWishlist ,updateCart,orderHistory,updateOrderHistory}}/>
+        <Header  prop={{ setSignUpStatus, isLoggedIn,setLogin,cartPage:true,usersList,updateUsersList,wishlistItems,updateWishlist ,cartItems,updateCart,orderHistory,updateOrderHistory }}/>
         {isLoggedIn ? (
           <div className="Cart p-5">
             <h1 className="cart-heading text-start">Cart</h1>

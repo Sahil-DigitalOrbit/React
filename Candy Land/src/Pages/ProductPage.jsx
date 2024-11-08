@@ -9,7 +9,7 @@ export default function ProductsPage({ prop }) {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const { ageValidation, isLoggedIn, setLogin, signupShow, setSignUpStatus, usersList, updateUsersList, wishlistItems, updateWishlist, cartItems, updateCart,allRatingReviews} = prop;
+  const { ageValidation, isLoggedIn, setLogin, signupShow, setSignUpStatus, usersList, updateUsersList, wishlistItems, updateWishlist, cartItems, updateCart,allRatingReviews,orderHistory,updateOrderHistory} = prop;
 
   const {item } = location.state || {};
 
@@ -24,9 +24,9 @@ export default function ProductsPage({ prop }) {
     <section>
       <ToastContainer />
       <Signup
-        prop={{signupShow, setSignUpStatus, usersList, updateUsersList, isLoggedIn, setLogin,updateWishlist ,updateCart}}
+        prop={{signupShow, setSignUpStatus, usersList, updateUsersList, isLoggedIn, setLogin,updateWishlist ,updateCart,orderHistory,updateOrderHistory}}
       />
-      <Header prop={{ setSignUpStatus, isLoggedIn,setLogin,usersList,updateUsersList,wishlistItems,updateWishlist ,cartItems,updateCart }} />
+      <Header prop={{ setSignUpStatus, isLoggedIn,setLogin,usersList,updateUsersList,wishlistItems,updateWishlist ,cartItems,updateCart,orderHistory,updateOrderHistory }} />
       {isLoggedIn ? (
         <>
         <ProductTile prop={{item, isProduct:true, wishlistItems, updateWishlist, cartItems, updateCart,isProductPage:true,allRatingReviews}}/>

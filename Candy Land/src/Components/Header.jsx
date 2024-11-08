@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function Header({ prop }) {
-  let { setSignUpStatus, isLoggedIn,setLogin,cartPage,wishlistPage,isAccountPage,usersList,updateUsersList,wishlistItems,updateWishlist ,cartItems,updateCart } = prop;
+  let { setSignUpStatus, isLoggedIn,setLogin,cartPage,wishlistPage,isAccountPage,usersList,updateUsersList,wishlistItems,updateWishlist ,cartItems,updateCart ,orderHistory,updateOrderHistory} = prop;
   let [searchInput,setInput]=useState('');
   const navigate=useNavigate();
 
@@ -20,6 +20,8 @@ export default function Header({ prop }) {
     let userIndex=allUserList.findIndex(user=>user.uMail==isLoggedIn);
     allUserList[userIndex].cart=cartItems;
     allUserList[userIndex].wishlist=wishlistItems;
+    allUserList[userIndex].orders=orderHistory;
+    updateOrderHistory([]);
     updateUsersList(allUserList);
     updateWishlist([]);
     updateCart([]);
