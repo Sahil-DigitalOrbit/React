@@ -26,8 +26,8 @@ export default function WishlistPage({ prop }) {
       <section>
         <ToastContainer />
         <Signup
-          prop={{    signupShow,    setSignUpStatus,    usersList,    updateUsersList,    isLoggedIn,    setLogin,  }}/>
-        <Header  prop={{ setSignUpStatus, isLoggedIn, setLogin, wishlistPage:true }}/>
+          prop={{signupShow, setSignUpStatus, usersList, updateUsersList, isLoggedIn, setLogin,updateWishlist ,updateCart}}/>
+        <Header  prop={{ setSignUpStatus, isLoggedIn,setLogin,wishlistPage:true,usersList,updateUsersList,wishlistItems,updateWishlist ,cartItems,updateCart }}/>
         {isLoggedIn ? (
           <div className="Cart p-5">
             <h1 className="cart-heading text-start">Wishlist</h1>

@@ -40,8 +40,8 @@ export default function HomePage({ prop }) {
   return (
     <section className="home-page">
       <ToastContainer />
-      <Signup   prop={{signupShow, setSignUpStatus, usersList, updateUsersList, isLoggedIn, setLogin}}/>
-      <Header prop={{ setSignUpStatus, isLoggedIn, setLogin }} />
+      <Signup   prop={{signupShow, setSignUpStatus, usersList, updateUsersList, isLoggedIn, setLogin,updateWishlist ,updateCart}}/>
+      <Header prop={{ setSignUpStatus, isLoggedIn, setLogin,usersList,updateUsersList,wishlistItems,updateWishlist ,cartItems,updateCart }} />
       {isLoggedIn ? (
         <PopulateHomepage prop={{ bestSellers, popularProducts,wishlistItems,updateWishlist ,cartItems,updateCart }} />
       ) : (

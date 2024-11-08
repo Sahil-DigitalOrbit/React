@@ -49,6 +49,7 @@
   height: 100vh;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1;
 }
 button {
   height: 3rem !important;
@@ -63,5 +64,5 @@ button {
  padding: 0 !important;
 }
 button:hover{
-  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.5);
 }

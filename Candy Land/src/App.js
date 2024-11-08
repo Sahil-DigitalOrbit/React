@@ -6,7 +6,9 @@ import { useState } from "react";
 import { Customers } from "./Data/Data";
 import CartPage from "./Pages/CartPage";
 import WishlistPage from "./Pages/WishlistPage";
-import ProductsPage from "./Pages/ProductsPage";
+import AllProductsPage from "./Pages/AllProductsPage";
+import AccountPage from "./Pages/AccountPage";
+import ProductsPage from "./Pages/ProductPage";
 
 function App() {
   let [ageValidation, ageValidationChange] = useState(false);
@@ -15,42 +17,38 @@ function App() {
   let [usersList, updateUsersList] = useState([...Customers]);
   let [cartItems,updateCart]=useState([]);
   let [wishlistItems,updateWishlist]=useState([]);
+  let[orderHistory,updateOrderHistory]=useState([]);
+  let[allRatingReviews,updateratingReviews]=useState([]);
   
   let routes = createBrowserRouter([
     {
       path: "/",
-      element: <HomePage prop={{ageValidation, isLoggedIn,setLogin,signupShow,setSignUpStatus,usersList,updateUsersList,wishlistItems,updateWishlist ,cartItems,updateCart}}/>,
+      element: <HomePage prop={{ageValidation, isLoggedIn,setLogin,signupShow,setSignUpStatus,usersList,updateUsersList,wishlistItems,updateWishlist ,cartItems,updateCart,}}/>,
     },
     {
       path: "/verify",
       element: <VerifyPage ageValidationChange={ageValidationChange} />,
     },
-    // {
-    //   path:'/popular',
-    //   element:<PopularPage prop={{ageValidation, isLoggedIn,setLogin,signupShow,setSignUpStatus,usersList,updateUsersList,wishlistItems,updateWishlist ,cartItems,updateCart}}/>
-    // },
-    // {
-    //   path:'/best-sellers',
-    //   element:<BestSellersPage prop={{ageValidation, isLoggedIn,setLogin,signupShow,setSignUpStatus,usersList,updateUsersList,wishlistItems,updateWishlist,cartItems,updateCart}}/>
-    // },
-    // {
-    //   path:'/categories',
-    //   element:<CategoriesPage prop={{ageValidation, isLoggedIn,setLogin,signupShow,setSignUpStatus,usersList,updateUsersList,cartItems,updateCart}} />
-    // },
-    // {
-    //   path:'/brands',
-    //   element:<BrandsPage prop={{ageValidation, isLoggedIn,setLogin,signupShow,setSignUpStatus,usersList,updateUsersList,cartItems,updateCart}} />
-    // },
+    {
+      path:'/about-product',
+      element:<ProductsPage prop={{ageValidation, isLoggedIn,setLogin,signupShow,setSignUpStatus,usersList,updateUsersList,wishlistItems,updateWishlist,cartItems,updateCart,allRatingReviews}} />
+    },
+
     {
       path:'/products',
-      element:<ProductsPage prop={{ageValidation, isLoggedIn,setLogin,signupShow,setSignUpStatus,usersList,updateUsersList,wishlistItems,updateWishlist,cartItems,updateCart}} />
+      element:<AllProductsPage prop={{ageValidation, isLoggedIn,setLogin,signupShow,setSignUpStatus,usersList,updateUsersList,wishlistItems,updateWishlist,cartItems,updateCart}} />
     },
     {
       path:'/cart',
-      element:<CartPage prop={{ageValidation, isLoggedIn,setLogin,signupShow,setSignUpStatus,usersList,updateUsersList,wishlistItems,updateWishlist,cartItems,updateCart}} />
-    },{
+      element:<CartPage prop={{ageValidation, isLoggedIn,setLogin,signupShow,setSignUpStatus,usersList,updateUsersList,wishlistItems,updateWishlist,cartItems,updateCart,orderHistory,updateOrderHistory}} />
+    },
+    {
       path:'/wishlist',
       element:<WishlistPage prop={{ageValidation, isLoggedIn,setLogin,signupShow,setSignUpStatus,usersList,updateUsersList,wishlistItems,updateWishlist,cartItems,updateCart}} />
+    },
+    {
+      path:'/account',
+      element:<AccountPage prop={{ageValidation, isLoggedIn,setLogin,signupShow,setSignUpStatus,usersList,updateUsersList,wishlistItems,updateWishlist,cartItems,updateCart,orderHistory,allRatingReviews,updateratingReviews}} />
     }
 
   ]);

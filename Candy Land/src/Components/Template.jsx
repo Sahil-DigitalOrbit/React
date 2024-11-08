@@ -16,7 +16,6 @@ export default function Template({ prop }) {
   const handleViewAll = () => {
     navigate("/products", { state: { heading: head } });
   };
-
   return (
     <div className="template-section">
       <div className="template-section-header-div">
@@ -29,14 +28,7 @@ export default function Template({ prop }) {
         {data.map((item, idx) => {
           return (
             <ProductTile
-              prop={{
-                item,
-                isProduct,
-                wishlistItems,
-                updateWishlist,
-                cartItems,
-                updateCart,
-              }}
+              prop={{ item,isProduct,wishlistItems,updateWishlist,cartItems,updateCart}}
               key={idx}
             />
           );

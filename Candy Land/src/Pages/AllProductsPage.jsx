@@ -7,7 +7,7 @@ import { Brands, Categories, Orders, Products } from "../Data/Data";
 import Homogeneous from "../Components/Homogeneous";
 import "../Styles/Homo.css";
 
-export default function ProductsPage({ prop }) {
+export default function AllProductsPage({ prop }) {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -25,14 +25,16 @@ export default function ProductsPage({ prop }) {
     updateCart,
   } = prop;
 
-  const { heading,type } = location.state || {};
+  const { heading, type } = location.state || {};
   let data = [];
   let isProduct = false;
   // Determine data based on heading and type
   if (type) {
-    data = Products.filter((item) => item.category == heading||item.brand==heading);
+    data = Products.filter(
+      (item) => item.category == heading || item.brand == heading
+    );
     isProduct = true;
-   } else {
+  } else {
     if (heading == "Best Sellers") {
       isProduct = true;
       let bestSellers = Orders.reduce((prev, order) => {
@@ -41,7 +43,7 @@ export default function ProductsPage({ prop }) {
           : order.quantity;
         return prev;
       }, {});
-  
+
       data = Object.entries(bestSellers)
         .map(([product_id, quantity]) => ({
           product_id: product_id,
@@ -70,16 +72,9 @@ export default function ProductsPage({ prop }) {
     <section>
       <ToastContainer />
       <Signup
-        prop={{
-          signupShow,
-          setSignUpStatus,
-          usersList,
-          updateUsersList,
-          isLoggedIn,
-          setLogin,
-        }}
+        prop={{signupShow, setSignUpStatus, usersList, updateUsersList, isLoggedIn, setLogin,updateWishlist ,updateCart}}
       />
-      <Header prop={{ setSignUpStatus, isLoggedIn, setLogin }} />
+      <Header prop={{ setSignUpStatus, isLoggedIn,setLogin,usersList,updateUsersList,wishlistItems,updateWishlist ,cartItems,updateCart }} />
       {isLoggedIn ? (
         <Homogeneous
           prop={{

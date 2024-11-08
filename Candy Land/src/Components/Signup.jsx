@@ -2,7 +2,7 @@ import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 
 export default function Signup({ prop }) {
-  let{signupShow,setSignUpStatus, usersList, updateUsersList, isLoggedIn,setLogin}=prop;
+  let{signupShow, setSignUpStatus, usersList, updateUsersList, isLoggedIn, setLogin,updateWishlist ,updateCart}=prop;
   let [formDetails, setDetails] = useState({  uName: "",  uContact: "",  uMail: "",});
   let [isSignupPage, updateContent] = useState(true);
   let [loginWithMail, setLoginWithMail] = useState(false);
@@ -39,7 +39,9 @@ export default function Signup({ prop }) {
         );
       });
       if (doExist) {
-        setLogin(true);
+        setLogin(doExist.uMail);
+        updateCart(doExist.cart?doExist.cart:[]);
+        updateWishlist(doExist.wishlist?doExist.wishlist:[]);
         toast.success(`Welcome ` + doExist.uName+'!');
       } else {
         toast.error("User Not found!");

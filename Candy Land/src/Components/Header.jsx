@@ -1,17 +1,29 @@
 import { useState } from "react";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Header({ prop }) {
-  let { setSignUpStatus, isLoggedIn,setLogin,cartPage,wishlistPage } = prop;
-
+  let { setSignUpStatus, isLoggedIn,setLogin,cartPage,wishlistPage,isAccountPage,usersList,updateUsersList,wishlistItems,updateWishlist ,cartItems,updateCart } = prop;
   let [searchInput,setInput]=useState('');
-
+  const navigate=useNavigate();
 
   function updateValue(e) {
     let input = e.target.value;
-    setInput(searchInput);
+    setInput(input);
+  }
+
+  const handleAccountButton = () => {
+    navigate("/account");
+  };
+
+  const logoutUser=()=>{
+    let allUserList=[...usersList];
+    let userIndex=allUserList.findIndex(user=>user.uMail==isLoggedIn);
+    allUserList[userIndex].cart=cartItems;
+    allUserList[userIndex].wishlist=wishlistItems;
+    updateUsersList(allUserList);
+    updateWishlist([]);
+    updateCart([]);
+    setLogin(false);
   }
   return (
     <nav>
@@ -24,7 +36,7 @@ export default function Header({ prop }) {
       <div>
       {isLoggedIn ? (
           <>
-        <input className="search-bar" type="text" placeholder='Search' onChange={setInput}></input> 
+        <input className="search-bar" type="text" placeholder='Search' value={searchInput} onChange={updateValue}></input> 
         {cartPage?<button className="mx-2"><Link style={{textDecoration:'none',color:'#eb3d31',height:'100%',width:'100%'}} to={'/'}>Home</Link></button>       
         :<button className="mx-2"><Link style={{textDecoration:'none',color:'#eb3d31',height:'100%',width:'100%'}} to={'/cart'}>Shop</Link></button>
         }
@@ -32,24 +44,23 @@ export default function Header({ prop }) {
         :<Link style={{textDecoration:'none',color:'#eb3d31'}} to={'/wishlist'}>Wishlist</Link>
         
         }
-        <button className="mx-2 border-0">Account</button>
+        <button   className={isAccountPage?'selected-button mx-2 ':'mx-2 border-0'}  onClick={handleAccountButton}>Account</button>
           
-          <button className="sign-in-button mx-2" onClick={() => setLogin(false)}>
+          <button className="sign-in-button mx-2" onClick={logoutUser}>
           Logout
         </button></>
         ) : (
           <>
         <button>Get the App</button>
-
-            <button onClick={() => setSignUpStatus(true)}>
-              Create Account
-            </button>
-            <button
-              onClick={() => setSignUpStatus(true)}
-              className="sign-in-button"
-            >
-              Sign In
-            </button>
+        <button onClick={() => setSignUpStatus(true)}>
+          Create Account
+        </button>
+        <button
+          onClick={() => setSignUpStatus(true)}
+          className="sign-in-button"
+        >
+          Sign In
+        </button>
           </>
         )}
       </div>
