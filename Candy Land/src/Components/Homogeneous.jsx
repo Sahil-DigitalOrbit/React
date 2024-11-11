@@ -17,6 +17,7 @@ let{allData, isProduct, heading,wishlistItems,updateWishlist,cartItems,updateCar
   const [dropWeight, setDropWeight] = useState(false);
   const [dropBrands, setDropBrand] = useState(false);
   const [dropCategory, setDropCategory] = useState(false);
+  const [dropSort, setDropSort] = useState(false);
   const [weights, setWeights] = useState([]);
   const [brands, setBrands] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -92,7 +93,7 @@ let{allData, isProduct, heading,wishlistItems,updateWishlist,cartItems,updateCar
   }
 
   return (
-    <div className="p-5 m-3 homogeneous-section">
+    <div className="homogeneous-section">
       <h1 className="text-start">{heading}</h1>
 
       {isProduct ? (
@@ -101,7 +102,7 @@ let{allData, isProduct, heading,wishlistItems,updateWishlist,cartItems,updateCar
             <div>
               Filter By <FontAwesomeIcon icon={faSliders} />
             </div>
-            <div className="d-flex justify-content-around align-items-center col-6 homo-sorting-buttons">
+            <div className=" homo-sorting-buttons">
               <span>Sort By: </span>
               <button
                 onClick={sortByPrice}
@@ -144,7 +145,30 @@ let{allData, isProduct, heading,wishlistItems,updateWishlist,cartItems,updateCar
                 Clear All
               </button>
             </div>
+            <div style={dropSort?{backgroundColor:"#FFFDEC"}:{}} className="cell-sort-section">
+              <div onClick={()=>setDropSort(!dropSort)}>
+                <span>Sort By</span>
+                <FontAwesomeIcon icon={faChevronDown} />
+              </div>
+              
+            </div>
+            
           </div>
+          <section className={dropSort?'homo-sort-section-active':'homo-sort-section'}>
+                
+                <div>
+                  <h5 className="homogeneous-filter-controls-head">Price: Low to High</h5>
+                </div>
+                <div>
+                  <h5 className="homogeneous-filter-controls-head">Price: High to Low</h5>
+                </div>
+                <div>
+                  <h5 className="homogeneous-filter-controls-head">Recently Added</h5>
+                </div>
+                <div>
+                  <h5 className="homogeneous-filter-controls-head">Popularity</h5>
+                </div>
+              </section>
 
           <div className="homogeneous-body d-flex">
             <div className="homogeneous-filter-controls col-2 text-start">

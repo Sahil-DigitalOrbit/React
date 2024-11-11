@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import Header from "../Components/Header";
 import { ToastContainer } from "react-toastify";
 import Signup from "../Components/Signup";
-import "../Styles/Homo.css";
 import { Products } from "../Data/Data";
 import Card from "react-bootstrap/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

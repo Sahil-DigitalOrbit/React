@@ -3,12 +3,11 @@ import Card from "react-bootstrap/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-regular-svg-icons";
 import { faDollar, faTrash } from "@fortawesome/free-solid-svg-icons";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Header from "../Components/Header";
 import { ToastContainer } from "react-toastify";
 import Signup from "../Components/Signup";
-import "../Styles/Homo.css";
 import { Products } from "../Data/Data";
 export default function CartPage({ prop }) {
   let {  ageValidation,  isLoggedIn,  setLogin,  signupShow,  setSignUpStatus,  usersList,wishlistItems,updateWishlist,  updateUsersList,  cartItems,  updateCart,orderHistory,updateOrderHistory} = prop;

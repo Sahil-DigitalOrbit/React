@@ -5,7 +5,6 @@ import { ToastContainer } from "react-toastify";
 import Signup from "../Components/Signup";
 import { Brands, Categories, Orders, Products } from "../Data/Data";
 import Homogeneous from "../Components/Homogeneous";
-import "../Styles/Homo.css";
 
 export default function AllProductsPage({ prop }) {
   const location = useLocation();

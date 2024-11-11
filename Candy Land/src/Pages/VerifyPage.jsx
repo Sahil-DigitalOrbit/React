@@ -1,4 +1,4 @@
-import { useState } from "react";
+
 import { useNavigate } from "react-router-dom";
 
 import { ToastContainer, toast } from "react-toastify";
@@ -16,7 +16,7 @@ export default function VerifyPage({ ageValidationChange }) {
     <section className="verify-page-sextion">
         <img className="verify-page-background-image-top" src="https://s3-alpha-sig.figma.com/img/0939/3b48/56483b2e33f8c83648b77908d09d7335?Expires=1731283200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=TKa2TG6q9ueWGeCly3mztSM1Z1YOeh4BSVzSxRByWXcQ2xwkD9xvAE0BeykhuDpqSsEOU-Z7b0unZ7~cXIoQ4pbdOin4SBRf3eqFcDNrE173DTvFgmzWJtW6ns-1kKuZPZMFvLxYUszBFAmAzlItvg8ziJ2u~uGG1ZhQszg8QYB4AliHX2Hz6FEfuEPxz5niL4CB0T89j8DmZY0cwD~3MAreKMHcRE1NzoWqiJ~58EbxO-EBI4PVFvDi6B19pAjaTJLKB-Gx4N1xOtTZWomk4fEVdNdfrGBBM2QBckigai~~P7aeBmhBQnq0pQIuu7uLs-owuIR0O17fxj0b5fEm4w__"></img>
         <img className="verify-page-background-image-bottom" src="https://s3-alpha-sig.figma.com/img/0939/3b48/56483b2e33f8c83648b77908d09d7335?Expires=1731283200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=TKa2TG6q9ueWGeCly3mztSM1Z1YOeh4BSVzSxRByWXcQ2xwkD9xvAE0BeykhuDpqSsEOU-Z7b0unZ7~cXIoQ4pbdOin4SBRf3eqFcDNrE173DTvFgmzWJtW6ns-1kKuZPZMFvLxYUszBFAmAzlItvg8ziJ2u~uGG1ZhQszg8QYB4AliHX2Hz6FEfuEPxz5niL4CB0T89j8DmZY0cwD~3MAreKMHcRE1NzoWqiJ~58EbxO-EBI4PVFvDi6B19pAjaTJLKB-Gx4N1xOtTZWomk4fEVdNdfrGBBM2QBckigai~~P7aeBmhBQnq0pQIuu7uLs-owuIR0O17fxj0b5fEm4w__"></img>
-      <div>
+      <div className="verify-page-sextion-container">
         <div>
           <img
             className="verify-page-logo"

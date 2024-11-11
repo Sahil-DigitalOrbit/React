@@ -4,24 +4,28 @@ export const Customers = [
     uContact: "1234567890",
     uMail: "john.doe@example.com",
     uPassword: "securePass123",
+    uAddress: ["123 Main St, Springfield, IL", "456 Elm St, Springfield, IL"],
   },
   {
     uName: "Jane Smith",
     uContact: "2345678901",
     uMail: "jane.smith@example.com",
     uPassword: "anotherPass456",
+    uAddress: ["789 Oak St, Metropolis, IL", "321 Birch Rd, Metropolis, IL"],
   },
   {
     uName: "Mark Jones",
     uContact: "3456789012",
     uMail: "mark.jones@example.com",
     uPassword: "thirdPass789",
+    uAddress: ["101 Pine Ave, Gotham, NY", "202 Maple St, Gotham, NY"],
   },
   {
     uName: "Sarah Lee",
     uContact: "4567890123",
     uMail: "sarah.lee@example.com",
     uPassword: "secureMe987",
+    uAddress: ["303 Cedar Blvd, Star City, CA", "404 Willow Dr, Star City, CA"],
   },
 ];
 // Brands-----------------------------------------------------------------------------------------------------------
