@@ -1,4 +1,3 @@
-import "../Styles/Cart.css";
 import Card from "react-bootstrap/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-regular-svg-icons";
@@ -49,7 +48,7 @@ export default function CartPage({ prop }) {
         <Signup prop={{signupShow, setSignUpStatus, usersList, updateUsersList, isLoggedIn, setLogin,updateWishlist ,updateCart,orderHistory,updateOrderHistory}}/>
         <Header  prop={{ setSignUpStatus, isLoggedIn,setLogin,cartPage:true,usersList,updateUsersList,wishlistItems,updateWishlist ,cartItems,updateCart,orderHistory,updateOrderHistory }}/>
         {isLoggedIn ? (
-          <div className="Cart p-5">
+          <div className="cart">
             <h1 className="cart-heading text-start">Cart</h1>
             <div className="cart-section">
               <div className="cart-items">

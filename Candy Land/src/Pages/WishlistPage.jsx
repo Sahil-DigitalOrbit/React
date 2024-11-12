@@ -1,4 +1,3 @@
-import "../Styles/Wishlist.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import Header from "../Components/Header";

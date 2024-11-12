@@ -3,6 +3,7 @@ import {
   faSliders,
   faSortDown,
   faSortUp,
+  faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState, useEffect } from "react";
@@ -10,19 +11,22 @@ import ProductTile from "./ProductTile";
 import { Brands, Categories } from "../Data/Data";
 
 export default function Homogeneous({ prop }) {
-let{allData, isProduct, heading,wishlistItems,updateWishlist,cartItems,updateCart}=prop;
+let{allData, isProduct, heading,wishlistItems,updateWishlist,cartItems,updateCart,setModalStatus}=prop;
   
   const [data, setData] = useState([...allData]);
   const [sortState, setSortState] = useState(false);
+  const[sortPopularity,setSortPopularity]=useState(false);
   const [dropWeight, setDropWeight] = useState(false);
   const [dropBrands, setDropBrand] = useState(false);
   const [dropCategory, setDropCategory] = useState(false);
   const [dropSort, setDropSort] = useState(false);
+  const [showFilterCell,setFilterCell]=useState(false);
   const [weights, setWeights] = useState([]);
   const [brands, setBrands] = useState([]);
   const [categories, setCategories] = useState([]);
 
   function sortByPrice() {
+    
     const sortedData = [...data].sort((a, b) =>
       sortState ? a.price - b.price : b.price - a.price
     );
@@ -32,10 +36,10 @@ let{allData, isProduct, heading,wishlistItems,updateWishlist,cartItems,updateCar
 
   function sortByPopularity() {
     const sortedData = [...data].sort((a, b) =>
-      sortState ? a.ratings - b.ratings : b.ratings - a.ratings
+      sortPopularity ? a.ratings - b.ratings : b.ratings - a.ratings
     );
     setData(sortedData);
-    setSortState(!sortState);
+    setSortPopularity(!sortPopularity);
   }
 
   function filterWeight(e) {
@@ -92,16 +96,29 @@ let{allData, isProduct, heading,wishlistItems,updateWishlist,cartItems,updateCar
     setData([...allData]);
   }
 
+  function hideFilterSectionCell(){
+    setModalStatus(false);
+    setFilterCell(false)
+  }
+
   return (
     <div className="homogeneous-section">
+      
       <h1 className="text-start">{heading}</h1>
 
       {isProduct ? (
         <>
           <div className="d-flex justify-content-between align-items-center homogeneous-controller">
-            <div>
+            <div className="for-cell" onClick={()=>{
+              setFilterCell(!showFilterCell);
+              setModalStatus(true)
+            }}>
               Filter By <FontAwesomeIcon icon={faSliders} />
             </div>
+              <div className="for-desktop">
+              Filter By <FontAwesomeIcon icon={faSliders} />
+
+              </div>
             <div className=" homo-sorting-buttons">
               <span>Sort By: </span>
               <button
@@ -124,7 +141,7 @@ let{allData, isProduct, heading,wishlistItems,updateWishlist,cartItems,updateCar
                 <span className="button-span">
                   <FontAwesomeIcon
                     className="sort-fontawesome"
-                    icon={sortState ? faSortUp : faSortDown}
+                    icon={sortPopularity ? faSortUp : faSortDown}
                   />
                 </span>
               </button>
@@ -156,22 +173,23 @@ let{allData, isProduct, heading,wishlistItems,updateWishlist,cartItems,updateCar
           </div>
           <section className={dropSort?'homo-sort-section-active':'homo-sort-section'}>
                 
-                <div>
+                <div  onClick={sortByPrice}>
                   <h5 className="homogeneous-filter-controls-head">Price: Low to High</h5>
                 </div>
                 <div>
-                  <h5 className="homogeneous-filter-controls-head">Price: High to Low</h5>
+                  <h5 onClick={sortByPrice} className="homogeneous-filter-controls-head">Price: High to Low</h5>
                 </div>
                 <div>
                   <h5 className="homogeneous-filter-controls-head">Recently Added</h5>
                 </div>
                 <div>
-                  <h5 className="homogeneous-filter-controls-head">Popularity</h5>
+                  <h5 onClick={sortByPopularity} className="homogeneous-filter-controls-head">Popularity</h5>
                 </div>
               </section>
 
           <div className="homogeneous-body d-flex">
-            <div className="homogeneous-filter-controls col-2 text-start">
+            <div className={showFilterCell?'homogeneous-filter-controls-active homogeneous-filter-controls col-2 text-start':"homogeneous-filter-controls col-2 text-start"}>
+              <div className="filter-controls-header-cell"><span>Filter By <FontAwesomeIcon icon={faSliders} /></span><span  onClick={hideFilterSectionCell}><FontAwesomeIcon icon={faXmark}/></span></div>
               {/* Weight Filter */}
               <div>
                 <h5 className="homogeneous-filter-controls-head">

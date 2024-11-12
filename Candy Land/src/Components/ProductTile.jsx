@@ -54,7 +54,7 @@ export default function ProductTile({ prop }) {
   if (isProductPage) {
     return (
       <section className="product-page-card pt-4">
-        <div style={{height:'60vh'}} className="position-relative border card-image-div col-4 m-2">
+        <div style={{height:'60vh'}} className="position-relative border product-card-image-div card-image-div">
           <Card.Img
             variant="top"
             src="https://m.media-amazon.com/images/I/61XdlI186PL._SL1500_.jpg"
@@ -62,7 +62,7 @@ export default function ProductTile({ prop }) {
           />
         </div>
 
-        <div style={{margin:'.25% 2rem'}} className="col">
+        <div className="col product-card-body">
           <div className="col-9 text-start">
             <Card.Text className="d-flex justify-content-between col">
               <span>{item.brand}</span>

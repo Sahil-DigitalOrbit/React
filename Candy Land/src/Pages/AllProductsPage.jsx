@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Header from "../Components/Header";
 import { ToastContainer } from "react-toastify";
 import Signup from "../Components/Signup";
@@ -24,7 +24,7 @@ export default function AllProductsPage({ prop }) {
     updateCart,
     orderHistory,updateOrderHistory
   } = prop;
-
+  const[modalStatus,setModalStatus]=useState(false);
   const { heading, type } = location.state || {};
   let data = [];
   let isProduct = false;
@@ -70,6 +70,9 @@ export default function AllProductsPage({ prop }) {
 
   return (
     <section>
+      <div
+        className={modalStatus?"modal-div":''}
+      ></div>
       <ToastContainer />
       <Signup
         prop={{signupShow, setSignUpStatus, usersList, updateUsersList, isLoggedIn, setLogin,updateWishlist ,updateCart,orderHistory,updateOrderHistory}}
@@ -85,6 +88,7 @@ export default function AllProductsPage({ prop }) {
             updateWishlist,
             cartItems,
             updateCart,
+            setModalStatus
           }}
         />
       ) : (
