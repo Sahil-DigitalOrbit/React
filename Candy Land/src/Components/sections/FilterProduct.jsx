@@ -7,8 +7,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState, useEffect } from "react";
-import ProductTile from "./ProductTile";
-import { Brands, Categories } from "../Data/Data";
+import ProductTile from "../ProductTile";
+import { Brands, Categories } from "../../assests/data/Data";
 
 export default function Homogeneous({ prop }) {
 let{allData, isProduct, heading,wishlistItems,updateWishlist,cartItems,updateCart,setModalStatus}=prop;
@@ -102,7 +102,7 @@ let{allData, isProduct, heading,wishlistItems,updateWishlist,cartItems,updateCar
   }
 
   return (
-    <div className="homogeneous-section">
+    <section className="homogeneous-section">
       
       <h1 className="text-start">{heading}</h1>
 
@@ -330,6 +330,6 @@ let{allData, isProduct, heading,wishlistItems,updateWishlist,cartItems,updateCar
           ))}
         </div>
       )}
-    </div>
+    </section>
   );
 }

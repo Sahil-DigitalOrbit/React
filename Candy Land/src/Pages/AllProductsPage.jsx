@@ -1,10 +1,10 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import Header from "../Components/Header";
+import Header from "../Components/Header/Header";
 import { ToastContainer } from "react-toastify";
 import Signup from "../Components/Signup";
-import { Brands, Categories, Orders, Products } from "../Data/Data";
-import Homogeneous from "../Components/Homogeneous";
+import { Brands, Categories, Orders, Products } from "../assests/data/Data";
+import Homogeneous from "../Components/sections/FilterProduct";
 
 export default function AllProductsPage({ prop }) {
   const location = useLocation();
@@ -79,18 +79,7 @@ export default function AllProductsPage({ prop }) {
       />
       <Header prop={{ setSignUpStatus, isLoggedIn,setLogin,usersList,updateUsersList,wishlistItems,updateWishlist ,cartItems,updateCart,orderHistory,updateOrderHistory }} />
       {isLoggedIn ? (
-        <Homogeneous
-          prop={{
-            allData: data,
-            isProduct,
-            heading,
-            wishlistItems,
-            updateWishlist,
-            cartItems,
-            updateCart,
-            setModalStatus
-          }}
-        />
+        <Homogeneous prop={{   allData: data,   isProduct,   heading,   wishlistItems,   updateWishlist,   cartItems,   updateCart,   setModalStatus }}/>
       ) : (
         <h1>Please Login First</h1>
       )}

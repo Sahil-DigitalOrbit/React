@@ -1,14 +1,14 @@
-import "./Styles/App.css";
+import "./assests/styles/App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import HomePage from "./Pages/HomePage";
-import VerifyPage from "./Pages/VerifyPage";
+import HomePage from "./pages/HomePage";
+import VerifyPage from "./pages/LandingPage";
 import { useState } from "react";
-import { Customers } from "./Data/Data";
-import CartPage from "./Pages/CartPage";
-import WishlistPage from "./Pages/WishlistPage";
-import AllProductsPage from "./Pages/AllProductsPage";
-import AccountPage from "./Pages/AccountPage";
-import ProductsPage from "./Pages/ProductPage";
+import { Customers } from "./assests/data/Data";
+import CartPage from "./pages/CartPage";
+import WishlistPage from "./pages/WishlistPage";
+import AllProductsPage from "./pages/AllProductsPage";
+import AccountPage from "./pages/AccountPage";
+import ProductDetailsPage from "./pages/ProductDetail";
 
 function App() {
   let [ageValidation, ageValidationChange] = useState(false);
@@ -31,7 +31,7 @@ function App() {
     },
     {
       path:'/about-product',
-      element:<ProductsPage prop={{ageValidation, isLoggedIn,setLogin,signupShow,setSignUpStatus,usersList,updateUsersList,wishlistItems,updateWishlist,cartItems,updateCart,allRatingReviews,orderHistory,updateOrderHistory}} />
+      element:<ProductDetailsPage prop={{ageValidation, isLoggedIn,setLogin,signupShow,setSignUpStatus,usersList,updateUsersList,wishlistItems,updateWishlist,cartItems,updateCart,allRatingReviews,orderHistory,updateOrderHistory}} />
     },
 
     {

@@ -164,10 +164,10 @@ export default function ProductTile({ prop }) {
                       : "homo-dropDown-weight"
                   }
                 >
-                  {ratingReviews.map((x) => {
-                    console.log(x);
+                  {ratingReviews.map((x,idx) => {
+                    
                     return (
-                      <div>
+                      <div key={idx}>
                         <h5>{x.userName}</h5>
                         <div>
                           {[...Array(5)].map((_, index) => {

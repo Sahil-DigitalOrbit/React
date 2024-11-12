@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import ProductTile from "./ProductTile";
+import ProductTile from "../ProductTile";
 
-export default function Template({ prop }) {
+export default function HomePageTemplate({ prop }) {
   const navigate = useNavigate();
   const {
     head,
@@ -17,7 +17,7 @@ export default function Template({ prop }) {
     navigate("/products", { state: { heading: head } });
   };
   return (
-    <div className="template-section">
+    <section className="template-section">
       <div className="template-section-header-div">
         <h2 className="template-section-heading">{head}</h2>
         <button className="template-section-view-all" onClick={handleViewAll}>
@@ -34,6 +34,6 @@ export default function Template({ prop }) {
           );
         })}
       </div>
-    </div>
+    </section>
   );
 }

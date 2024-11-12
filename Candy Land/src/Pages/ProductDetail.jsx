@@ -1,11 +1,11 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import Header from "../Components/Header";
+import Header from "../Components/Header/Header";
 import { ToastContainer } from "react-toastify";
 import Signup from "../Components/Signup";
 import ProductTile from "../Components/ProductTile";
 
-export default function ProductsPage({ prop }) {
+export default function ProductDetailsPage({ prop }) {
   const location = useLocation();
   const navigate = useNavigate();
 
