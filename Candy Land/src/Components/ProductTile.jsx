@@ -251,7 +251,7 @@ export default function ProductTile({ prop }) {
                 <FontAwesomeIcon icon={faDollar} className="m-1" /> {item.price}
               </span>
             </div>
-            <div className="d-flex justify-content-between">
+            <div className="order-history-button-div d-flex justify-content-between">
               <button
                 onClick={() => showRateProductSection(item)}
                 className="account-page-tile-button"

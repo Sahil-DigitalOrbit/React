@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { logoImage } from "../../assests/images/images";
-import{ SignUpSection,  HamburgerSection,LoggedInSection } from "./sections/HeaderSections";
+import{ SignUpSection,  HamburgerSection,LoggedInSection } from "../sections/HeaderSections";
 
 export default function Header({ prop }) {
   let {

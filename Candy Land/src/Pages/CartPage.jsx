@@ -4,7 +4,7 @@ import Header from "../Components/Header/Header";
 import { ToastContainer } from "react-toastify";
 import Signup from "../Components/Signup";
 import { Products } from "../assests/data/Data";
-import CartSection from "../Components/Cart/section/CartSection";
+import CartSection from "../Components/sections/CartSection";
 export default function CartPage({ prop }) {
   let {  ageValidation,  isLoggedIn,  setLogin,  signupShow,  setSignUpStatus,  usersList,wishlistItems,updateWishlist,  updateUsersList,  cartItems,  updateCart,orderHistory,updateOrderHistory} = prop;
   

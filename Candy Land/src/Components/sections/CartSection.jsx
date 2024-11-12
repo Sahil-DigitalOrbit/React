@@ -1,4 +1,4 @@
-import CartTile from "../CartTile";
+import CartTile from "../Cart/CartTile";
 
 export default function CartSection({ prop }) {
     const {data,subtotal,deliveryCost,checkoutCart,cartItems,updateCart,updateSubtotal}=prop;
