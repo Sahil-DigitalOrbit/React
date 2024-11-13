@@ -18,14 +18,14 @@ export default function ProductPageTile({ item, wishlistItems, updateWishlist, c
 
   return  (
     <section className="product-page-card pt-4">
-      <div style={{height:'60vh'}} className="position-relative border product-card-image-div card-image-div">
-        <img
+      <div  className="col-5 product-image-div">
+        <div className="product-card-image-div"><img
           variant="top"
           src="https://m.media-amazon.com/images/I/61XdlI186PL._SL1500_.jpg"
-          className="template-image"
-        />
-        <div>
-            <div className="product-page-"></div><div></div><div></div>
+          className=" border template-image"
+        /></div>
+        <div className="d-flex">
+            <div className="product-page-other-images"></div><div className="product-page-other-images"></div ><div className="product-page-other-images"></div>
         </div>
       </div>
 

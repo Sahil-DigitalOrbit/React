@@ -431,7 +431,7 @@ hr {
 
 }
 
-.template-image,.account-tile-image ,.product-image{
+.template-image,.account-tile-image ,.product-image,.card-image{
   height: 100%;
   width: 100%;
   object-fit: contain;
@@ -542,27 +542,20 @@ margin: 0;
   margin-bottom: 3rem;
 }
 .product-card-image-div {
-  width: 40% !important;
+  width: 100% !important;
   margin: 1rem auto !important;
-}
-.card-image-div {
-  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
-  display: flex;
-  justify-content: center;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.3);
+}
+
+.product-page-other-images{
+  height: 5rem;
+  width: 5rem;
+  margin-right:.5rem;
+  border-radius: 5px;
+  background-image: radial-gradient(rgb(178, 178, 178),rgba(0, 0, 0, 0.2));
   cursor: pointer;
 }
-
-.product-page-card {
-  margin-bottom: 20px;
-}
-
-.product-card-image-div {
-  overflow: hidden;
-  border-radius: 8px;
-  margin-bottom: 20px;
-}
-
 
 
 .product-card-body {
@@ -777,7 +770,6 @@ margin: 0;
   flex: 1.4;
   height: 80% !important;
   box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.3);
-  object-fit: contain;
   display: flex;
   border-radius: 10px;
 }
@@ -935,7 +927,10 @@ margin: 0;
     background-color: white;
     border: 2px solid #ea3d32;
   }
-
+  /* ---------------------cart---------------------- */
+  .cart-image-div {
+    flex: 2;
+  }
   /* ---------------------homogeneous----------------------- */
 
   .homo-sorting-buttons {
@@ -989,19 +984,7 @@ margin: 0;
     padding: 0;
     flex-wrap: wrap;
   }
-  .template-card {
-    margin: 1rem 0.5rem !important;
-    height: 20rem !important;
-    min-width: 9.5rem !important;
-    max-width: 9.5rem !important;
-  }
-  .template-card button {
-    font-size: 0.8rem !important;
-    height: 2rem !important;
-  }
-  .template-card * {
-    font-size: 1rem;
-  }
+  
 
   .cart {
     padding: 2rem 1rem;
@@ -1027,10 +1010,10 @@ margin: 0;
     display: none;
   }
   .account-page-tile {
-    margin-bottom: 1.5rem;
     height: 15rem !important;
     min-width: 100% !important;
     flex-direction: row !important;
+    margin: auto;
   }
   .order-history-section {
     margin: 2rem auto;
@@ -1047,7 +1030,7 @@ margin: 0;
   }
   .product-page-card {
   }
-  .product-card-image-div {
+  .product-image-div {
     width: 100% !important;
     margin: 1rem auto !important;
   }
