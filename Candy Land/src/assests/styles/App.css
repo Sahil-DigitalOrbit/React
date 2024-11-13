@@ -252,7 +252,6 @@ nav > div:first-child {
   overflow: scroll;
   scrollbar-width: none;
 }
-
 .template-section-header-div {
   display: flex;
   width: 90%;
@@ -264,25 +263,6 @@ nav > div:first-child {
 }
 .template-section-heading {
   color: #506f22;
-}
-.product-card-bottom-div {
-  display: flex;
-}
-.template-card {
-  margin-bottom: 3rem;
-  margin-right: 1rem;
-  border: none;
-  height: 25rem !important;
-  min-width: 13rem !important;
-  cursor: pointer;
-  transition: ease-in-out 0.1s;
-}
-
-.product-card-body {
-  margin: 0.25% 2rem;
-}
-.template-card:hover {
-  box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.25);
 }
 .home-page {
   display: flex;
@@ -316,60 +296,14 @@ hr {
   justify-content: center;
   background-color: antiquewhite;
 }
-.card-price-div {
-  font-size: 1.3rem;
-}
-.card-rating-div {
-  font-size: 0.8rem;
-  border-radius: 5px;
-  background-color: #506f22;
-  color: white;
-  padding: 3px;
-  right: 0.8rem;
-  top: 0.8rem;
-}
-.card-image-div {
-  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
-  display: flex;
-  justify-content: center;
-  cursor: pointer;
-}
-.account-page-tile-image {
-  width: 45%;
-}
-.card-image {
-  object-fit: contain;
-}
-.card-price-div {
-  color: #3a5a40;
-}
-.product-card-image-div {
-  width: 40% !important;
-  margin: 1rem auto !important;
-}
 
 .selected-button,
 .acount-header-button-section-active {
   background-color: #fa91082b;
   border: 1px solid #fa9108f0 !important;
 }
-.account-order-page-tile {
-  width: 100%;
-  height: 100%;
-  /* border: 2px solid red !important; */
-}
-.account-page-card-body {
-  height: 100% !important;
-  padding: 0 1rem !important;
-}
 
-.account-page-tile {
-  margin-bottom: 1.5rem;
-  height: 15rem !important;
-  min-width: 25rem !important;
-  flex-direction: row !important;
-}
+
 .order-history-section {
   width: 70%;
   margin: auto;
@@ -377,10 +311,7 @@ hr {
   flex-wrap: wrap;
   justify-content: space-between;
 }
-.account-page-tile-button {
-  height: 2.5rem !important;
-  width: 5rem;
-}
+
 
 .order-rate-section {
   height: 39vh;
@@ -472,16 +403,204 @@ hr {
   padding: 0.6rem;
 }
 
+/* ---------------------------------------------------------------------------card----------------------------------------------------------- */
+.product-card{
+  min-width: 15rem;
+  max-width: 15rem;
+  height: 25rem;
+  margin: 1rem;
+  cursor: pointer;
+  transition: ease-in-out 0.1s;
+  padding: .5rem;
+  border-radius: 5px;
+}
+.product-card:hover,.account-page-tile:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.5);
+
+}
+.card-rating-div {
+  position: absolute;
+  font-size: 0.8rem;
+  border-radius: 5px;
+  background-color: #506f22;
+  color: white;
+  padding: 3px;
+  right: .5rem;
+  top: .5rem;
+
+}
+
+.template-image,.account-tile-image ,.product-image{
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+.template-image-div{
+  margin: auto;
+  width: 95%;
+  height: 67%;
+  overflow: hidden;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+.template-details{
+  overflow: hidden;
+  height: 33%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: .7rem;
+  margin: auto;
+}
+.template-details>*{
+  margin: 0;
+}
+.template-details-product-header{
+  display: flex;
+  font-size: .9rem;
+  color: #0000007a;
+  justify-content: space-between;
+  padding: 0 !important;
+}
+.card-price,.account-card-delivered,.card-price-div,.product-card-price-div{
+  color: #506f22;
+}
+.template-details-product-header>*{
+  margin: 0 ;
+}
+.template-details-product-bottom{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.template-details-product-bottom-buttons{
+  display: flex;
+}
+.template-details-product-bottom-buttons>button{
+  width: fit-content;
+  padding: 0 .7rem !important;
+  height: 2.7rem !important;
+}
+
+.account-page-tile{
+  width: 25rem;
+  height: 15rem;
+  margin: 1rem;
+  cursor: pointer;
+  transition: ease-in-out 0.1s;
+  padding: .5rem;
+  border-radius: 5px;
+  display: flex;
+ 
+}
+.account-page-tile-image-div{
+    width: 49%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  }
+.account-template-details,.product-details{
+  overflow: hidden;
+  height: 100%;
+  width: 51%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: .7rem;
+  margin: auto;
+}
+.account-template-details-product-bottom{
+  display: flex;
+  gap: .5rem;
+}
+.account-template-details-product-bottom>button{
+  width: fit-content;
+  padding: 0 1rem !important;
+  height: 2.7rem !important;
+}
+.account-card-price{
+  font-size: 1.3rem;
+}
+.card-name{
+  margin: 0 !important;
+}
+.account-card-delivered>p{
+margin: 0;
+}
+.product-page-card {
+  display: flex;
+  width: 90%;
+  min-height: 100vh;
+  margin: auto;
+  justify-content: space-around !;
+}
+
+.product-tile-body > * {
+  margin-bottom: 3rem;
+}
+.product-card-image-div {
+  width: 40% !important;
+  margin: 1rem auto !important;
+}
+.card-image-div {
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.product-page-card {
+  margin-bottom: 20px;
+}
+
+.product-card-image-div {
+  overflow: hidden;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+
+
+.product-card-body {
+  padding: 20px;
+}
+.product-card-body>*{
+  margin-bottom: 2rem;
+
+}
+.product-card-body h3 {
+  font-size: 1.5rem;
+  margin-top: 10px;
+}
+
+.product-card-price-div{
+  font-size: 1.5rem;
+}
+
+.product-card-bottom-div button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #EA3D32;
+  color: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.product-card-bottom-div button:hover {
+  background-color: #d9321b;
+}
+
 /* ------------------------------------------------------------------------homogeneous page---------------------------------------------- */
 
 .homogeneous-section {
   padding: 2rem;
   margin: 2rem;
 }
-/* 
-.homogeneous-section > * {
-  margin-bottom: 2rem !important;
-} */
 
 .homogeneous-body {
   margin-top: 1rem !important;

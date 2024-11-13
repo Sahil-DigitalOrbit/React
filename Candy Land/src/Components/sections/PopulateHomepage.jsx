@@ -1,5 +1,5 @@
 import { Brands, Categories } from "../../assests/data/Data";
-import HomePageTemplate from "./HomPageTemplate";
+import HomePageTemplate from "./HomePageTemplate";
 
 export default function PopulateHomepage({ prop }) {
     let { bestSellers, popularProducts,wishlistItems,updateWishlist ,cartItems,updateCart } = prop;

@@ -1,6 +1,7 @@
-import ProductTile from "../ProductTile";
+
 import { useState } from "react";
 import StarRate from "../StarRate";
+import ProductTile from "../PorductTile/ProductTile";
 
 export default function OrderHistory({ prop }) {
   let {

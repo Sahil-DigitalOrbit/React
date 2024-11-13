@@ -43,6 +43,7 @@ export default function HomePage({ prop }) {
       <Header prop={{ setSignUpStatus, isLoggedIn, setLogin,usersList,updateUsersList,wishlistItems,updateWishlist ,cartItems,updateCart ,orderHistory,updateOrderHistory}} />
       {isLoggedIn ? (
         <PopulateHomepage prop={{ bestSellers, popularProducts,wishlistItems,updateWishlist ,cartItems,updateCart }} />
+        
       ) : (
         <h1>Please Login First</h1>
       )}

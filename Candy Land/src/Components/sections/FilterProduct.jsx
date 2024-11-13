@@ -7,8 +7,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState, useEffect } from "react";
-import ProductTile from "../ProductTile";
 import { Brands, Categories } from "../../assests/data/Data";
+import ProductTile from "../PorductTile/ProductTile";
 
 export default function Homogeneous({ prop }) {
 let{allData, isProduct, heading,wishlistItems,updateWishlist,cartItems,updateCart,setModalStatus}=prop;
@@ -26,13 +26,22 @@ let{allData, isProduct, heading,wishlistItems,updateWishlist,cartItems,updateCar
   const [categories, setCategories] = useState([]);
 
   function sortByPrice() {
-    
     const sortedData = [...data].sort((a, b) =>
       sortState ? a.price - b.price : b.price - a.price
     );
-    setData(sortedData);
     setSortState(!sortState);
+    setData(sortedData);
   }
+  
+  function sortByPriceDirection(direction){
+    setSortState(direction);
+    setData((prevData) => {
+    const sortedData = [...prevData].sort((a, b) =>
+      direction ? a.price - b.price : b.price - a.price
+    );
+    return sortedData;
+  });
+}
 
   function sortByPopularity() {
     const sortedData = [...data].sort((a, b) =>
@@ -122,7 +131,7 @@ let{allData, isProduct, heading,wishlistItems,updateWishlist,cartItems,updateCar
             <div className=" homo-sorting-buttons">
               <span>Sort By: </span>
               <button
-                onClick={sortByPrice}
+                onClick={()=>sortByPrice()}
                 className="d-flex justify-content-center align-items-center"
               >
                 Price
@@ -173,11 +182,11 @@ let{allData, isProduct, heading,wishlistItems,updateWishlist,cartItems,updateCar
           </div>
           <section className={dropSort?'homo-sort-section-active':'homo-sort-section'}>
                 
-                <div  onClick={sortByPrice}>
+                <div  onClick={()=>sortByPriceDirection(true)}>
                   <h5 className="homogeneous-filter-controls-head">Price: Low to High</h5>
                 </div>
                 <div>
-                  <h5 onClick={sortByPrice} className="homogeneous-filter-controls-head">Price: High to Low</h5>
+                  <h5 onClick={()=>sortByPriceDirection(false)} className="homogeneous-filter-controls-head">Price: High to Low</h5>
                 </div>
                 <div>
                   <h5 className="homogeneous-filter-controls-head">Recently Added</h5>

@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import ProductTile from "../ProductTile";
+import ProductTile from "../PorductTile/ProductTile";
 
 export default function HomePageTemplate({ prop }) {
   const navigate = useNavigate();

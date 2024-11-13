@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import Header from "../Components/Header/Header";
 import { ToastContainer } from "react-toastify";
 import Signup from "../Components/Signup";
-import ProductTile from "../Components/ProductTile";
+import ProductTile from "../Components/PorductTile/ProductTile";
 
 export default function ProductDetailsPage({ prop }) {
   const location = useLocation();
