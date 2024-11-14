@@ -2,10 +2,13 @@ import Card from "react-bootstrap/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-regular-svg-icons";
 import { faDollar, faTrash } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { globalContext } from "../../utils/context";
 
 export default function CartTile({ prop }) {
-    let { item, cartItems, updateCart, subtotal, updateSubtotal } = prop;
+    let { item,  subtotal, updateSubtotal } = prop;
+    let { cartItems, updateCart, } = useContext(globalContext);
+    
     let [quantity, updateQuantity] = useState(1);
     function removeFromCart(e) {
       const newList = cartItems.filter((x) => x != item.id);

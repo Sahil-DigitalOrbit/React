@@ -1,9 +1,12 @@
 
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-export default function VerifyPage({ ageValidationChange }) {
+import { globalContext } from "../utils/context";
+export default function VerifyPage() {
+  let{ageValidationChange}=useContext(globalContext)
   let navigate = useNavigate();
   function handleNoButton() {
     toast("ACCESS IS RESTRICTED!");

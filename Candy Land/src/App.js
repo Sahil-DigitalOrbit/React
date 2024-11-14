@@ -9,6 +9,7 @@ import WishlistPage from "./pages/WishlistPage";
 import AllProductsPage from "./pages/AllProductsPage";
 import AccountPage from "./pages/AccountPage";
 import ProductDetailsPage from "./pages/ProductDetail";
+import { globalContext } from "./utils/context";
 
 function App() {
   let [ageValidation, ageValidationChange] = useState(false);
@@ -19,44 +20,45 @@ function App() {
   let [wishlistItems,updateWishlist]=useState([]);
   let[orderHistory,updateOrderHistory]=useState([]);
   let[allRatingReviews,updateratingReviews]=useState([]);
-  
+  let [isSignupPage, updateSignupContent] = useState(true);
   let routes = createBrowserRouter([
     {
       path: "/",
-      element: <HomePage prop={{ageValidation, isLoggedIn,setLogin,signupShow,setSignUpStatus,usersList,updateUsersList,wishlistItems,updateWishlist ,cartItems,updateCart,orderHistory,updateOrderHistory}}/>,
+      element:  <HomePage/>,
     },
     {
       path: "/verify",
-      element: <VerifyPage ageValidationChange={ageValidationChange} />,
+      element: <VerifyPage/>,
     },
     {
       path:'/about-product',
-      element:<ProductDetailsPage prop={{ageValidation, isLoggedIn,setLogin,signupShow,setSignUpStatus,usersList,updateUsersList,wishlistItems,updateWishlist,cartItems,updateCart,allRatingReviews,orderHistory,updateOrderHistory}} />
+      element:<ProductDetailsPage />
     },
 
     {
       path:'/products',
-      element:<AllProductsPage prop={{ageValidation, isLoggedIn,setLogin,signupShow,setSignUpStatus,usersList,updateUsersList,wishlistItems,updateWishlist,cartItems,updateCart,orderHistory,updateOrderHistory}} />
+      element:<AllProductsPage/>
     },
     {
       path:'/cart',
-      element:<CartPage prop={{ageValidation, isLoggedIn,setLogin,signupShow,setSignUpStatus,usersList,updateUsersList,wishlistItems,updateWishlist,cartItems,updateCart,orderHistory,updateOrderHistory}} />
+      element:<CartPage/>
     },
     {
       path:'/wishlist',
-      element:<WishlistPage prop={{ageValidation, isLoggedIn,setLogin,signupShow,setSignUpStatus,usersList,updateUsersList,wishlistItems,updateWishlist,cartItems,updateCart,orderHistory,updateOrderHistory}} />
+      element:<WishlistPage/>
     },
     {
       path:'/account',
-      element:<AccountPage prop={{ageValidation, isLoggedIn,setLogin,signupShow,setSignUpStatus,usersList,updateUsersList,wishlistItems,updateWishlist,cartItems,updateCart,orderHistory,allRatingReviews,updateratingReviews,orderHistory,updateOrderHistory}} />
+      element:<AccountPage/>
     }
 
   ]);
 
   return (
     <div className="App">
-      
+      <globalContext.Provider value={{ageValidation,ageValidationChange, isLoggedIn,setLogin,signupShow,setSignUpStatus,usersList,updateUsersList,wishlistItems,updateWishlist,cartItems,updateCart,allRatingReviews,orderHistory,updateOrderHistory,updateratingReviews,isSignupPage, updateSignupContent}}>
       <RouterProvider router={routes} />
+      </globalContext.Provider>
     </div>
   );
 }

@@ -1,7 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faDollar } from "@fortawesome/free-solid-svg-icons";
+import { useContext } from "react";
+import { globalContext } from "../../utils/context";
 
-export default function AccountPageTile({ item,cartItems, updateCart, showRateProductSection, isItemInList, toggleItem,handlePoductPage}) {
+export default function AccountPageTile({ item, showRateProductSection, isItemInList, toggleItem,handlePoductPage}) {
+  let{cartItems, updateCart}=useContext(globalContext);
   return (
     <div  className="account-page-tile" onClick={handlePoductPage}>
       <div className="account-page-tile-image-div"><img src='https://m.media-amazon.com/images/I/61XdlI186PL._SL1500_.jpg' alt={item.name} className="account-tile-image" /></div>

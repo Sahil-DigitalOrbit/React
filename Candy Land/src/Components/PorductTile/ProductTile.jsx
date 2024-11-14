@@ -4,18 +4,7 @@ import TemplatePageTile from "./TemplateTile";
 import { useNavigate } from "react-router-dom";
 
 export default function ProductTile({ prop }) {
-  const {
-    item,
-    isProduct,
-    wishlistItems,
-    updateWishlist,
-    cartItems,
-    updateCart,
-    isAccountPage,
-    showRateProductSection,
-    isProductPage,
-    allRatingReviews,
-  } = prop;
+  const {  item,  isProduct,  isAccountPage,  showRateProductSection,  isProductPage} = prop;
   
   const navigate = useNavigate();
   const handleViewAll = () =>
@@ -31,47 +20,17 @@ export default function ProductTile({ prop }) {
 
   if (isAccountPage) {
     return (
-      <AccountPageTile
-        item={item}
-        wishlistItems={wishlistItems}
-        updateWishlist={updateWishlist}
-        cartItems={cartItems}
-        updateCart={updateCart}
-        showRateProductSection={showRateProductSection}
-        isItemInList={isItemInList}
-        toggleItem={toggleItem}
-        handlePoductPage={handlePoductPage}
-      />
+      <AccountPageTile item={item} showRateProductSection={showRateProductSection} isItemInList={isItemInList} toggleItem={toggleItem} handlePoductPage={handlePoductPage}/>
     );
   }
 
   if (isProductPage) {
     return (
-      <ProductPageTile
-        item={item}
-        wishlistItems={wishlistItems}
-        updateWishlist={updateWishlist}
-        cartItems={cartItems}
-        updateCart={updateCart}
-        isItemInList={isItemInList}
-        toggleItem={toggleItem}
-        allRatingReviews={allRatingReviews}
-      />
+      <ProductPageTile item={item} isItemInList={isItemInList} toggleItem={toggleItem}/>
     );
   }
 
   return (
-    <TemplatePageTile
-      item={item}
-      wishlistItems={wishlistItems}
-      updateWishlist={updateWishlist}
-      cartItems={cartItems}
-      updateCart={updateCart}
-      isItemInList={isItemInList}
-      toggleItem={toggleItem}
-      isProduct={isProduct}
-      handlePoductPage={handlePoductPage}
-      handleViewAll={handleViewAll}
-    />
+    <TemplatePageTile item={item} isItemInList={isItemInList} toggleItem={toggleItem} isProduct={isProduct} handlePoductPage={handlePoductPage} handleViewAll={handleViewAll}/>
   );
 }

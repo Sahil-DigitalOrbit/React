@@ -11,7 +11,7 @@ import { Brands, Categories } from "../../assests/data/Data";
 import ProductTile from "../PorductTile/ProductTile";
 
 export default function Homogeneous({ prop }) {
-let{allData, isProduct, heading,wishlistItems,updateWishlist,cartItems,updateCart,setModalStatus}=prop;
+let{allData, isProduct, heading,setModalStatus}=prop;
   
   const [data, setData] = useState([...allData]);
   const [sortState, setSortState] = useState(false);
@@ -324,7 +324,7 @@ let{allData, isProduct, heading,wishlistItems,updateWishlist,cartItems,updateCar
             <div className="homogeneous-body-content">
               {data.map((item, idx) => (
                 <div key={idx}>
-                  <ProductTile prop={{ item, isProduct,wishlistItems,updateWishlist,cartItems,updateCart }} />
+                  <ProductTile prop={{ item, isProduct }} />
                 </div>
               ))}
             </div>
@@ -334,7 +334,7 @@ let{allData, isProduct, heading,wishlistItems,updateWishlist,cartItems,updateCar
         <div className="homogeneous-body-content">
           {data.map((item, idx) => (
             <div key={idx}>
-              <ProductTile prop={{ item, isProduct,wishlistItems,updateWishlist,cartItems,updateCart }} />
+              <ProductTile prop={{ item, isProduct }} />
             </div>
           ))}
         </div>

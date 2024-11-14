@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
+import { globalContext } from "../utils/context";
 
 export default function Signup({ prop }) {
-  let{signupShow, setSignUpStatus, usersList, updateUsersList, isLoggedIn, setLogin,updateWishlist ,updateCart,updateOrderHistory}=prop;
+  let{signupShow, setSignUpStatus, usersList, updateUsersList, isLoggedIn, setLogin,updateWishlist ,updateCart,updateOrderHistory,isSignupPage, updateSignupContent}=useContext(globalContext);
   let [formDetails, setDetails] = useState({  uName: "",  uContact: "",  uMail: "",});
-  let [isSignupPage, updateContent] = useState(true);
   let [loginWithMail, setLoginWithMail] = useState(false);
   
   //for change in content
@@ -160,7 +160,7 @@ export default function Signup({ prop }) {
         </div>
         <div className="signup-login-div">
           {isSignupPage ? "Already have an account?" : "New to Candies?"}{" "}
-          <span onClick={() => updateContent(!isSignupPage)}>
+          <span onClick={() => updateSignupContent(!isSignupPage)}>
             {isSignupPage ? "Log In" : "Create account"}
           </span>
         </div>

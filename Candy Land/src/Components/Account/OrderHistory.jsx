@@ -1,20 +1,13 @@
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import StarRate from "../StarRate";
 import ProductTile from "../PorductTile/ProductTile";
+import { globalContext } from "../../utils/context";
 
 export default function OrderHistory({ prop }) {
-  let {
-    orderHistory,
-    cartItems,
-    updateCart,
-    rateProductItem,
-    showRateProductSection,
-    allRatingReviews,
-    updateratingReviews,
-    isLoggedIn,
-    usersList,
-  } = prop;
+  let { rateProductItem,  showRateProductSection,} = prop;
+  let {  orderHistory,  cartItems,  updateCart,  allRatingReviews,  updateratingReviews,  isLoggedIn,  usersList,} = useContext(globalContext);
+
   const [rating, setRating] = useState(5);
   let [productReview, updateReview] = useState("");
 

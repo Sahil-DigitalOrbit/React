@@ -1,14 +1,14 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import Header from "../Components/Header/Header";
 import Signup from "../Components/Signup";
 import { ToastContainer } from "react-toastify";
 import { Products, Orders } from "../assests/data/Data";
 import PopulateHomepage from "../Components/sections/PopulateHomepage";
+import { globalContext } from "../utils/context";
 
-export default function HomePage({ prop }) {
-  let {ageValidation, isLoggedIn,setLogin,signupShow,setSignUpStatus,usersList,updateUsersList,wishlistItems,updateWishlist ,cartItems,updateCart,orderHistory,updateOrderHistory} = prop;
-
+export default function HomePage() {
+  let{ageValidation,isLoggedIn}=useContext(globalContext);
   const navigate = useNavigate();
   useEffect(() => {
     if (!ageValidation) {
@@ -39,10 +39,10 @@ export default function HomePage({ prop }) {
   return (
     <section className="home-page">
       <ToastContainer />
-      <Signup   prop={{signupShow, setSignUpStatus, usersList, updateUsersList, isLoggedIn, setLogin,updateWishlist ,updateCart,orderHistory,updateOrderHistory}}/>
-      <Header prop={{ setSignUpStatus, isLoggedIn, setLogin,usersList,updateUsersList,wishlistItems,updateWishlist ,cartItems,updateCart ,orderHistory,updateOrderHistory}} />
+      <Signup/>
+      <Header prop={{}}/>
       {isLoggedIn ? (
-        <PopulateHomepage prop={{ bestSellers, popularProducts,wishlistItems,updateWishlist ,cartItems,updateCart }} />
+        <PopulateHomepage prop={{ bestSellers, popularProducts}} />
         
       ) : (
         <h1>Please Login First</h1>

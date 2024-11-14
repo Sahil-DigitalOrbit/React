@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import Signup from "../Components/Signup";
@@ -6,9 +6,10 @@ import Header from "../Components/Header/Header";
 import UserProfileCard from "../Components/Account/UserProfileCard";
 import OrderHistory from "../Components/Account/OrderHistory";
 import AccountNav from '../Components/Account/AccountNav';
-export default function AccountPage({ prop }) {
+import { globalContext } from "../utils/context";
+export default function AccountPage() {
   const navigate = useNavigate();
-  const {  ageValidation,  isLoggedIn,  setLogin,  signupShow,  setSignUpStatus,  usersList,  updateUsersList,  cartItems,  wishlistItems,  updateWishlist,  updateCart,  orderHistory,  allRatingReviews,  updateratingReviews,  updateOrderHistory,} = prop;
+  const {  ageValidation,  isLoggedIn} = useContext(globalContext);
 
   //onclick event, order-rate-section will be shown
   let [rateProductItem, showRateProductSection] = useState();
@@ -42,18 +43,17 @@ export default function AccountPage({ prop }) {
       ></div>
 
       <ToastContainer />
-      <Signup prop={{   signupShow,   setSignUpStatus,   usersList,   updateUsersList,   isLoggedIn,   setLogin,   updateWishlist,   updateCart,   orderHistory,   updateOrderHistory, }}
-      />
-      <Header prop={{   setSignUpStatus,   isLoggedIn,   setLogin,   isAccountPage: true,   usersList,   updateUsersList,   wishlistItems,   updateWishlist,   cartItems,   updateCart,   orderHistory,   updateOrderHistory, }}/>
+      <Signup />
+      <Header prop={{}}/>
       {isLoggedIn ? (
         <>
           <AccountNav prop={{showUserAccount,updateUserStatus,showTrackMyOrder,updateTrack,showAllOrder,updateOrderStatus,showContactUs,updateContact,showFAQs,updateFAQs,showSection}}/>
           {showAllOrder && (
-            <OrderHistory prop={{orderHistory,cartItems,updateCart,rateProductItem,showRateProductSection,allRatingReviews,updateratingReviews,isLoggedIn,usersList}}
+            <OrderHistory prop={{rateProductItem,showRateProductSection}}
             />
           )}
           {showUserAccount && (
-            <UserProfileCard prop={{ isLoggedIn, usersList }} />
+            <UserProfileCard />
           )}
         </>
       ) : (

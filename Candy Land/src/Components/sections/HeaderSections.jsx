@@ -1,16 +1,25 @@
 import { faChevronDown,  faBars,  faMagnifyingGlass,  faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useContext } from "react";
+import { globalContext } from "../../utils/context";
 
 export const SignUpSection=({prop})=>{
-    const{setSignUpStatus}=prop
+    const{setSignUpStatus}=prop;
+    let {updateSignupContent}=useContext(globalContext);
     return(<>
       <div className="nav-bar-container">
         <button>Get the App</button>
-        <button onClick={() => setSignUpStatus(true)}>
+        <button onClick={() => {
+          updateSignupContent(true);
+          setSignUpStatus(true)
+        }}>
           Create Account
         </button>
         <button
-          onClick={() => setSignUpStatus(true)}
+          onClick={() => {
+            updateSignupContent(false);
+            setSignUpStatus(true)
+          }}
           className="sign-in-button"
         >
           Sign In

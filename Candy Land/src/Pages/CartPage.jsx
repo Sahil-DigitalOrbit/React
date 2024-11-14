@@ -1,12 +1,13 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Header from "../Components/Header/Header";
 import { ToastContainer } from "react-toastify";
 import Signup from "../Components/Signup";
 import { Products } from "../assests/data/Data";
 import CartSection from "../Components/sections/CartSection";
-export default function CartPage({ prop }) {
-  let {  ageValidation,  isLoggedIn,  setLogin,  signupShow,  setSignUpStatus,  usersList,wishlistItems,updateWishlist,  updateUsersList,  cartItems,  updateCart,orderHistory,updateOrderHistory} = prop;
+import { globalContext } from "../utils/context";
+export default function CartPage() {
+  let {  ageValidation,  isLoggedIn,  cartItems,  updateCart,orderHistory,updateOrderHistory} = useContext(globalContext);
   
   //fetching cart items  
   let data = Products.filter((item) => cartItems.includes(item.id));
@@ -42,10 +43,10 @@ export default function CartPage({ prop }) {
     <>
       <section>
         <ToastContainer />
-        <Signup prop={{signupShow, setSignUpStatus, usersList, updateUsersList, isLoggedIn, setLogin,updateWishlist ,updateCart,orderHistory,updateOrderHistory}}/>
-        <Header  prop={{ setSignUpStatus, isLoggedIn,setLogin,cartPage:true,usersList,updateUsersList,wishlistItems,updateWishlist ,cartItems,updateCart,orderHistory,updateOrderHistory }}/>
+        <Signup/>
+        <Header  prop={{cartPage:true }}/>
         {isLoggedIn ? (
-          <CartSection prop={{data,subtotal,deliveryCost,checkoutCart,cartItems,updateCart,updateSubtotal}}/>
+          <CartSection prop={{data,subtotal,deliveryCost,checkoutCart,updateSubtotal}}/>
         ) : (
           <h1>Please Login First</h1>
         )}

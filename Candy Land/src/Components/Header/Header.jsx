@@ -1,26 +1,13 @@
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { logoImage } from "../../assests/images/images";
 import{ SignUpSection,  HamburgerSection,LoggedInSection } from "../sections/HeaderSections";
+import { globalContext } from "../../utils/context";
 
 export default function Header({ prop }) {
-  let {
-    setSignUpStatus,
-    isLoggedIn,
-    setLogin,
-    cartPage,
-    wishlistPage,
-    isAccountPage,
-    usersList,
-    updateUsersList,
-    wishlistItems,
-    updateWishlist,
-    cartItems,
-    updateCart,
-    orderHistory,
-    updateOrderHistory,
-  } = prop;
+  let {cartPage,  wishlistPage,  isAccountPage} = prop;
+  let{  setSignUpStatus,  isLoggedIn,  setLogin,  usersList,  updateUsersList,  wishlistItems,  updateWishlist,  cartItems,  updateCart,  orderHistory,  updateOrderHistory}=useContext(globalContext)
   let [searchInput, setInput] = useState("");
   let [showHamburder, setHamburger] = useState(false);
   let [showSearch, setSearchBar] = useState(false);

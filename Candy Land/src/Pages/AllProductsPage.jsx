@@ -1,30 +1,18 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Header from "../Components/Header/Header";
 import { ToastContainer } from "react-toastify";
 import Signup from "../Components/Signup";
 import { Brands, Categories, Orders, Products } from "../assests/data/Data";
 import Homogeneous from "../Components/sections/FilterProduct";
+import { globalContext } from "../utils/context";
 
-export default function AllProductsPage({ prop }) {
+export default function AllProductsPage() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const {
-    ageValidation,
-    isLoggedIn,
-    setLogin,
-    signupShow,
-    setSignUpStatus,
-    usersList,
-    updateUsersList,
-    wishlistItems,
-    updateWishlist,
-    cartItems,
-    updateCart,
-    orderHistory,updateOrderHistory
-  } = prop;
-  const[modalStatus,setModalStatus]=useState(false);
+  const { ageValidation, isLoggedIn } = useContext(globalContext);
+  const [modalStatus, setModalStatus] = useState(false);
   const { heading, type } = location.state || {};
   let data = [];
   let isProduct = false;
@@ -70,16 +58,14 @@ export default function AllProductsPage({ prop }) {
 
   return (
     <section>
-      <div
-        className={modalStatus?"modal-div":''}
-      ></div>
+      <div className={modalStatus ? "modal-div" : ""}></div>
       <ToastContainer />
-      <Signup
-        prop={{signupShow, setSignUpStatus, usersList, updateUsersList, isLoggedIn, setLogin,updateWishlist ,updateCart,orderHistory,updateOrderHistory}}
-      />
-      <Header prop={{ setSignUpStatus, isLoggedIn,setLogin,usersList,updateUsersList,wishlistItems,updateWishlist ,cartItems,updateCart,orderHistory,updateOrderHistory }} />
+      <Signup />
+      <Header prop={{}} />
       {isLoggedIn ? (
-        <Homogeneous prop={{   allData: data,   isProduct,   heading,   wishlistItems,   updateWishlist,   cartItems,   updateCart,   setModalStatus }}/>
+        <Homogeneous
+          prop={{ allData: data, isProduct, heading, setModalStatus }}
+        />
       ) : (
         <h1>Please Login First</h1>
       )}

@@ -1,17 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import ProductTile from "../PorductTile/ProductTile";
+import { useContext } from "react";
+import { globalContext } from "../../utils/context";
 
 export default function HomePageTemplate({ prop }) {
   const navigate = useNavigate();
-  const {
-    head,
-    data,
-    wishlistItems,
-    updateWishlist,
-    cartItems,
-    updateCart,
-    isProduct,
-  } = prop;
+  const {  head,  data,  isProduct,} = prop;
 
   const handleViewAll = () => {
     navigate("/products", { state: { heading: head } });
@@ -28,7 +22,7 @@ export default function HomePageTemplate({ prop }) {
         {data.map((item, idx) => {
           return (
             <ProductTile
-              prop={{ item,isProduct,wishlistItems,updateWishlist,cartItems,updateCart}}
+              prop={{ item,isProduct}}
               key={idx}
             />
           );

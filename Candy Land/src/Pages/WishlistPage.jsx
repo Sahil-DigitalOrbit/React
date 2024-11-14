@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import Header from "../Components/Header/Header";
 import { ToastContainer } from "react-toastify";
 import Signup from "../Components/Signup";
@@ -8,9 +8,10 @@ import Card from "react-bootstrap/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-regular-svg-icons";
 import { faCheck, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { globalContext } from "../utils/context";
 
-export default function WishlistPage({ prop }) {
-  let {  ageValidation,  isLoggedIn,  setLogin,  signupShow,  setSignUpStatus,  usersList,  updateUsersList,  wishlistItems,  updateWishlist,  cartItems,  updateCart,orderHistory,updateOrderHistory} = prop;
+export default function WishlistPage() {
+  let { ageValidation, isLoggedIn, wishlistItems } = useContext(globalContext);
   const navigate = useNavigate();
   let data = Products.filter((item) => wishlistItems.includes(item.id));
   useEffect(() => {
@@ -23,15 +24,14 @@ export default function WishlistPage({ prop }) {
     <>
       <section>
         <ToastContainer />
-        <Signup
-          prop={{signupShow, setSignUpStatus, usersList, updateUsersList, isLoggedIn, setLogin,updateWishlist ,updateCart,orderHistory,updateOrderHistory}}/>
-        <Header  prop={{ setSignUpStatus, isLoggedIn,setLogin,wishlistPage:true,usersList,updateUsersList,wishlistItems,updateWishlist ,cartItems,updateCart ,orderHistory,updateOrderHistory}}/>
+        <Signup />
+        <Header prop={{}} />
         {isLoggedIn ? (
           <div className="Cart p-5">
             <h1 className="cart-heading text-start">Wishlist</h1>
             <div className="wishlist-section">
               {data.map((item, idx) => (
-                <CartTile prop={{ item, cartItems, updateCart ,wishlistItems,updateWishlist}} key={idx} />
+                <CartTile prop={{ item }} key={idx} />
               ))}
             </div>
           </div>
@@ -44,7 +44,9 @@ export default function WishlistPage({ prop }) {
 }
 
 function CartTile({ prop }) {
-  let { item, cartItems, updateCart,wishlistItems,updateWishlist } = prop;
+  let { item } = prop;
+  let { cartItems, updateCart, wishlistItems, updateWishlist } =
+    useContext(globalContext);
   function removeFromWishlist(e) {
     const newList = wishlistItems.filter((x) => x != item.id);
     updateWishlist(newList);

@@ -1,9 +1,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDollar, faStar, faChevronDown, faHeart as filledHeart, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { faHeart, faStar as faStarBorder } from "@fortawesome/free-regular-svg-icons";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { globalContext } from "../../utils/context";
 
-export default function ProductPageTile({ item, wishlistItems, updateWishlist, cartItems, updateCart, isItemInList,toggleItem, allRatingReviews }) {
+export default function ProductPageTile({ item, isItemInList,toggleItem }) {
+  
+  let{wishlistItems, cartItems, updateWishlist, updateCart,allRatingReviews}=useContext(globalContext);
   const [dropDescription, setDropDescription] = useState(false);
   const [dropRatings, setDropRatings] = useState(false);
   const ratingReviews = allRatingReviews.find(product => product.id === item.id)?.ratings || [];
