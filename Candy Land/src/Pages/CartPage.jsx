@@ -1,17 +1,24 @@
 import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import Header from "../Components/Header/Header";
-import { ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import Signup from "../Components/Signup";
-import { Products } from "../assests/data/Data";
 import CartSection from "../Components/sections/CartSection";
 import { globalContext } from "../utils/context";
+import { useFirebase } from "../firebase/firebase";
 export default function CartPage() {
-  let {  ageValidation,  isLoggedIn,  cartItems,  updateCart,orderHistory,updateOrderHistory} = useContext(globalContext);
+  let {  ageValidation,  isLoggedIn,  cartItems,  updateCart,orderHistory,updateOrderHistory,products} = useContext(globalContext);
+  let firebase=useFirebase();
+
+
+  //check if item is in list
+  const isItemInList = (list, item) => list.some((x) => x.id == item.id);
   
   //fetching cart items  
-  let data = Products.filter((item) => cartItems.includes(item.id));
-  
+  let data = products.filter((item) => {
+    return isItemInList(cartItems,item);
+  });
+
   //delivery cost
   const deliveryCost = 300;
 
@@ -29,14 +36,26 @@ export default function CartPage() {
 
   //checkout function
   function checkoutCart(){
-    let newOrders=[...data].map(item=>{
+    try{
+    let newOrders=[...cartItems].map(item=>{
       item.date=new Date().toLocaleDateString();
       return item;
     });
+    //adding to order history
     updateOrderHistory([...orderHistory,...newOrders]);
+    firebase.addOrder([...orderHistory,...newOrders],isLoggedIn.orderId);
+    firebase.updateCart(isLoggedIn.cartId,[]);
+    cartItems.forEach(element => {
+      let product=products.find(p=>p.id==element.id);
+      firebase.updateProductOrder(element.id , (product.ordered+element.quantity));
+    });
     updateCart([]);
     updateSubtotal(0)
+  }catch(err){
+    console.log(err);
+    toast.error('Checking out cart failed, please try again later!  ')
   }
+}
 
 
   return (

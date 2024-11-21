@@ -1,16 +1,39 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDollar, faStar, faChevronDown, faHeart as filledHeart, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { faHeart, faStar as faStarBorder } from "@fortawesome/free-regular-svg-icons";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { globalContext } from "../../utils/context";
+import { useFirebase } from "../../firebase/firebase";
 
-export default function ProductPageTile({ item, isItemInList,toggleItem }) {
+export default function ProductPageTile({ item, isItemInList }) {
   
-  let{wishlistItems, cartItems, updateWishlist, updateCart,allRatingReviews}=useContext(globalContext);
+  let{wishlistItems, cartItems, handleToggleItem,isLoggedIn}=useContext(globalContext);
   const [dropDescription, setDropDescription] = useState(false);
   const [dropRatings, setDropRatings] = useState(false);
-  const ratingReviews = allRatingReviews.find(product => product.id === item.id)?.ratings || [];
   const[quantity,updateQuantity]=useState(1);
+  const firebase=useFirebase();
+  const [ratingReviews, setRatingReviews] = useState([]);
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const reviewsData = await firebase.getReviews(item.id);
+        const reviewsArray = reviewsData
+          ? Object.keys(reviewsData).map((id) => ({
+              id,
+              ...reviewsData[id],
+              name: id == isLoggedIn.id ? "You" : reviewsData[id].name,
+            }))
+          : [];
+        setRatingReviews(reviewsArray);
+      } catch (error) {
+        console.error("Error fetching reviews:", error);
+      }
+    };
+
+    fetchReviews();
+  }, [item.id]);
+  
 
   function changeQuantity(e) {
     let newQuantity = quantity + Number(e.target.getAttribute("data-skip"));
@@ -24,7 +47,7 @@ export default function ProductPageTile({ item, isItemInList,toggleItem }) {
       <div  className="col-5 product-image-div">
         <div className="product-card-image-div"><img
           variant="top"
-          src="https://m.media-amazon.com/images/I/61XdlI186PL._SL1500_.jpg"
+          src={item.image[0]}
           className=" border template-image"
         /></div>
         <div className="d-flex">
@@ -73,7 +96,7 @@ export default function ProductPageTile({ item, isItemInList,toggleItem }) {
 
             <div className="product-card-bottom-div">
               <button
-                onClick={() => toggleItem(wishlistItems, updateWishlist)}
+                onClick={() => handleToggleItem('wishlist', item)}
                 className="col-2 m-1"
               >
                 <FontAwesomeIcon
@@ -81,7 +104,7 @@ export default function ProductPageTile({ item, isItemInList,toggleItem }) {
                 />
               </button>
               <button
-                onClick={() => toggleItem(cartItems, updateCart)}
+                onClick={() => handleToggleItem('cart', item,quantity)}
                 className="col-5 m-1 add-to-cart-button"
               >
                 {isItemInList(cartItems) ? (
@@ -136,7 +159,7 @@ export default function ProductPageTile({ item, isItemInList,toggleItem }) {
                   
                   return (
                     <div key={idx}>
-                      <h5>{x.userName}</h5>
+                      <h5>{x.name}</h5>
                       <div>
                         {[...Array(5)].map((_, index) => {
                           const currentRate = index + 1;

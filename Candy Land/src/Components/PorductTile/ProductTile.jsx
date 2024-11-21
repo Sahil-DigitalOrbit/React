@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 
 export default function ProductTile({ prop }) {
   const {  item,  isProduct,  isAccountPage,  showRateProductSection,  isProductPage} = prop;
-  
   const navigate = useNavigate();
   const handleViewAll = () =>
     navigate("/products", { state: { heading: item.name, type: "aslk" } });
@@ -13,24 +12,21 @@ export default function ProductTile({ prop }) {
   const handlePoductPage = () =>
     navigate("/about-product", { state: { item } });
 
-  const toggleItem = (list, updateFunc) =>
-    updateFunc(list.includes(item.id) ? list.filter(c => c !== item.id) : [...list, item.id]);
-  
-  const isItemInList = (list) => list.includes(item.id);
+  const isItemInList = (list) => list.some((x) => x.id === item.id);
 
   if (isAccountPage) {
     return (
-      <AccountPageTile item={item} showRateProductSection={showRateProductSection} isItemInList={isItemInList} toggleItem={toggleItem} handlePoductPage={handlePoductPage}/>
+      <AccountPageTile item={item} showRateProductSection={showRateProductSection} isItemInList={isItemInList}  handlePoductPage={handlePoductPage}/>
     );
   }
 
   if (isProductPage) {
     return (
-      <ProductPageTile item={item} isItemInList={isItemInList} toggleItem={toggleItem}/>
+      <ProductPageTile item={item} isItemInList={isItemInList} />
     );
   }
 
   return (
-    <TemplatePageTile item={item} isItemInList={isItemInList} toggleItem={toggleItem} isProduct={isProduct} handlePoductPage={handlePoductPage} handleViewAll={handleViewAll}/>
+    <TemplatePageTile item={item} isItemInList={isItemInList} isProduct={isProduct} handlePoductPage={handlePoductPage} handleViewAll={handleViewAll} />
   );
 }

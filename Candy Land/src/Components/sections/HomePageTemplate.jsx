@@ -1,11 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import ProductTile from "../PorductTile/ProductTile";
-import { useContext } from "react";
-import { globalContext } from "../../utils/context";
 
 export default function HomePageTemplate({ prop }) {
   const navigate = useNavigate();
-  const {  head,  data,  isProduct,} = prop;
+  const { head, data, isProduct } = prop;
 
   const handleViewAll = () => {
     navigate("/products", { state: { heading: head } });
@@ -20,12 +18,7 @@ export default function HomePageTemplate({ prop }) {
       </div>
       <div className="template-card-section">
         {data.map((item, idx) => {
-          return (
-            <ProductTile
-              prop={{ item,isProduct}}
-              key={idx}
-            />
-          );
+          return <ProductTile prop={{ item, isProduct }} key={idx} />;
         })}
       </div>
     </section>

@@ -3,11 +3,11 @@ import { faCheck, faDollar } from "@fortawesome/free-solid-svg-icons";
 import { useContext } from "react";
 import { globalContext } from "../../utils/context";
 
-export default function AccountPageTile({ item, showRateProductSection, isItemInList, toggleItem,handlePoductPage}) {
-  let{cartItems, updateCart}=useContext(globalContext);
+export default function AccountPageTile({ item, showRateProductSection, isItemInList,handlePoductPage}) {
+  let{cartItems,handleToggleItem,}=useContext(globalContext);
   return (
     <div  className="account-page-tile" onClick={handlePoductPage}>
-      <div className="account-page-tile-image-div"><img src='https://m.media-amazon.com/images/I/61XdlI186PL._SL1500_.jpg' alt={item.name} className="account-tile-image" /></div>
+      <div className="account-page-tile-image-div"><img src={item.image?item.image[0]:''} alt={item.name} className="account-tile-image" /></div>
       <div className="account-template-details">
             
         <span className="account-card-delivered text-start">
@@ -27,7 +27,7 @@ export default function AccountPageTile({ item, showRateProductSection, isItemIn
               showRateProductSection(item)}}>Rate</button>
           <button onClick={(e) => {
             e.stopPropagation();
-            toggleItem(cartItems, updateCart)}}>
+            handleToggleItem('cart', item)}}>
             {isItemInList(cartItems) ? <FontAwesomeIcon icon={faCheck} /> : "Reorder"}
           </button>
             

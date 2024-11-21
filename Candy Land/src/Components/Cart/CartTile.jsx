@@ -4,15 +4,16 @@ import { faStar } from "@fortawesome/free-regular-svg-icons";
 import { faDollar, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useContext, useState } from "react";
 import { globalContext } from "../../utils/context";
+import { useFirebase } from "../../firebase/firebase";
 
 export default function CartTile({ prop }) {
     let { item,  subtotal, updateSubtotal } = prop;
-    let { cartItems, updateCart, } = useContext(globalContext);
-    
-    let [quantity, updateQuantity] = useState(1);
+    let { handleToggleItem,cartItems,updateCart,isLoggedIn } = useContext(globalContext);
+    let cartItem=[...cartItems].find(x=>x.id==item.id);
+    let firebase=useFirebase();
+    let [quantity, updateQuantity] = useState(cartItem.quantity||1);
     function removeFromCart(e) {
-      const newList = cartItems.filter((x) => x != item.id);
-      updateCart(newList);
+      handleToggleItem('cart',item);
       updateSubtotal((subtotal -= parseFloat(item.price).toFixed(2) * quantity));
     }
   
@@ -22,12 +23,19 @@ export default function CartTile({ prop }) {
       const priceDifference = item.price * (newQuantity - quantity);
       updateSubtotal(subtotal + priceDifference);
       updateQuantity(newQuantity);
+      let newCartItems=[...cartItems].map(x=>{
+        if(item.id==x.id)x.quantity=newQuantity;
+        return x;
+      }) 
+      updateCart(newCartItems);
+      firebase.updateCart(isLoggedIn.cartId,newCartItems);     
+
     }
   
     return (
       <Card style={{ border: "none" }} className="cart-tile d-flex">
         <div className="position-relative border h-75 cart-image-div">
-          <Card.Img  className="card-image"  variant="top"  src="https://m.media-amazon.com/images/I/61XdlI186PL._SL1500_.jpg"/>
+          <Card.Img  className="card-image"  variant="top"  src={item.image[0]}/>
   
           <span className="position-absolute card-rating-div">
             <FontAwesomeIcon icon={faStar} />

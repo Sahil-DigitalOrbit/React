@@ -1,14 +1,25 @@
-
 import { useContext, useState } from "react";
 import StarRate from "../StarRate";
 import ProductTile from "../PorductTile/ProductTile";
 import { globalContext } from "../../utils/context";
+import { useFirebase } from "../../firebase/firebase";
+import { toast } from "react-toastify";
 
 export default function OrderHistory({ prop }) {
-  let { rateProductItem,  showRateProductSection,} = prop;
-  let {  orderHistory,  cartItems,  updateCart,  allRatingReviews,  updateratingReviews,  isLoggedIn,  usersList,} = useContext(globalContext);
-
+  let { rateProductItem, showRateProductSection } = prop;
+  let {
+    orderHistory,
+    cartItems,
+    updateCart,
+    isLoggedIn,
+    products,
+  } = useContext(globalContext);
+  let firebase = useFirebase();
   const [rating, setRating] = useState(5);
+  let data = orderHistory.map((item) => {
+    let productDetails = [...products].find((x) => x.id == item.id);
+    return { ...item, ...productDetails };
+  });
   let [productReview, updateReview] = useState("");
 
   function changeReviewsTextBox(e) {
@@ -17,57 +28,31 @@ export default function OrderHistory({ prop }) {
 
   function addReview(e) {
     e.preventDefault();
-    let productIndex = [...allRatingReviews].findIndex(
-      (product) => product.id == rateProductItem.id
-    );
-
-    if (productIndex === -1) {
-      // If product doesn't exist, add it to allRatingReviews
-      let obj = {
-        id: rateProductItem.id,
-        ratings: [
-          {
-            userMail: isLoggedIn,
-            userName: usersList.find((user) => user.uMail == isLoggedIn).uName,
-            rating,
-            comment: productReview,
-          },
-        ],
-      };
-      updateratingReviews([...allRatingReviews, obj]);
-    } else {
-      // If product exists, update or add user's review
-      let newAllRatings = [...allRatingReviews];
-      let existingRatings = newAllRatings[productIndex].ratings;
-      let userReviewIndex = existingRatings.findIndex(
-        (review) => review.userMail == isLoggedIn
-      );
-
-      if (userReviewIndex === -1) {
-        existingRatings.push({
-          userMail: isLoggedIn,
-          userName: usersList.find((user) => user.uMail == isLoggedIn).uName,
-          rating,
-          comment: productReview,
-        });
-      } else {
-        existingRatings[userReviewIndex] = {
-          userMail: isLoggedIn,
-          userName: usersList.find((user) => user.uMail == isLoggedIn).uName,
-          rating,
-          comment: productReview,
-        };
-      }
-      updateratingReviews(newAllRatings);
-      showRateProductSection(false);
+    try {
+      let obj = {name:isLoggedIn.name, rating, comment: productReview };
+      firebase.addReview(rateProductItem.id, isLoggedIn.id, obj);
+      toast.success('Thanks for Review!')
+    } catch (err) {
+      toast.err('failed to add review')
+      console.log(err)
     }
+    showRateProductSection(false);
   }
 
-  
   return (
     <section className="col d-flex order-history-section">
-      {orderHistory.map((item, index) => (
-        <ProductTile prop={{   item,   isProduct: true,   cartItems,   updateCart,   isAccountPage: true,   showRateProductSection, }}  key={index}/>
+      {data.map((item, index) => (
+        <ProductTile
+          prop={{
+            item,
+            isProduct: true,
+            cartItems,
+            updateCart,
+            isAccountPage: true,
+            showRateProductSection,
+          }}
+          key={index}
+        />
       ))}
 
       <form
@@ -82,7 +67,7 @@ export default function OrderHistory({ prop }) {
         </h3>
         <div>
           {" "}
-          <StarRate prop={{setRating,rating}}/>
+          <StarRate prop={{ setRating, rating }} />
         </div>
         <textarea
           rows="3"

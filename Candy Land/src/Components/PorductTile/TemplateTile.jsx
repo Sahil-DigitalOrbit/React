@@ -4,12 +4,12 @@ import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { useContext } from "react";
 import { globalContext } from "../../utils/context";
 
-export default function TemplatePageTile({ item, isItemInList, toggleItem, isProduct,handleViewAll,handlePoductPage }) {
-  let{wishlistItems, cartItems, updateWishlist, updateCart}=useContext(globalContext)
+export default function TemplatePageTile({ item, isItemInList, isProduct,handleViewAll,handlePoductPage }) {
+  let{wishlistItems,cartItems,handleToggleItem}=useContext(globalContext);
   return (
     <div onClick={isProduct?handlePoductPage:handleViewAll} className="product-card">
       <div className="template-image-div">
-        <img src='https://m.media-amazon.com/images/I/61XdlI186PL._SL1500_.jpg' alt={item.name} className="template-image" />
+        <img src={isProduct?item.image[0]:item.image} alt={item.name} className="template-image" />
         
         {isProduct&&<span className="position-absolute card-rating-div">
             <FontAwesomeIcon icon={faStar} /> {item.ratings}
@@ -21,7 +21,7 @@ export default function TemplatePageTile({ item, isItemInList, toggleItem, isPro
                 <p>{item.brand}</p>
                 <p>{item.weight}</p>
             </span>)}
-        <p className='card-name'>{item.name}</p>
+        <p className='text-start card-name'>{item.name}</p>
             
         {isProduct&&(<div className="template-details-product-bottom">
             
@@ -31,13 +31,13 @@ export default function TemplatePageTile({ item, isItemInList, toggleItem, isPro
             <div className="template-details-product-bottom-buttons">
             <button  className="mx-1" onClick={(e) => {
                 e.stopPropagation();
-                toggleItem(wishlistItems, updateWishlist);
+                handleToggleItem('wishlist',item);
                 }}>
               <FontAwesomeIcon icon={isItemInList(wishlistItems) ? filledHeart : faHeart} />
             </button>
             <button onClick={(e) => {
                 e.stopPropagation();
-                toggleItem(cartItems, updateCart)
+                handleToggleItem('cart', item)
             }}>
               {isItemInList(cartItems) ? <FontAwesomeIcon icon={faCheck} /> : "+ Add"}
             </button>

@@ -6,13 +6,14 @@ import {
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState, useEffect } from "react";
-import { Brands, Categories } from "../../assests/data/Data";
+import React, { useState, useEffect, useContext } from "react";
 import ProductTile from "../PorductTile/ProductTile";
+import { globalContext } from "../../utils/context";
 
 export default function Homogeneous({ prop }) {
 let{allData, isProduct, heading,setModalStatus}=prop;
-  
+let {brands:gBrands,categories:gCategories}=useContext(globalContext);  
+
   const [data, setData] = useState([...allData]);
   const [sortState, setSortState] = useState(false);
   const[sortPopularity,setSortPopularity]=useState(false);
@@ -252,18 +253,18 @@ let{allData, isProduct, heading,setModalStatus}=prop;
                       : "homo-dropDown-weight"
                   }
                 >
-                  {Object.keys(Brands).map((brandKey, idx) => (
+                  {Object.keys(gBrands).map((brandKey, idx) => (
                     <button
                       key={idx}
-                      value={Brands[brandKey].name}
+                      value={gBrands[brandKey].name}
                       onClick={filterBrand}
                       className={
-                        brands.includes(Brands[brandKey].name)
+                        brands.includes(gBrands[brandKey].name)
                           ? "active-filter"
                           : ""
                       }
                     >
-                      {Brands[brandKey].name}
+                      {gBrands[brandKey].name}
                     </button>
                   ))}
                 </span>
@@ -288,18 +289,18 @@ let{allData, isProduct, heading,setModalStatus}=prop;
                       : "homo-dropDown-weight"
                   }
                 >
-                  {Object.keys(Categories).map((categoryKey, idx) => (
+                  {Object.keys(gCategories).map((categoryKey, idx) => (
                     <button
                       key={idx}
-                      value={Categories[categoryKey].name}
+                      value={gCategories[categoryKey].name}
                       onClick={filterCategory}
                       className={
-                        categories.includes(Categories[categoryKey].name)
+                        categories.includes(gCategories[categoryKey].name)
                           ? "active-filter"
                           : ""
                       }
                     >
-                      {Categories[categoryKey].name}
+                      {gCategories[categoryKey].name}
                     </button>
                   ))}
                 </span>

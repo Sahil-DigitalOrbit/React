@@ -1,6 +1,9 @@
-export default function UserProfileCard({ prop }) {
-  let { isLoggedIn, usersList } = prop;
-  let usersData = usersList.find((user) => user.uMail == isLoggedIn);
+import { useContext } from "react";
+import { globalContext } from "../../utils/context";
+
+export default function UserProfileCard() {
+  let { isLoggedIn } = useContext(globalContext);
+  let usersData =  isLoggedIn;
   return (
     <>
       <section className="account-page-user-section">
@@ -14,20 +17,20 @@ export default function UserProfileCard({ prop }) {
         <div>
           <div>
             <span>Name</span>
-            <span>{usersData.uName}</span>
+            <span>{usersData.name}</span>
           </div>
           <div>
             <span>Mail</span>
-            <span>{usersData.uMail}</span>
+            <span>{usersData.mail}</span>
           </div>
           <div>
             <span>Contact Number</span>
-            <span>{usersData.uContact}</span>
+            <span>{usersData.contact}</span>
           </div>
           <div>
             <span>Saved Address</span>
             <span>
-              {usersData.uAddress.map((address, idx) => (
+              {usersData.address?.map((address, idx) => (
                 <div key={idx}>{address}</div>
               ))}
             </span>

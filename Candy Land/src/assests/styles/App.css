@@ -31,6 +31,9 @@
   right: 0;
   transform: translate(1rem, -1rem);
 }
+.hamburger-section-active{
+  display: none;
+}
 .verify-age-button {
   height: 3.5rem;
   margin: 2rem;
@@ -145,20 +148,7 @@ nav > div:first-child {
 .hamburger-section-active > div:last-child {
   border: none;
 }
-.hamburger-section-active {
-  z-index: 1;
-  position: absolute;
-  display: block;
-  width: 100%;
-  margin: 0;
-  top: 6rem;
-  background-color: #fffdec;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: #3b3b3bab;
-}
+
 
 .login-signup-section,
 .order-rate-section {
@@ -178,6 +168,7 @@ nav > div:first-child {
   border-radius: 20px;
   transition: ease-in-out 0.3s;
   z-index: 2;
+  overflow: hidden;
 }
 .close-botton-h2 {
   cursor: pointer;
@@ -233,11 +224,12 @@ nav > div:first-child {
   text-decoration: underline;
   cursor: pointer;
 }
-
 .signup-bottons {
   margin: 0.4rem 0;
   height: 2.5rem;
 }
+
+/* -------------------------------------template------------------------------------------------------------------------------------ */
 
 .template-section {
   margin: 4rem 0 0 2rem;
@@ -311,7 +303,7 @@ hr {
   justify-content: space-between;
 }
 
-.order-rate-section {
+.order-rate-section ,.login-signup-section-password{
   height: 39vh;
   width: 40%;
   text-align: start;
@@ -350,7 +342,8 @@ hr {
 }
 .acount-header-button-section > * > button {
   border: 1px solid #ea3d32;
-  height: 2rem !important;
+  height: 2.6rem !important;
+  width: 9rem;
 }
 .acount-header-button-section > *:last-child {
   border: none;
@@ -412,10 +405,14 @@ hr {
   padding: 0.5rem;
   border-radius: 5px;
 }
-.product-card:hover,
+/* .product-card:hover,
 .account-page-tile:hover {
   transform: scale(1.02);
   box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.5);
+} */
+
+.product-card:hover .template-image-div ,.account-page-tile:hover .account-page-tile-image-div {
+  box-shadow: 0 0 2px 1px grey;
 }
 .card-rating-div {
   position: absolute;
@@ -514,6 +511,9 @@ hr {
   justify-content: space-between;
   padding: 0.7rem;
   margin: auto;
+}
+.account-template-details{
+  padding:0 0 0 .7rem;
 }
 .account-template-details-product-bottom {
   display: flex;
@@ -929,11 +929,29 @@ hr {
     background-color: white;
     border: 2px solid #ea3d32;
   }
+  .hamburger-buttons{
+    width: 80% !important;
+    margin: .3rem auto !important;
+  }
   /* ---------------------cart---------------------- */
   .cart-image-div {
     flex: 2;
   }
   /* ---------------------homogeneous----------------------- */
+  .hamburger-section-active {
+    z-index: 1;
+    position: absolute;
+    display: block;
+    width: 100%;
+    margin: 0;
+    top: 6rem;
+    background-color: #fffdec;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #3b3b3bab;
+  }
 
   .homo-sorting-buttons {
     display: none !important;
@@ -1010,7 +1028,7 @@ hr {
     margin: 2rem auto;
   }
   .acount-header-button-section {
-    display: none;
+    overflow-x: scroll;
   }
   .account-page-tile {
     height: 15rem !important;
@@ -1048,4 +1066,61 @@ hr {
   .order-history-button-div > button {
     margin: 0 0.1rem;
   }
+
+
+  /* user profile------------ */
+  .account-page-user-section {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 90%;
+    margin: 2rem auto;
+    padding: 1.3rem;
+    background-color: #0000000f;
+    border-radius: 10px;
+  }
+  .account-page-user-section > div:first-child {
+    width: 100%;
+  }
+  .account-page-user-section > div:last-child {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .account-page-user-image {
+    object-fit: cover !important;
+    height: 100%;
+    width: 100%;
+    border-radius: 10px !important;
+  }
+  
+  .account-page-user-section > div:last-child > div {
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%; 
+  }
+  .account-page-user-section > div:last-child > div>*:first-child {
+    font-size: 1.2rem;
+  }
+
+  .acount-header-button-section > * {
+    flex: 1;
+    height: 98% !important;
+    margin: 0.5rem 1rem;
+    border-right:none;
+    
+  }
+  .acount-header-button-section > *>button {
+    font-size: .8rem !important;
+    height: 2rem !important;
+    width: 6.5rem;
+    
+  }
+  /* account page tile */
+  .account-template-details{
+    padding: 0 0 0 .5rem;
+  }
+  
+  
 }

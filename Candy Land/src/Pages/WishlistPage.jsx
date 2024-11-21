@@ -3,7 +3,6 @@ import { useContext, useEffect } from "react";
 import Header from "../Components/Header/Header";
 import { ToastContainer } from "react-toastify";
 import Signup from "../Components/Signup";
-import { Products } from "../assests/data/Data";
 import Card from "react-bootstrap/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-regular-svg-icons";
@@ -11,9 +10,17 @@ import { faCheck, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { globalContext } from "../utils/context";
 
 export default function WishlistPage() {
-  let { ageValidation, isLoggedIn, wishlistItems } = useContext(globalContext);
+  let { ageValidation, isLoggedIn, wishlistItems,products } = useContext(globalContext);
   const navigate = useNavigate();
-  let data = Products.filter((item) => wishlistItems.includes(item.id));
+  const isItemInList = (list, item) => list.some((x) => x.id == item.id);
+  
+  //fetching cart items  
+  let data = products.filter((item) => {
+    return isItemInList(wishlistItems,item);
+  });
+
+  
+  
   useEffect(() => {
     if (!ageValidation) {
       navigate("/");
@@ -45,17 +52,14 @@ export default function WishlistPage() {
 
 function CartTile({ prop }) {
   let { item } = prop;
-  let { cartItems, updateCart, wishlistItems, updateWishlist } =
+  let { cartItems,handleToggleItem } =
     useContext(globalContext);
   function removeFromWishlist(e) {
-    const newList = wishlistItems.filter((x) => x != item.id);
-    updateWishlist(newList);
+    handleToggleItem('wishlist',item);
+
   }
   function toggleItemCart() {
-    const updatedCartItems = cartItems.includes(item.id)
-      ? cartItems.filter((c) => c !== item.id)
-      : [...cartItems, item.id];
-    updateCart(updatedCartItems);
+    handleToggleItem('cart',item)
   }
 
   return (
@@ -88,7 +92,7 @@ function CartTile({ prop }) {
       </div>
       <div className="d-flex justify-content-between wishlist-tile-buttons">
         <button className="add-to-cart" onClick={toggleItemCart}>
-          {cartItems.includes(item.id) ? (
+          {cartItems.some(x=>x.id==item.id) ? (
             <FontAwesomeIcon icon={faCheck} />
           ) : (
             "Add to Cart"

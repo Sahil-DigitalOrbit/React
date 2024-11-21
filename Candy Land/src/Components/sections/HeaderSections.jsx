@@ -1,6 +1,6 @@
 import { faChevronDown,  faBars,  faMagnifyingGlass,  faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { globalContext } from "../../utils/context";
 
 export const SignUpSection=({prop})=>{
@@ -39,29 +39,77 @@ export const SignUpSection=({prop})=>{
 
   export const HamburgerSection =({prop})=>{
     const{handlerRouting}=prop;
+    const{brands,categories}=useContext(globalContext);
+    let[brand,setBrand]=useState(false);
+    let[category,setCategories]=useState(false);
+    let[account,setAccount]=useState(false);
+    let allBrands=[...brands].slice(0,4);
+    let allCategories=[...categories].slice(0,4);
+
     return(<>
               <div>
                 <h5 className="homogeneous-filter-controls-head">
                   <span>Category</span>
                   <FontAwesomeIcon
-                    className={"hide-drop-icon"}
+                    className={category?'hide-drop-icon-active':"hide-drop-icon"}
                     icon={faChevronDown}
+                    onClick={()=>setCategories(!category)}
                   />
                 </h5>
-                <span className={"homo-dropDown-weight"}></span>
+                <span className={category
+                      ? "homo-dropDown-weight activeDrop d-flex flex-column w-100"
+                      : "homo-dropDown-weight"}>
+                {allCategories.map((x,idx) => (
+                    <button className="hamburger-buttons"
+                    key={idx}
+                      onClick={()=>handlerRouting('/products',{ heading: x.name, type: "aslk" })}
+                    >
+                      {x.name}
+                    </button>
+                  ))}
+                  <button className="hamburger-buttons"
+                      onClick={()=>handlerRouting('/products',{ heading: 'Categories' })}
+                    >
+                      View All
+                    </button>
+                </span>
               </div>
               <div>
                 <h5 className="homogeneous-filter-controls-head">
                   <span>Brand</span>
                   <FontAwesomeIcon
-                    className={"hide-drop-icon"}
+                    className={brand?'hide-drop-icon-active':"hide-drop-icon"}
                     icon={faChevronDown}
+                    onClick={()=>setBrand(!brand)}
+                  />
+                </h5>
+                <span className={brand
+                      ? "homo-dropDown-weight activeDrop d-flex flex-column w-100"
+                      : "homo-dropDown-weight"}>
+                {allBrands.map((brand,idx) => (
+                    <button className="hamburger-buttons" key={idx}
+                      onClick={()=>handlerRouting('/products',{ heading: brand.name, type: "aslk" })}
+                    >
+                      {brand.name}
+                    </button>
+                  ))}
+                  <button className="hamburger-buttons"
+                      onClick={()=>handlerRouting('/products',{ heading: 'Brands' })}
+                    >
+                      View All
+                    </button>
+                </span>
+              </div>
+              <div>
+                <h5 className="homogeneous-filter-controls-head">
+                  <span onClick={() => handlerRouting("/account")}>Account</span>
+                  <FontAwesomeIcon
+                    className={account?'hide-drop-icon-active':"hide-drop-icon"}
+                    icon={faChevronDown}
+                    onClick={()=>setAccount(!account)}
                   />
                 </h5>
                 <span className={"homo-dropDown-weight"}></span>
-              </div>
-              <div onClick={() => handlerRouting("/account")}>
-                <h5 className="homogeneous-filter-controls-head">Account</h5>
               </div>
               <div>
                 <h5
