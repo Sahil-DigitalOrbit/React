@@ -4,6 +4,30 @@
 .verify-page-logo {
   height: 9rem;
 }
+.spinner {
+  display: none;
+}
+
+.modal-div,
+.active-spinner {
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 2;
+}
+.active-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 4 !important;
+}
+.active-spinner>* {
+  height: 5.5rem;
+}
+.hide{
+  display: none;
+}
 .verify-page-sextion {
   width: 100%;
   height: 100vh;
@@ -31,7 +55,7 @@
   right: 0;
   transform: translate(1rem, -1rem);
 }
-.hamburger-section-active{
+.hamburger-section-active {
   display: none;
 }
 .verify-age-button {
@@ -46,16 +70,8 @@
   box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.5);
 }
 
-.modal-div {
-  position: fixed;
-  height: 100vh;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  z-index: 2;
-}
 button {
-  height: 3rem !important;
-  font-size: 1rem;
+  height: 3rem;
   line-height: 1rem !important;
   margin: 2rem;
   width: 6.5rem;
@@ -64,7 +80,7 @@ button {
   border-radius: 8px !important;
   color: #ea3d32;
   overflow: hidden;
-  font-size: 1rem !important;
+  font-size: .9rem !important;
   padding: 0 !important;
 }
 button:hover {
@@ -114,7 +130,7 @@ nav > div:first-child {
   margin: 0 0.5rem;
 }
 .header-logo {
-  height: 100%;
+  height: 90%;
   object-fit: cover;
 }
 
@@ -148,8 +164,9 @@ nav > div:first-child {
 .hamburger-section-active > div:last-child {
   border: none;
 }
-
-
+.login-signup-section button{
+  height: 3rem;
+}
 .login-signup-section,
 .order-rate-section {
   box-sizing: border-box;
@@ -167,7 +184,7 @@ nav > div:first-child {
   justify-content: space-around;
   border-radius: 20px;
   transition: ease-in-out 0.3s;
-  z-index: 2;
+  z-index: 3;
   overflow: hidden;
 }
 .close-botton-h2 {
@@ -228,6 +245,64 @@ nav > div:first-child {
   margin: 0.4rem 0;
   height: 2.5rem;
 }
+
+/* --------------------------------------------------search tile----------------------------------------- */
+.search-product-tile{
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  height: 4rem;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  gap: 2rem;
+}
+
+.search-products-section{
+  position: absolute;
+  top: 6rem;
+  left: 50%;
+  transform: translate(-50%);
+  width: 60%;
+  background: #fff;
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 1;
+  box-shadow: 0 3px 5px 3px rgba(0, 0, 0, 0.5);
+}
+.search-products-section::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.search-products-section::-webkit-scrollbar-thumb {
+  background: #aaa;
+  border-radius: 4px;
+}
+
+.search-products-section::-webkit-scrollbar-thumb:hover {
+  background: #888;
+}
+
+.search-products-section::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+.search-product-img{
+  height: 3.5rem !important; 
+  width: 3.5rem !important;
+  overflow: hidden;
+  object-fit: cover;
+  border-radius: inherit;
+}
+.search-product-img-div{
+  height: 3.1rem !important; 
+  width: 3.1rem !important;
+  overflow: hidden;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
 
 /* -------------------------------------template------------------------------------------------------------------------------------ */
 
@@ -303,7 +378,8 @@ hr {
   justify-content: space-between;
 }
 
-.order-rate-section ,.login-signup-section-password{
+.order-rate-section,
+.login-signup-section-password {
   height: 39vh;
   width: 40%;
   text-align: start;
@@ -396,22 +472,18 @@ hr {
 
 /* ---------------------------------------------------------------------------card----------------------------------------------------------- */
 .product-card {
-  min-width: 15rem;
-  max-width: 15rem;
+  min-width: 14.5rem;
+  max-width: 14.5rem;
   height: 25rem;
-  margin: 1rem;
+  /* margin: 1rem ; */
   cursor: pointer;
   transition: ease-in-out 0.1s;
   padding: 0.5rem;
   border-radius: 5px;
 }
-/* .product-card:hover,
-.account-page-tile:hover {
-  transform: scale(1.02);
-  box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.5);
-} */
 
-.product-card:hover .template-image-div ,.account-page-tile:hover .account-page-tile-image-div {
+.product-card:hover .template-image-div,
+.account-page-tile:hover .account-page-tile-image-div {
   box-shadow: 0 0 2px 1px grey;
 }
 .card-rating-div {
@@ -432,6 +504,7 @@ hr {
   height: 100%;
   width: 100%;
   object-fit: contain;
+  border-radius: inherit;
 }
 .template-image-div {
   margin: auto;
@@ -467,6 +540,7 @@ hr {
 .product-card-price-div {
   color: #506f22;
 }
+
 .template-details-product-header > * {
   margin: 0;
 }
@@ -512,8 +586,8 @@ hr {
   padding: 0.7rem;
   margin: auto;
 }
-.account-template-details{
-  padding:0 0 0 .7rem;
+.account-template-details {
+  padding: 0 0 0 0.7rem;
 }
 .account-template-details-product-bottom {
   display: flex;
@@ -547,6 +621,7 @@ hr {
 .product-card-image-div {
   width: 100% !important;
   margin: 1rem auto !important;
+  height: 50vh;
   border-radius: 5px;
   box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.3);
 }
@@ -611,6 +686,9 @@ hr {
   width: fit-content;
   padding: 0 1rem !important;
   color: #3b3b3bab;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .homogeneous-section button:hover {
   box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.4);
@@ -630,6 +708,7 @@ hr {
 }
 .button-span {
   display: flex;
+  justify-content: space-around;
   flex-direction: column !important;
 }
 .sort-fontawesome {
@@ -768,7 +847,7 @@ hr {
   flex: 1;
 }
 
-.cart-image-div {
+.cart-image-div,.wishlist-image-div {
   flex: 1.4;
   height: 80% !important;
   box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.3);
@@ -831,7 +910,7 @@ hr {
 /* -----------------------------------------------wishlist------------------------------- */
 .wishlist-tile {
   width: 15rem !important;
-  height: 25rem;
+  height: 16rem !important;
   margin: 2rem 2rem 2rem 0;
 }
 .wishlist-section {
@@ -846,6 +925,10 @@ hr {
   height: 2.3rem !important;
 }
 
+.wishlist-image-div{
+  min-height: 10rem;
+  max-height: 10rem;
+}
 /* ---------------------RESPONSIVE---------------------------- */
 
 @media screen and (max-width: 768px) {
@@ -929,9 +1012,21 @@ hr {
     background-color: white;
     border: 2px solid #ea3d32;
   }
-  .hamburger-buttons{
+  .hamburger-buttons {
     width: 80% !important;
-    margin: .3rem auto !important;
+    margin: 0.3rem auto !important;
+  }
+  /* -------------------search------------------------- */
+  .search-products-section{
+    top: 11.4rem;
+    left: 50%;
+    transform: translate(-50%);
+    width: 60%;
+    background: #fff;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 1;
+    box-shadow: 0 3px 5px 3px rgba(0, 0, 0, 0.5);
   }
   /* ---------------------cart---------------------- */
   .cart-image-div {
@@ -1066,7 +1161,19 @@ hr {
   .order-history-button-div > button {
     margin: 0 0.1rem;
   }
-
+  .product-card {
+    min-width: 10rem;
+    max-width: 10.9rem;
+    height: 25rem;
+    /* margin: 1rem ; */
+    cursor: pointer;
+    transition: ease-in-out 0.1s;
+    padding: 0.5rem;
+    border-radius: 5px;
+  }
+  .card-price{
+    font-size: .9rem !important;
+  }
 
   /* user profile------------ */
   .account-page-user-section {
@@ -1094,13 +1201,13 @@ hr {
     width: 100%;
     border-radius: 10px !important;
   }
-  
+
   .account-page-user-section > div:last-child > div {
     flex-direction: column;
     justify-content: space-between;
-    width: 100%; 
+    width: 100%;
   }
-  .account-page-user-section > div:last-child > div>*:first-child {
+  .account-page-user-section > div:last-child > div > *:first-child {
     font-size: 1.2rem;
   }
 
@@ -1108,19 +1215,15 @@ hr {
     flex: 1;
     height: 98% !important;
     margin: 0.5rem 1rem;
-    border-right:none;
-    
+    border-right: none;
   }
-  .acount-header-button-section > *>button {
-    font-size: .8rem !important;
+  .acount-header-button-section > * > button {
+    font-size: 0.8rem !important;
     height: 2rem !important;
     width: 6.5rem;
-    
   }
   /* account page tile */
-  .account-template-details{
-    padding: 0 0 0 .5rem;
+  .account-template-details {
+    padding: 0 0 0 0.5rem;
   }
-  
-  
 }

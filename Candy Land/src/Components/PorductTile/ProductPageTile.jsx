@@ -7,13 +7,12 @@ import { useFirebase } from "../../firebase/firebase";
 
 export default function ProductPageTile({ item, isItemInList }) {
   
-  let{wishlistItems, cartItems, handleToggleItem,isLoggedIn}=useContext(globalContext);
+  let{wishlistItems, cartItems, handleToggleItem,userInfo}=useContext(globalContext);
   const [dropDescription, setDropDescription] = useState(false);
   const [dropRatings, setDropRatings] = useState(false);
   const[quantity,updateQuantity]=useState(1);
   const firebase=useFirebase();
   const [ratingReviews, setRatingReviews] = useState([]);
-
   useEffect(() => {
     const fetchReviews = async () => {
       try {
@@ -22,7 +21,7 @@ export default function ProductPageTile({ item, isItemInList }) {
           ? Object.keys(reviewsData).map((id) => ({
               id,
               ...reviewsData[id],
-              name: id == isLoggedIn.id ? "You" : reviewsData[id].name,
+              name: id == userInfo.id ? "You" : reviewsData[id].name,
             }))
           : [];
         setRatingReviews(reviewsArray);

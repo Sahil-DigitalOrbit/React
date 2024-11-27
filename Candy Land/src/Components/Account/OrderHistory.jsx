@@ -4,16 +4,14 @@ import ProductTile from "../PorductTile/ProductTile";
 import { globalContext } from "../../utils/context";
 import { useFirebase } from "../../firebase/firebase";
 import { toast } from "react-toastify";
+import { getCookie } from "../../utils/cookies";
 
 export default function OrderHistory({ prop }) {
   let { rateProductItem, showRateProductSection } = prop;
-  let {
-    orderHistory,
-    cartItems,
-    updateCart,
-    isLoggedIn,
-    products,
-  } = useContext(globalContext);
+  let {  orderHistory,  cartItems,  updateCart, products} = useContext(globalContext);
+
+  const retrievedUserInfo = JSON.parse(getCookie('userInfo'));    
+  
   let firebase = useFirebase();
   const [rating, setRating] = useState(5);
   let data = orderHistory.map((item) => {
@@ -21,6 +19,7 @@ export default function OrderHistory({ prop }) {
     return { ...item, ...productDetails };
   });
   let [productReview, updateReview] = useState("");
+  let[load,setLoad]=useState(false);
 
   function changeReviewsTextBox(e) {
     updateReview(e.target.value);
@@ -28,19 +27,22 @@ export default function OrderHistory({ prop }) {
 
   function addReview(e) {
     e.preventDefault();
+    setLoad(true);
     try {
-      let obj = {name:isLoggedIn.name, rating, comment: productReview };
-      firebase.addReview(rateProductItem.id, isLoggedIn.id, obj);
+      let obj = {name:retrievedUserInfo.name, rating, comment: productReview };
+      firebase.addReview(rateProductItem.id, retrievedUserInfo.id, obj);
       toast.success('Thanks for Review!')
     } catch (err) {
       toast.err('failed to add review')
       console.log(err)
     }
+    setLoad(false)
     showRateProductSection(false);
   }
 
   return (
     <section className="col d-flex order-history-section">
+      <div className={load?"active-spinner":'hide'}><img src="./spinnerr.gif" /></div>
       {data.map((item, index) => (
         <ProductTile
           prop={{

@@ -1,27 +1,20 @@
-import {
-  faChevronDown,
-  faSliders,
-  faSortDown,
-  faSortUp,
-  faXmark,
-} from "@fortawesome/free-solid-svg-icons";
+import {  faChevronDown,  faSliders,  faSortDown,  faSortUp,  faXmark,} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState, useEffect, useContext } from "react";
 import ProductTile from "../PorductTile/ProductTile";
 import { globalContext } from "../../utils/context";
 
 export default function Homogeneous({ prop }) {
-let{allData, isProduct, heading,setModalStatus}=prop;
-let {brands:gBrands,categories:gCategories}=useContext(globalContext);  
+  let { allData, isProduct, heading, setModalStatus,gBrands,gCategories } = prop;
 
   const [data, setData] = useState([...allData]);
   const [sortState, setSortState] = useState(false);
-  const[sortPopularity,setSortPopularity]=useState(false);
+  const [sortPopularity, setSortPopularity] = useState(false);
   const [dropWeight, setDropWeight] = useState(false);
   const [dropBrands, setDropBrand] = useState(false);
   const [dropCategory, setDropCategory] = useState(false);
   const [dropSort, setDropSort] = useState(false);
-  const [showFilterCell,setFilterCell]=useState(false);
+  const [showFilterCell, setFilterCell] = useState(false);
   const [weights, setWeights] = useState([]);
   const [brands, setBrands] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -33,16 +26,16 @@ let {brands:gBrands,categories:gCategories}=useContext(globalContext);
     setSortState(!sortState);
     setData(sortedData);
   }
-  
-  function sortByPriceDirection(direction){
+
+  function sortByPriceDirection(direction) {
     setSortState(direction);
     setData((prevData) => {
-    const sortedData = [...prevData].sort((a, b) =>
-      direction ? a.price - b.price : b.price - a.price
-    );
-    return sortedData;
-  });
-}
+      const sortedData = [...prevData].sort((a, b) =>
+        direction ? a.price - b.price : b.price - a.price
+      );
+      return sortedData;
+    });
+  }
 
   function sortByPopularity() {
     const sortedData = [...data].sort((a, b) =>
@@ -52,7 +45,7 @@ let {brands:gBrands,categories:gCategories}=useContext(globalContext);
     setSortPopularity(!sortPopularity);
   }
 
-  function filterWeight(e) {
+  function toggleFilterWeight(e) {
     const value = e.target.value;
     const updatedWeights = weights.includes(value)
       ? weights.filter((w) => w !== value)
@@ -60,7 +53,7 @@ let {brands:gBrands,categories:gCategories}=useContext(globalContext);
     setWeights(updatedWeights);
   }
 
-  function filterBrand(e) {
+  function toggleFilterBrand(e) {
     const value = e.target.value;
     const updatedBrands = brands.includes(value)
       ? brands.filter((b) => b !== value)
@@ -68,7 +61,7 @@ let {brands:gBrands,categories:gCategories}=useContext(globalContext);
     setBrands(updatedBrands);
   }
 
-  function filterCategory(e) {
+  function toggleFilterCategory(e) {
     const value = e.target.value;
     const updatedCategories = categories.includes(value)
       ? categories.filter((c) => c !== value)
@@ -106,33 +99,34 @@ let {brands:gBrands,categories:gCategories}=useContext(globalContext);
     setData([...allData]);
   }
 
-  function hideFilterSectionCell(){
+  function hideFilterSectionCell() {
     setModalStatus(false);
-    setFilterCell(false)
+    setFilterCell(false);
   }
 
   return (
     <section className="homogeneous-section">
-      
       <h1 className="text-start">{heading}</h1>
 
       {isProduct ? (
         <>
           <div className="d-flex justify-content-between align-items-center homogeneous-controller">
-            <div className="for-cell" onClick={()=>{
-              setFilterCell(!showFilterCell);
-              setModalStatus(true)
-            }}>
+            <div
+              className="for-cell"
+              onClick={() => {
+                setFilterCell(!showFilterCell);
+                setModalStatus(true);
+              }}
+            >
               Filter By <FontAwesomeIcon icon={faSliders} />
             </div>
-              <div className="for-desktop">
+            <div className="for-desktop">
               Filter By <FontAwesomeIcon icon={faSliders} />
-
-              </div>
+            </div>
             <div className=" homo-sorting-buttons">
               <span>Sort By: </span>
               <button
-                onClick={()=>sortByPrice()}
+                onClick={() => sortByPrice()}
                 className="d-flex justify-content-center align-items-center"
               >
                 Price
@@ -157,7 +151,7 @@ let {brands:gBrands,categories:gCategories}=useContext(globalContext);
               </button>
               <button className="d-flex justify-content-center align-items-center">
                 Recently Added
-                <span className="button-span ">
+                <span className="button-span">
                   <FontAwesomeIcon
                     className="sort-fontawesome"
                     icon={faSortUp}
@@ -172,34 +166,65 @@ let {brands:gBrands,categories:gCategories}=useContext(globalContext);
                 Clear All
               </button>
             </div>
-            <div style={dropSort?{backgroundColor:"#FFFDEC"}:{}} className="cell-sort-section">
-              <div onClick={()=>setDropSort(!dropSort)}>
+            <div
+              style={dropSort ? { backgroundColor: "#FFFDEC" } : {}}
+              className="cell-sort-section"
+            >
+              <div onClick={() => setDropSort(!dropSort)}>
                 <span>Sort By</span>
                 <FontAwesomeIcon icon={faChevronDown} />
               </div>
-              
             </div>
-            
           </div>
-          <section className={dropSort?'homo-sort-section-active':'homo-sort-section'}>
-                
-                <div  onClick={()=>sortByPriceDirection(true)}>
-                  <h5 className="homogeneous-filter-controls-head">Price: Low to High</h5>
-                </div>
-                <div>
-                  <h5 onClick={()=>sortByPriceDirection(false)} className="homogeneous-filter-controls-head">Price: High to Low</h5>
-                </div>
-                <div>
-                  <h5 className="homogeneous-filter-controls-head">Recently Added</h5>
-                </div>
-                <div>
-                  <h5 onClick={sortByPopularity} className="homogeneous-filter-controls-head">Popularity</h5>
-                </div>
-              </section>
+          <section
+            className={
+              dropSort ? "homo-sort-section-active" : "homo-sort-section"
+            }
+          >
+            <div onClick={() => sortByPriceDirection(true)}>
+              <h5 className="homogeneous-filter-controls-head">
+                Price: Low to High
+              </h5>
+            </div>
+            <div>
+              <h5
+                onClick={() => sortByPriceDirection(false)}
+                className="homogeneous-filter-controls-head"
+              >
+                Price: High to Low
+              </h5>
+            </div>
+            <div>
+              <h5 className="homogeneous-filter-controls-head">
+                Recently Added
+              </h5>
+            </div>
+            <div>
+              <h5
+                onClick={sortByPopularity}
+                className="homogeneous-filter-controls-head"
+              >
+                Popularity
+              </h5>
+            </div>
+          </section>
 
           <div className="homogeneous-body d-flex">
-            <div className={showFilterCell?'homogeneous-filter-controls-active homogeneous-filter-controls col-2 text-start':"homogeneous-filter-controls col-2 text-start"}>
-              <div className="filter-controls-header-cell"><span>Filter By <FontAwesomeIcon icon={faSliders} /></span><span  onClick={hideFilterSectionCell}><FontAwesomeIcon icon={faXmark}/></span></div>
+            <div
+              className={
+                showFilterCell
+                  ? "homogeneous-filter-controls-active homogeneous-filter-controls col-2 text-start"
+                  : "homogeneous-filter-controls col-2 text-start"
+              }
+            >
+              <div className="filter-controls-header-cell">
+                <span>
+                  Filter By <FontAwesomeIcon icon={faSliders} />
+                </span>
+                <span onClick={hideFilterSectionCell}>
+                  <FontAwesomeIcon icon={faXmark} />
+                </span>
+              </div>
               {/* Weight Filter */}
               <div>
                 <h5 className="homogeneous-filter-controls-head">
@@ -223,7 +248,7 @@ let {brands:gBrands,categories:gCategories}=useContext(globalContext);
                     <button
                       key={weight}
                       value={weight}
-                      onClick={filterWeight}
+                      onClick={toggleFilterWeight}
                       className={
                         weights.includes(weight) ? "active-filter" : ""
                       }
@@ -257,7 +282,7 @@ let {brands:gBrands,categories:gCategories}=useContext(globalContext);
                     <button
                       key={idx}
                       value={gBrands[brandKey].name}
-                      onClick={filterBrand}
+                      onClick={toggleFilterBrand}
                       className={
                         brands.includes(gBrands[brandKey].name)
                           ? "active-filter"
@@ -293,7 +318,7 @@ let {brands:gBrands,categories:gCategories}=useContext(globalContext);
                     <button
                       key={idx}
                       value={gCategories[categoryKey].name}
-                      onClick={filterCategory}
+                      onClick={toggleFilterCategory}
                       className={
                         categories.includes(gCategories[categoryKey].name)
                           ? "active-filter"

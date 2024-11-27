@@ -1,9 +1,9 @@
-import { useContext } from "react";
-import { globalContext } from "../../utils/context";
+import { getCookie } from "../../utils/cookies";
 
 export default function UserProfileCard() {
-  let { isLoggedIn } = useContext(globalContext);
-  let usersData =  isLoggedIn;
+  const retrievedUserInfo = JSON.parse(getCookie('userInfo'));    
+  
+  let usersData =  retrievedUserInfo;
   return (
     <>
       <section className="account-page-user-section">

@@ -45,8 +45,7 @@ export const FirebaseProvider = (props) => {
     try {
       await createUserWithEmailAndPassword(firebaseAuth, email, password);
     } catch (error) {
-      console.error("Error signing up with email and password:", error.message);
-      throw error;
+      toast.error("Error occured! please retry after some time!");
     }
   };
 
@@ -57,15 +56,18 @@ export const FirebaseProvider = (props) => {
       const user = result.user;
       return user;
     } catch (error) {
-      console.error("Error signing in with Google:", error);
+      toast.error("Error occured! please retry login!");
     }
   };
 
   //set user details to firestore------------------
-  const setUserSignupDetails = async ( mail,name='user',contact='' ) => {
+  const setUserSignupDetails = async (mail, name = "user", contact = "") => {
     try {
       const usersRef = collection(firestore, "users-info");
-      const userQuery = query(  usersRef,  where("mail", "==", mail.toLowerCase()));
+      const userQuery = query(
+        usersRef,
+        where("mail", "==", mail.toLowerCase())
+      );
       const querySnapshot = await getDocs(userQuery);
 
       if (!querySnapshot.empty) {
@@ -78,13 +80,13 @@ export const FirebaseProvider = (props) => {
         const wishlistRef = collection(firestore, "users-wishlist");
         const orderRef = collection(firestore, "orders");
 
-        const cRef = await addDoc(cartsRef, {  cart: [] });
-        const wRef = await addDoc(wishlistRef, {  wishlist: [] });
-        const oRef = await addDoc(orderRef, {  orders: [] });
+        const cRef = await addDoc(cartsRef, { cart: [] });
+        const wRef = await addDoc(wishlistRef, { wishlist: [] });
+        const oRef = await addDoc(orderRef, { orders: [] });
 
-        const cartId=cRef.id;
-        const wishlistId=wRef.id;
-        const orderId=oRef.id;
+        const cartId = cRef.id;
+        const wishlistId = wRef.id;
+        const orderId = oRef.id;
 
         const newUserRef = await addDoc(usersRef, {
           mail: mail.toLowerCase(),
@@ -101,8 +103,7 @@ export const FirebaseProvider = (props) => {
         return { id: newUserRef.id, mail, name, cartId, wishlistId, orderId };
       }
     } catch (error) {
-      console.error("Error handling user signup:", error);
-      throw error;
+      toast.error("Error occured! please retry later!");
     }
   };
 
@@ -127,55 +128,85 @@ export const FirebaseProvider = (props) => {
 
   //update user data-------------------------------------------------
   const updateUserData = async (id, key, value) => {
-    const ref = doc(firestore, "users-info", id);
-    await updateDoc(ref, {
-      [key]: value,
-    });
+    try {
+      const ref = doc(firestore, "users-info", id);
+      await updateDoc(ref, {
+        [key]: value,
+      });
+      toast.success("profile updated successfully!");
+    } catch (err) {
+      toast.error("Error occured! please retry later!");
+    }
   };
 
   //get all products
   const getAllProducts = async () => {
-    const productsRef = collection(firestore, "products");
-    const querySnapshot = await getDocs(productsRef);
-    const products = querySnapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    }));
-    return products;
+    try {
+      const productsRef = collection(firestore, "products");
+      const querySnapshot = await getDocs(productsRef);
+      const products = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      return products;
+    } catch (err) {
+      toast.error("Error occured! please retry later!");
+    }
   };
 
   //get cart,ORDER and wishlist--------------------------------------
-  const getUserWishlistOrdersAndCart = async (cartId, wishlistId,orderId) => {
-    const refWishlist = doc(firestore, "users-wishlist", wishlistId);
-    const refCart = doc(firestore, "users-cart", cartId);
-    const orderRef = doc(firestore, "orders", orderId);
-    const snapshotWishlist = await getDoc(refWishlist);
-    const snapshotCart = await getDoc(refCart);
-    const snapshotOrder = await getDoc(orderRef);
-    let dataObj = {
-      wishlist: snapshotWishlist.exists() ? snapshotWishlist.data().wishlist : [],
-      cart: snapshotCart.exists() ? snapshotCart.data().cart : [],
-      orders:snapshotOrder.exists() ? snapshotOrder.data().orders : []
-    };
-    return dataObj;
+  const getUserWishlistOrdersAndCart = async (cartId, wishlistId, orderId) => {
+    try {
+      const refWishlist = doc(firestore, "users-wishlist", wishlistId);
+      const refCart = doc(firestore, "users-cart", cartId);
+      const orderRef = doc(firestore, "orders", orderId);
+      const snapshotWishlist = await getDoc(refWishlist);
+      const snapshotCart = await getDoc(refCart);
+      const snapshotOrder = await getDoc(orderRef);
+      let dataObj = {
+        wishlist: snapshotWishlist.exists()
+          ? snapshotWishlist.data().wishlist
+          : [],
+        cart: snapshotCart.exists() ? snapshotCart.data().cart : [],
+        orders: snapshotOrder.exists() ? snapshotOrder.data().orders : [],
+      };
+      return dataObj;
+    } catch (err) {
+      toast.error("Error occured! please retry later!");
+    }
   };
 
   //update wishlist---------------------------------------------
   const updateWishlist = async (id, newWishlist) => {
-    const ref = doc(firestore, "users-wishlist", id);
-    await setDoc(ref, { wishlist: newWishlist }, { merge: true });
+    try {
+      const ref = doc(firestore, "users-wishlist", id);
+      await setDoc(ref, { wishlist: newWishlist }, { merge: true });
+      toast.success("wishlist updated!");
+    } catch (err) {
+      toast.error("Error occured! please retry later!");
+    }
   };
 
   //UPDATE CART-------------------------------------------------
   const updateCart = async (id, newCart) => {
-    const ref = doc(firestore, "users-cart", id);
-    await setDoc(ref, { cart: newCart }, { merge: true });
+    try {
+      const ref = doc(firestore, "users-cart", id);
+      await setDoc(ref, { cart: newCart }, { merge: true });
+      toast.success("cart updated!");
+    } catch (Err) {
+      toast.error("Error occured! please retry later!");
+    }
   };
 
   //add User Order----------------------------------------------
   const addOrder = async (orderData, orderId) => {
+    try {
       const ref = doc(firestore, "orders", orderId);
-      await setDoc(ref, { orders:orderData },{merge:true});
+      await setDoc(ref, { orders: orderData }, { merge: true });
+      toast.success("Order placed successfully");
+    } catch (err) {
+      toast.error("Error occured! please retry later!");
+    }
   };
 
   //get user Orders---------------------------------------------
@@ -190,17 +221,20 @@ export const FirebaseProvider = (props) => {
         return null;
       }
     } catch (error) {
-      console.error("Error fetching order:", error);
       throw error;
     }
   };
   // //update product order
-  const updateProductOrder=async(productId,order)=>{
-    let ref=doc(firestore,'products',productId);
-    await setDoc(ref,{
-      ordered:order
-    },{merge:true})
-  }
+  const updateProductOrder = async (productId, order) => {
+    let ref = doc(firestore, "products", productId);
+    await setDoc(
+      ref,
+      {
+        ordered: order,
+      },
+      { merge: true }
+    );
+  };
 
   //get all brands---------------------------------------------
   const getAllBrands = async () => {
@@ -223,46 +257,48 @@ export const FirebaseProvider = (props) => {
     }));
     return categories;
   };
-//add product review
-const addReview = async (productId,userId,review) => {
-  try {
-    const reviewDocRef = doc(firestore, "reviews", productId);
-    const reviewDoc = await getDoc(reviewDocRef);
+  //add product review
+  const addReview = async (productId, userId, review) => {
+    try {
+      const reviewDocRef = doc(firestore, "reviews", productId);
+      const reviewDoc = await getDoc(reviewDocRef);
 
-    if (reviewDoc.exists()) {
-      const existingReviews = reviewDoc.data().reviews || {};
-      await updateDoc(reviewDocRef, {
-        reviews: {
-          ...existingReviews,
-          [userId]: review,
-        },
-      });
-    } else {
-      await setDoc(reviewDocRef, {
-        reviews: {
-          [userId]: review,
-        },
-      });
+      if (reviewDoc.exists()) {
+        const existingReviews = reviewDoc.data().reviews || {};
+        await updateDoc(reviewDocRef, {
+          reviews: {
+            ...existingReviews,
+            [userId]: review,
+          },
+        });
+      } else {
+        await setDoc(reviewDocRef, {
+          reviews: {
+            [userId]: review,
+          },
+        });
+      }
+      toast.success("Review added/updated successfully!");
+    } catch (error) {
+      toast.error("Error adding review:");
     }
-    console.log("Review added/updated successfully!");
-  } catch (error) {
-    console.error("Error adding review:", error);
-    throw error;
-  }
-};
+  };
 
-const getReviews = async (productId) => {
+  const getReviews = async (productId) => {
     // Reference to the document in the reviews collection
-    const ref = doc(firestore, "reviews", productId);
-    const reviewDoc = await getDoc(ref);
-    if (reviewDoc.exists()) {
-      const reviews = reviewDoc.data().reviews || {};
-      return reviews;
-    } else {
-      return []; // No reviews found
+    try {
+      const ref = doc(firestore, "reviews", productId);
+      const reviewDoc = await getDoc(ref);
+      if (reviewDoc.exists()) {
+        const reviews = reviewDoc.data().reviews || {};
+        return reviews;
+      } else {
+        return []; // No reviews found
+      }
+    } catch (Err) {
+      toast.error("Error occured! please retry later!");
     }
-  
-};
+  };
   //--------------------------------------------------ADMIN PANEL FUNCTUONS------------------------------------------------
   //add category
   const addCategory = async (categoryData) => {
@@ -299,9 +335,6 @@ const getReviews = async (productId) => {
     }
   };
 
-  
-
-
   return (
     <FirebaseContext.Provider
       value={{
@@ -322,8 +355,9 @@ const getReviews = async (productId) => {
         getAllBrands,
         addCategory,
         getAllCategories,
-        addReview,getReviews,
-        updateProductOrder
+        addReview,
+        getReviews,
+        updateProductOrder,
       }}
     >
       {props.children}

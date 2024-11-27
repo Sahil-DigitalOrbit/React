@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDollar, faCheck, faHeart as filledHeart, faStar } from "@fortawesome/free-solid-svg-icons";
+import { faDollar, faCheck, faHeart as filledHeart, faStar, faBagShopping } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { useContext } from "react";
 import { globalContext } from "../../utils/context";
@@ -39,7 +39,7 @@ export default function TemplatePageTile({ item, isItemInList, isProduct,handleV
                 e.stopPropagation();
                 handleToggleItem('cart', item)
             }}>
-              {isItemInList(cartItems) ? <FontAwesomeIcon icon={faCheck} /> : "+ Add"}
+              <FontAwesomeIcon icon={isItemInList(cartItems) ? faCheck  : faBagShopping}/>
             </button>
             </div>
         </div>)}

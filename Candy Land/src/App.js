@@ -2,7 +2,7 @@ import "./assests/styles/App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import VerifyPage from "./pages/LandingPage";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CartPage from "./pages/CartPage";
 import WishlistPage from "./pages/WishlistPage";
 import AllProductsPage from "./pages/AllProductsPage";
@@ -10,11 +10,11 @@ import AccountPage from "./pages/AccountPage";
 import ProductDetailsPage from "./pages/ProductDetail";
 import { globalContext } from "./utils/context";
 import { useFirebase } from "./firebase/firebase";
+import { getCookie } from "./utils/cookies";
+import { toast } from "react-toastify";
 
 function App() {
   let firebase = useFirebase();
-  let [ageValidation, ageValidationChange] = useState(false);
-  let [isLoggedIn, setLogin] = useState();
   let [signupShow, setSignUpStatus] = useState(false);
   let [cartItems, updateCart] = useState([]);
   let [wishlistItems, updateWishlist] = useState([]);
@@ -23,7 +23,36 @@ function App() {
   let [products, setProducts] = useState([]);
   let [brands, setBrands] = useState([]);
   let [categories, setCategories] = useState([]);
-  
+  let[load,setLoad]=useState(false);
+  let[userInfo,setUserInfo]=useState(getCookie('userInfo'))
+  useEffect(()=>{
+    async function populateState(userInfo){
+      try{
+        setLoad(true);
+      let userFindings = await firebase.getUserWishlistOrdersAndCart(userInfo.cartId,userInfo.wishlistId,userInfo.orderId);
+      let categories = await firebase.getAllCategories();
+      let brands = await firebase.getAllBrands();
+      let products= await firebase.getAllProducts();
+      setProducts(products);
+      setBrands(brands);
+      setCategories(categories);
+      updateOrderHistory(userFindings.orders)
+      updateCart(userFindings.cart);
+      updateWishlist(userFindings.wishlist);
+      setLoad(false)
+      }catch(err){
+        toast.error('Error Found! please try again later')
+      }
+    }
+
+    if(getCookie('userInfo')){
+      const retrievedUserInfo = JSON.parse(getCookie('userInfo'));    
+      populateState(retrievedUserInfo);
+    }
+  },[userInfo])
+
+
+
   //curd operations for cart and wishlist
   const handleToggleItem = async (listType, item,quantity=1) => {
     const isItemInList = (list, item) => list.some((x) => x.id === item.id);
@@ -36,16 +65,16 @@ function App() {
       updateFunc(updatedList);
       return updatedList;
     };
-  
+    const retrievedUserInfo = JSON.parse(getCookie('userInfo'));   
     if (listType === "cart") {
       const updatedCart = toggleItem(item, cartItems, updateCart, {
         quantity,
         weight: item.weight,
       });
-      await firebase.updateCart(isLoggedIn.cartId, updatedCart);
+      await firebase.updateCart(retrievedUserInfo.cartId, updatedCart);
     } else if (listType === "wishlist") {
       const updatedWishlist = toggleItem(item, wishlistItems, updateWishlist);
-      await firebase.updateWishlist(isLoggedIn.wishlistId, updatedWishlist);
+      await firebase.updateWishlist(retrievedUserInfo.wishlistId, updatedWishlist);
     }
   };
 
@@ -83,10 +112,10 @@ function App() {
 
   return (
     <div className="App">
+      <div className={load?"active-spinner":'hide'}><img src="./spinnerr.gif" /></div>
       <globalContext.Provider
         value={{
-          ageValidation, ageValidationChange,
-          isLoggedIn, setLogin,
+          userInfo,setUserInfo,
           signupShow, setSignUpStatus,
           products, setProducts,
           brands,setBrands,

@@ -8,7 +8,7 @@ import { useFirebase } from "../../firebase/firebase";
 
 export default function CartTile({ prop }) {
     let { item,  subtotal, updateSubtotal } = prop;
-    let { handleToggleItem,cartItems,updateCart,isLoggedIn } = useContext(globalContext);
+    let { handleToggleItem,cartItems,updateCart,userInfo } = useContext(globalContext);
     let cartItem=[...cartItems].find(x=>x.id==item.id);
     let firebase=useFirebase();
     let [quantity, updateQuantity] = useState(cartItem.quantity||1);
@@ -28,7 +28,7 @@ export default function CartTile({ prop }) {
         return x;
       }) 
       updateCart(newCartItems);
-      firebase.updateCart(isLoggedIn.cartId,newCartItems);     
+      firebase.updateCart(userInfo.cartId,newCartItems);     
 
     }
   

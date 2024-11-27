@@ -18,7 +18,7 @@ export default function HomePageTemplate({ prop }) {
       </div>
       <div className="template-card-section">
         {data.map((item, idx) => {
-          return <ProductTile prop={{ item, isProduct }} key={idx} />;
+          return <ProductTile prop={{ item, isProduct,head }} key={idx} />;
         })}
       </div>
     </section>

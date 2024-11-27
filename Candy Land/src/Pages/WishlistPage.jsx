@@ -8,9 +8,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-regular-svg-icons";
 import { faCheck, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { globalContext } from "../utils/context";
+import { getCookie } from "../utils/cookies";
 
 export default function WishlistPage() {
-  let { ageValidation, isLoggedIn, wishlistItems,products } = useContext(globalContext);
+  let {  wishlistItems,products } = useContext(globalContext);
+  const retrievedUserInfo = JSON.parse(getCookie('userInfo'));    
   const navigate = useNavigate();
   const isItemInList = (list, item) => list.some((x) => x.id == item.id);
   
@@ -22,10 +24,10 @@ export default function WishlistPage() {
   
   
   useEffect(() => {
-    if (!ageValidation) {
+    if (!getCookie('ageValidation')) {
       navigate("/");
     }
-  }, [isLoggedIn, navigate]);
+  }, [ navigate]);
 
   return (
     <>
@@ -33,7 +35,7 @@ export default function WishlistPage() {
         <ToastContainer />
         <Signup />
         <Header prop={{}} />
-        {isLoggedIn ? (
+        {retrievedUserInfo ? (
           <div className="Cart p-5">
             <h1 className="cart-heading text-start">Wishlist</h1>
             <div className="wishlist-section">
@@ -64,11 +66,11 @@ function CartTile({ prop }) {
 
   return (
     <Card style={{ border: "none" }} className="wishlist-tile">
-      <div className="position-relative border h-75 cart-image-div">
+      <div className="position-relative border wishlist-image-div">
         <Card.Img
           className="card-image"
           variant="top"
-          src="https://m.media-amazon.com/images/I/61XdlI186PL._SL1500_.jpg"
+          src={item.image[0]}
         />
 
         <span className="position-absolute card-rating-div">

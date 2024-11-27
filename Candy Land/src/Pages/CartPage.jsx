@@ -6,10 +6,11 @@ import Signup from "../Components/Signup";
 import CartSection from "../Components/sections/CartSection";
 import { globalContext } from "../utils/context";
 import { useFirebase } from "../firebase/firebase";
+import { getCookie } from "../utils/cookies";
 export default function CartPage() {
-  let {  ageValidation,  isLoggedIn,  cartItems,  updateCart,orderHistory,updateOrderHistory,products} = useContext(globalContext);
+  let {  cartItems,  updateCart,orderHistory,updateOrderHistory,products} = useContext(globalContext);
   let firebase=useFirebase();
-
+  const retrievedUserInfo = JSON.parse(getCookie('userInfo'));    
 
   //check if item is in list
   const isItemInList = (list, item) => list.some((x) => x.id == item.id);
@@ -24,10 +25,10 @@ export default function CartPage() {
 
   const navigate = useNavigate();
   useEffect(() => {
-    if (!ageValidation) {
+    if (!getCookie('ageValidation')||!getCookie('userInfo')) {
       navigate("/");
     }
-  }, [isLoggedIn, navigate]);
+  }, [ navigate]);
 
   //calculating subtotal
   const [subtotal, updateSubtotal] = useState(
@@ -43,8 +44,8 @@ export default function CartPage() {
     });
     //adding to order history
     updateOrderHistory([...orderHistory,...newOrders]);
-    firebase.addOrder([...orderHistory,...newOrders],isLoggedIn.orderId);
-    firebase.updateCart(isLoggedIn.cartId,[]);
+    firebase.addOrder([...orderHistory,...newOrders],retrievedUserInfo.orderId);
+    firebase.updateCart(retrievedUserInfo.cartId,[]);
     cartItems.forEach(element => {
       let product=products.find(p=>p.id==element.id);
       firebase.updateProductOrder(element.id , (product.ordered+element.quantity));
@@ -64,7 +65,7 @@ export default function CartPage() {
         <ToastContainer />
         <Signup/>
         <Header  prop={{cartPage:true }}/>
-        {isLoggedIn ? (
+        {retrievedUserInfo ? (
           <CartSection prop={{data,subtotal,deliveryCost,checkoutCart,updateSubtotal}}/>
         ) : (
           <h1>Please Login First</h1>

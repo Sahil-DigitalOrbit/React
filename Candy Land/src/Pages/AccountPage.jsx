@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import Signup from "../Components/Signup";
@@ -6,11 +6,10 @@ import Header from "../Components/Header/Header";
 import UserProfileCard from "../Components/Account/UserProfileCard";
 import OrderHistory from "../Components/Account/OrderHistory";
 import AccountNav from '../Components/Account/AccountNav';
-import { globalContext } from "../utils/context";
+import { getCookie } from "../utils/cookies";
 export default function AccountPage() {
   const navigate = useNavigate();
-  const {  ageValidation,  isLoggedIn} = useContext(globalContext);
-
+  
   //onclick event, order-rate-section will be shown
   let [rateProductItem, showRateProductSection] = useState();
   let [showAllOrder, updateOrderStatus] = useState(true);
@@ -18,13 +17,13 @@ export default function AccountPage() {
   let [showTrackMyOrder, updateTrack] = useState(false);
   let [showContactUs, updateContact] = useState(false);
   let [showFAQs, updateFAQs] = useState(false);
-
+  const retrievedUserInfo = JSON.parse(getCookie('userInfo'));    
   // Navigate to verification if age validation fails
   useEffect(() => {
-    if (!ageValidation) {
-      navigate("/verify");
+    if (!getCookie('ageValidation')) {
+      navigate("/verify");  
     }
-  }, [ageValidation, navigate]);
+  }, [navigate]);
 
   function showSection(targetUpdateFunction) {
     updateOrderStatus(false);
@@ -45,7 +44,7 @@ export default function AccountPage() {
       <ToastContainer />
       <Signup />
       <Header prop={{}}/>
-      {isLoggedIn ? (
+      {retrievedUserInfo ? (
         <>
           <AccountNav prop={{showUserAccount,updateUserStatus,showTrackMyOrder,updateTrack,showAllOrder,updateOrderStatus,showContactUs,updateContact,showFAQs,updateFAQs,showSection}}/>
           {showAllOrder && (

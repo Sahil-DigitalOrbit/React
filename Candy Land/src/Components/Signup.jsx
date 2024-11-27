@@ -2,24 +2,12 @@ import { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { globalContext } from "../utils/context";
 import { useFirebase } from "../firebase/firebase";
+import {  setCookie } from "../utils/cookies";
 
 export default function Signup() {
-  let {
-    signupShow,
-    setSignUpStatus,
-    isLoggedIn,
-    setLogin,
-    isSignupPage,
-    updateSignupContent,
-    updateCart,
-    updateWishlist,
-    setProducts,
-    setOrders,
-    setBrands,
-    setCategories,
-    updateOrderHistory
-  } = useContext(globalContext);
-
+  let {  signupShow,  setSignUpStatus,  isSignupPage,  updateSignupContent,setUserInfo,userInfo} = useContext(globalContext);
+  let [login,setLogin]=useState(false);
+  
   //firebase instance
   const firebase = useFirebase();
   let [formDetails, setDetails] = useState({
@@ -30,6 +18,7 @@ export default function Signup() {
   });
   let [loginWithMail, setLoginWithMail] = useState(false);
   let [toPassword, setToPassword] = useState(false);
+  let[load,setLoad]=useState(false);
 
   //for change in content
   function updateValue(e) {
@@ -41,7 +30,7 @@ export default function Signup() {
   //to add user to data
   async function addUser(e) {
     e.preventDefault();
-
+    setLoad(true);
     if (isSignupPage) {
       try {
         await firebase.signupUserWithEmailPassword(
@@ -50,6 +39,7 @@ export default function Signup() {
         );
         await firebase.setUserSignupDetails(formDetails.uMail,formDetails.uName,formDetails.uContact);  
         toast.success("Account created! Now please login...");
+        
       } catch (err) {
         toast.error("User Exist! Please try login...");
       }
@@ -57,101 +47,48 @@ export default function Signup() {
       try {
         await firebase.signinUserWithEmailPassword(  formDetails.uMail,  formDetails.uPassword);
         let userInfo=await firebase.setUserSignupDetails(formDetails.uMail,formDetails.uName,formDetails.uContact);
-        let userFindings = await firebase.getUserWishlistOrdersAndCart(userInfo.cartId,userInfo.wishlistId,userInfo.orderId);
-        
-        let categories = await firebase.getAllCategories();
-        let brands = await firebase.getAllBrands();
-
-        setLogin(userInfo);
-        setBrands(brands);
-        setCategories(categories);
-        updateOrderHistory(userFindings.orders);
-        updateCart(userFindings.cart);
-        updateWishlist(userFindings.wishlist);
+        setCookie('userInfo', JSON.stringify(userInfo));
         toast.success(`Welcome! ${userInfo.name}`);
-        await populateProducts();
+        setLogin(true);
+        setSignUpStatus(false);
+        setUserInfo(userInfo)
       } catch (err) {
-        console.log(err);
         toast.error("User Credentials not valid!");
       }
     }
+    setLoad(false)
     setToPassword(false);
     setDetails({ uName: "", uContact: "", uMail: "", uPassword: "" });
   }
 
-  //populate products page
-  async function populateProducts() {
-    try {
-      let products = await firebase.getAllProducts();
-      setProducts(products);
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
   //sign up with google
   const signupWithGoogle = async () => {
+    setLoad(true)
     try {
       let user = await firebase.signupUserWithGoogle();
       let userInfo=await firebase.setUserSignupDetails(user.email,user.displayName);
-      let userFindings = await firebase.getUserWishlistOrdersAndCart(userInfo.cartId,userInfo.wishlistId,userInfo.orderId);
-      let categories = await firebase.getAllCategories();
-      let brands = await firebase.getAllBrands();
-      setBrands(brands);
-      setCategories(categories);
-      setLogin(userInfo);
-      updateOrderHistory(userFindings.orders)
-      updateCart(userFindings.cart);
-      updateWishlist(userFindings.wishlist);
-      toast.success(`Welcome! ${userInfo.name}`);  
-      await populateProducts();
+      setCookie('userInfo', JSON.stringify(userInfo));
+      toast.success(`Welcome! ${userInfo.name}`);
+      setLogin(true);
+      setSignUpStatus(false)
+      setUserInfo(userInfo);
     } catch (err) {
       toast.error("Login failed! try different method");
-      console.log(err);
     }
+    setLoad(false)
   };
 
   //----------------------container content-------------------------------
   return (
     <section>
-      <div className={signupShow && !isLoggedIn ? "modal-div" : ""}></div>
-      <UnifiedAuthSection
-        prop={{
-          isSignupPage,
-          loginWithMail,
-          updateValue,
-          formDetails,
-          setLoginWithMail,
-          updateSignupContent,
-          setToPassword,
-          setSignUpStatus,
-          toPassword,
-          signupShow,
-          isLoggedIn,
-          addUser,
-          firebase,
-          signupWithGoogle,
-        }}
-      />
+      <div className={signupShow && !login ? "modal-div" : ""}></div>
+      <div className={load?"active-spinner":'hide'}><img src="./spinnerr.gif" /></div>
+      <UnifiedAuthSection  prop={{  isSignupPage,  loginWithMail,  updateValue,  formDetails,  setLoginWithMail,  updateSignupContent,  setToPassword,  setSignUpStatus,  toPassword,  signupShow,  addUser,  firebase,  signupWithGoogle,  userInfo}}/>
     </section>
   );
 }
 function UnifiedAuthSection({ prop }) {
-  const {
-    isSignupPage,
-    loginWithMail,
-    updateValue,
-    formDetails,
-    setLoginWithMail,
-    updateSignupContent,
-    setToPassword,
-    setSignUpStatus,
-    toPassword,
-    signupShow,
-    isLoggedIn,
-    addUser,
-    signupWithGoogle,
-  } = prop;
+  const {  isSignupPage,  loginWithMail,  updateValue,  formDetails,  setLoginWithMail,  updateSignupContent,  setToPassword,  setSignUpStatus,  toPassword,  signupShow,  userInfo,  addUser,  signupWithGoogle,} = prop;
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -171,7 +108,7 @@ function UnifiedAuthSection({ prop }) {
     <form
       onSubmit={toPassword ? addUser : enterPasswordFunc}
       className={
-        signupShow && !isLoggedIn
+        signupShow && !userInfo
           ? "login-signup-section active"
           : "login-signup-section"
       }

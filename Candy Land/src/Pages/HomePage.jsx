@@ -5,15 +5,17 @@ import Signup from "../Components/Signup";
 import { ToastContainer } from "react-toastify";
 import PopulateHomepage from "../Components/sections/PopulateHomepage";
 import { globalContext } from "../utils/context";
+import { getCookie } from "../utils/cookies";
 
 export default function HomePage() {
-  let{ageValidation,isLoggedIn,products}=useContext(globalContext);
+  let{products}=useContext(globalContext);
+  const retrievedUserInfo = JSON.parse(getCookie('userInfo'));    
   const navigate = useNavigate();
   useEffect(() => {
-    if (!ageValidation) {
+    if (!getCookie('ageValidation')) {
       navigate("/verify");
     }
-  }, [ageValidation, navigate]);
+  }, [navigate]);
   //best seller data
   let bestSellers = products.sort((a,b)=> b.ordered-a.ordered).slice(0,8);
 
@@ -25,7 +27,7 @@ export default function HomePage() {
       <ToastContainer />
       <Signup/>
       <Header prop={{}}/>
-      {isLoggedIn ? (
+      {retrievedUserInfo ? (
         <PopulateHomepage prop={{ bestSellers, popularProducts}} />
         
       ) : (

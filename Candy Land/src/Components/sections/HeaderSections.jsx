@@ -38,7 +38,7 @@ export const SignUpSection=({prop})=>{
 
 
   export const HamburgerSection =({prop})=>{
-    const{handlerRouting}=prop;
+    const{handlerRouting,logoutUser}=prop;
     const{brands,categories}=useContext(globalContext);
     let[brand,setBrand]=useState(false);
     let[category,setCategories]=useState(false);
@@ -121,6 +121,9 @@ export const SignUpSection=({prop})=>{
               </div>
               <div onClick={() => handlerRouting("/cart")}>
                 <h5 className="homogeneous-filter-controls-head">Cart</h5>
+              </div>
+              <div onClick={logoutUser}>
+                <button>Logout</button>
               </div>
             </>)
   }
