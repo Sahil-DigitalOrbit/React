@@ -7,7 +7,7 @@ export default function ProductTile({ prop }) {
   const {  item,  isProduct,  isAccountPage,  showRateProductSection,  isProductPage,head} = prop;
   const navigate = useNavigate();
   const handleViewAll = () =>
-    navigate("/products", { state: { heading: item.name, type: head } });
+    navigate("/products", { state: { heading: item.name, type: head||item.name } });
   
   const handlePoductPage = () =>
     navigate("/about-product", { state: { item } });

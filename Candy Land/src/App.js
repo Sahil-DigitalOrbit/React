@@ -30,16 +30,16 @@ function App() {
       try{
         setLoad(true);
       let userFindings = await firebase.getUserWishlistOrdersAndCart(userInfo.cartId,userInfo.wishlistId,userInfo.orderId);
+      updateOrderHistory(userFindings.orders)
+      updateCart(userFindings.cart);
+      updateWishlist(userFindings.wishlist);
+      setLoad(false)
       let categories = await firebase.getAllCategories();
       let brands = await firebase.getAllBrands();
       let products= await firebase.getAllProducts();
       setProducts(products);
       setBrands(brands);
       setCategories(categories);
-      updateOrderHistory(userFindings.orders)
-      updateCart(userFindings.cart);
-      updateWishlist(userFindings.wishlist);
-      setLoad(false)
       }catch(err){
         toast.error('Error Found! please try again later')
       }
@@ -115,6 +115,7 @@ function App() {
       <div className={load?"active-spinner":'hide'}><img src="./spinnerr.gif" /></div>
       <globalContext.Provider
         value={{
+          setLoad,
           userInfo,setUserInfo,
           signupShow, setSignUpStatus,
           products, setProducts,

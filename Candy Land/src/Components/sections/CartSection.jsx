@@ -24,7 +24,7 @@ export default function CartSection({ prop }) {
           <div className="total-section">
             <p>Total</p>
             <p className="cart-items-total-final">
-              Rs. {subtotal + deliveryCost}
+              Rs. {(subtotal + deliveryCost).toFixed(2)}
             </p>
           </div>
           <div>

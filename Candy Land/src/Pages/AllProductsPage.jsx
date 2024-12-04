@@ -44,13 +44,14 @@ export default function AllProductsPage() {
       data = brands;
     }
     else{
-      data=products;  
+      data=products;
+      isProduct=true  
     }
   }
 
   // Navigate to verification if age validation fails
   useEffect(() => {
-    if (!getCookie('ageValidation')) {
+    if (!getCookie('ageValidation')||!getCookie('userInfo')) {
       navigate("/verify");
     }
   }, [navigate]);

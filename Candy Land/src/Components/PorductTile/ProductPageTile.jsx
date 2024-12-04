@@ -4,10 +4,11 @@ import { faHeart, faStar as faStarBorder } from "@fortawesome/free-regular-svg-i
 import { useContext, useEffect, useState } from "react";
 import { globalContext } from "../../utils/context";
 import { useFirebase } from "../../firebase/firebase";
+import { getCookie } from "../../utils/cookies";
 
 export default function ProductPageTile({ item, isItemInList }) {
   
-  let{wishlistItems, cartItems, handleToggleItem,userInfo}=useContext(globalContext);
+  let{wishlistItems, cartItems, handleToggleItem}=useContext(globalContext);
   const [dropDescription, setDropDescription] = useState(false);
   const [dropRatings, setDropRatings] = useState(false);
   const[quantity,updateQuantity]=useState(1);
@@ -16,12 +17,13 @@ export default function ProductPageTile({ item, isItemInList }) {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
+        const retrievedUserInfo = JSON.parse(getCookie('userInfo'));   
         const reviewsData = await firebase.getReviews(item.id);
         const reviewsArray = reviewsData
           ? Object.keys(reviewsData).map((id) => ({
               id,
               ...reviewsData[id],
-              name: id == userInfo.id ? "You" : reviewsData[id].name,
+              name: id == retrievedUserInfo.id ? "You" : reviewsData[id].name,
             }))
           : [];
         setRatingReviews(reviewsArray);

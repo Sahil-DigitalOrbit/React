@@ -195,6 +195,7 @@ export const FirebaseProvider = (props) => {
       toast.success("cart updated!");
     } catch (Err) {
       toast.error("Error occured! please retry later!");
+      console.log(Err)
     }
   };
 
@@ -278,7 +279,6 @@ export const FirebaseProvider = (props) => {
           },
         });
       }
-      toast.success("Review added/updated successfully!");
     } catch (error) {
       toast.error("Error adding review:");
     }

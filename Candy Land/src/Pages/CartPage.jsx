@@ -8,7 +8,7 @@ import { globalContext } from "../utils/context";
 import { useFirebase } from "../firebase/firebase";
 import { getCookie } from "../utils/cookies";
 export default function CartPage() {
-  let {  cartItems,  updateCart,orderHistory,updateOrderHistory,products} = useContext(globalContext);
+  let {  cartItems,  updateCart,orderHistory,updateOrderHistory,products,userInfo,setUserInfo,updateWishlist,setLoad,setProducts,setBrands,setCategories} = useContext(globalContext);
   let firebase=useFirebase();
   const retrievedUserInfo = JSON.parse(getCookie('userInfo'));    
 
@@ -19,21 +19,49 @@ export default function CartPage() {
   let data = products.filter((item) => {
     return isItemInList(cartItems,item);
   });
-
-  //delivery cost
-  const deliveryCost = 300;
-
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (!getCookie('ageValidation')||!getCookie('userInfo')) {
-      navigate("/");
-    }
-  }, [ navigate]);
-
+  
   //calculating subtotal
   const [subtotal, updateSubtotal] = useState(
-    data.reduce((total, item) => total + item.price, 0)
+    data.reduce((total, item) => {
+     let x= [...cartItems].find(q=>q.id==item.id);
+     return total + (item.price*x.quantity)
+    }, 0)
   );
+  
+  //delivery cost
+  const deliveryCost = 300;
+  
+  const navigate = useNavigate();
+  useEffect(() => {
+    async function populateState(userInfo){
+      try{
+        setLoad(true);
+        let userFindings = await firebase.getUserWishlistOrdersAndCart(userInfo.cartId,userInfo.wishlistId,userInfo.orderId);
+        updateOrderHistory(userFindings.orders)
+        updateCart(userFindings.cart);
+        updateWishlist(userFindings.wishlist);
+        setLoad(false)
+        let categories = await firebase.getAllCategories();
+        let brands = await firebase.getAllBrands();
+        let products= await firebase.getAllProducts();
+        setProducts(products);
+        setBrands(brands);
+        setCategories(categories);
+      }catch(err){
+        toast.error('Error Found! please try again later')
+      }
+    }
+
+
+    if (!getCookie('ageValidation')||!getCookie('userInfo')) {
+      navigate("/");
+    }else if(!userInfo){
+      const retrievedUserInfo = JSON.parse(getCookie('userInfo'));    
+      populateState(retrievedUserInfo);
+      setUserInfo(retrievedUserInfo);
+    }
+  }, []);
+
 
   //checkout function
   function checkoutCart(){

@@ -5,6 +5,7 @@ import { faDollar, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useContext, useState } from "react";
 import { globalContext } from "../../utils/context";
 import { useFirebase } from "../../firebase/firebase";
+import { getCookie } from "../../utils/cookies";
 
 export default function CartTile({ prop }) {
     let { item,  subtotal, updateSubtotal } = prop;
@@ -28,8 +29,13 @@ export default function CartTile({ prop }) {
         return x;
       }) 
       updateCart(newCartItems);
-      firebase.updateCart(userInfo.cartId,newCartItems);     
+      try{
 
+        let user=JSON.parse(getCookie('userInfo'));
+      firebase.updateCart(user.cartId,newCartItems);     
+      }catch(err){
+        console.log(err)
+      }
     }
   
     return (
