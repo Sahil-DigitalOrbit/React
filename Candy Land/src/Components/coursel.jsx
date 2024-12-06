@@ -3,13 +3,10 @@ import { useNavigate } from "react-router-dom";
 
 // import ExampleCarouselImage from 'components/Example CarouselImage';
 export default function Coursel() {
-  const navigate = useNavigate();
-  const handleViewAll = () =>
-    navigate("/products");
   
 
   return (
-    <Carousel onClick={handleViewAll} className="homepage-advertise-section" data-bs-theme="dark">
+    <Carousel  className="homepage-advertise-section" data-bs-theme="dark">
       <Carousel.Item interval={3300}>
         <img
           className="d-block homepage-advertise-section-img"
